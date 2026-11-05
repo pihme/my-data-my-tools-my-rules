@@ -1,0 +1,1 @@
+Know a tool that belongs here, or spotted something outdated or wrong? We're happy to hear about it. Open an issue on [GitHub](https://github.com/pihme/my-data-my-tools-my-rules/issues/new?template=suggest-a-project.yml) with the project's name, a link to its source code, and a sentence on why it fits. Every suggestion is checked against the criteria above before it's added.
