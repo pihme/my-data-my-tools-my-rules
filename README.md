@@ -13,6 +13,23 @@ Most of this site is written and maintained with the help of AI tools: project r
 
 The person behind this site uses it too, to discover new tools and try them out. It is a list we rely on ourselves, not just one we publish.
 
+## Building the site
+
+The site is generated from the dossiers in `projects/` by a small Python
+script with no dependencies beyond Python 3.8+.
+
+```sh
+python3 build.py              # writes the site to ./site
+python3 build.py --serve      # build, then serve on http://localhost:8000
+python3 tools/check_links.py  # check internal links in ./site
+tools/deploy.sh               # build, check and publish to the gh-pages branch
+```
+
+The theme lives in `theme/` (HTML template, CSS, a small script for the
+filters and dark mode, self-hosted fonts under the SIL Open Font License),
+logos and favicons in `assets/`. All links are relative, so the output
+works under the GitHub Pages path `/my-data-my-tools-my-rules/`.
+
 ## License
 
 CC BY-ND 4.0, see [LICENSE](LICENSE).
