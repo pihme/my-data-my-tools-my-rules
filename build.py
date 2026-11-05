@@ -269,10 +269,9 @@ def index(ps, cats):
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A curated list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
 <div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
-<div class="filters" hidden><span>Show</span><button type="button" data-kind="all" class="on" aria-pressed="true">Everything</button><button type="button" data-kind="open-source" aria-pressed="false">Open source</button><button type="button" data-kind="source-available" aria-pressed="false">Source-available</button><button type="button" data-kind="self-host" aria-pressed="false">Self-host</button><button type="button" data-kind="app" aria-pressed="false">App</button></div>
-<div class="filters aud-filters" hidden><span>For</span><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false">●○○ End user</button><button type="button" data-aud="enthusiast" aria-pressed="false">●●○ Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false">●●● Expert</button></div></div></section>
+<div class="filterbar" hidden><div class="frow"><div class="fgroup" role="group" aria-label="License"><span class="flabel">License</span><div class="pills"><button type="button" data-lic="all" class="on" aria-pressed="true">Any</button><button type="button" data-lic="open-source" aria-pressed="false">Open source</button><button type="button" data-lic="source-available" data-sa aria-pressed="false">Source-available</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="Runs as"><span class="flabel">Runs as</span><div class="pills"><button type="button" data-run="all" class="on" aria-pressed="true">Any</button><button type="button" data-run="app" aria-pressed="false">App</button><button type="button" data-run="self-host" aria-pressed="false">Self-host</button></div></div></div><div class="frow"><div class="fgroup" role="group" aria-label="For"><span class="flabel">For</span><div class="pills"><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false"><span class="dots" aria-hidden="true">●○○</span> End user</button><button type="button" data-aud="enthusiast" aria-pressed="false"><span class="dots" aria-hidden="true">●●○</span> Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false"><span class="dots" aria-hidden="true">●●●</span> Expert</button></div></div><button type="button" class="freset">Reset filters</button></div></div></section>
 <div class="catflow">
-{secs}</div><p class="empty" hidden>No entries match this filter.</p>'''
+{secs}</div><p class="empty" hidden>No projects match these filters. <button type="button" class="freset">Reset filters</button></p>'''
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
                 "An open catalog of open-source and source-available software that keeps your data under your control.")
 
@@ -356,7 +355,7 @@ def about(cats):
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
 <h2 id="suggest-a-project">Suggest a project</h2>
-<p>Tips and suggestions are always welcome. If you know a project that belongs here, or spot a mistake or an outdated license, please <a href="{REPO}/issues/new?template=suggest-a-project.yml">open an issue on GitHub</a>. We look at every suggestion and check it against the criteria above before adding anything.</p>
+{markdown(open(os.path.join(ROOT, "content", "suggest.md"), encoding="utf-8").read())}
 </article></div>'''
     return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.")
 
