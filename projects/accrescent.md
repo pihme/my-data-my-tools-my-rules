@@ -29,4 +29,4 @@ Official site: <https://accrescent.app/>
 
 ## Notes
 
-App availability depends on what the Accrescent catalogue distributes; this dossier does not inventory apps.
+App availability depends on what the Accrescent catalog distributes; this dossier does not inventory apps.

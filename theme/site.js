@@ -16,7 +16,7 @@
     });
   }
 
-  // Catalogue filters (index page only).
+  // Catalog filters (index page only).
   var cards = document.querySelectorAll(".card[data-cat]");
   var bar = document.querySelector(".filters");
   if (!cards.length || !bar) return;
