@@ -47,10 +47,11 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Pull the official jellyfin/jellyfin image.
-2. Start it with volumes for config, cache and your media, as shown in the container guide.
-3. Open http://<server>:8096 and run the setup wizard.
-4. Add your media libraries and install Jellyfin clients on your devices.
+1. Create folders for config and cache on the server.
+2. Start the official jellyfin/jellyfin image with volumes for config, cache and your media, as shown in the container guide.
+3. Open http://<server>:8096 to start the setup wizard.
+4. Create your admin user in the wizard.
+5. Add your media libraries and install Jellyfin clients on your devices.
 
 Watch out: the main `docker run` example puts comments after line continuations (`\`); pasting that as-is stops the command early and runs the remaining lines on the host. Use the Compose example, or remove the inline comments before pasting.
 
