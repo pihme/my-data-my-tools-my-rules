@@ -33,6 +33,7 @@ Exact field names (YAML):
 | `icon` | no | string | Path to the official logo, `assets/icons/<slug>.svg` or `.png`; only when its license/terms are documented in ASSETS.md |
 | `icon_credit` | no | string | Credit/trademark line shown with the icon |
 | `icon_source` | no | string | URL the icon file was taken from |
+| `icon_scale` | no | number | Optical scale (1-2) for logos with built-in whitespace, e.g. `1.4`; the file itself is never changed |
 | `screenshot` | no | string | Path to an official screenshot, `assets/screenshots/<slug>.webp` (max 1600 px wide); only with a documented reuse license |
 | `screenshot_credit` | no | string | Credit/license line shown with the screenshot |
 | `screenshot_source` | no | string | URL the screenshot was taken from |

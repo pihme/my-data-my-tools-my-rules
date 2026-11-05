@@ -232,3 +232,13 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .hero>*{min-width:0}
 .filterbar,.fgroup{max-width:100%}
 @media (max-width:1280px){.hero{grid-template-columns:minmax(0,1fr)}}
+
+/* logo tiles: fixed tile, fixed pixel-size logo (robust in WebKit/Safari, where a percentage height
+   on an <img> grid item can resolve against the SVG's intrinsic size), optional optical scale */
+.lt.ic{box-sizing:border-box;padding:0;overflow:hidden;display:grid;place-items:center;line-height:0}
+.lt.ic img{display:block;flex:none;box-sizing:border-box;max-width:100%;max-height:100%;object-fit:contain;transform:scale(var(--s,1));transform-origin:center}
+.lt.ic-card img{width:24px;height:24px}
+.lt.ic-omakase img{width:20px;height:20px}
+.phead h1 .lt.ic{padding:0}
+.lt.ic-dossier img{width:60px;height:60px}
+@media (max-width:600px){.lt.ic-dossier img{width:40px;height:40px}}
