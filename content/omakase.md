@@ -4,7 +4,7 @@ title: Omakase
 
 # Omakase: the chef's choice
 
-Picks the site's author actually runs, from the catalog and beyond. One line per pick; follow the link for the full dossier.
+The tools I actually run myself, from the catalog and beyond. One line per pick; follow the link for the full dossier.
 
 ## First course: Desktop
 
