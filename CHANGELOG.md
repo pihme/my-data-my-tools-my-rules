@@ -3,6 +3,7 @@
 ## 2.1.0 (unreleased)
 
 ### Changed
+- Dossier intro: summary shown as a full-width lead under the title with a category-colour bar (variant A); catalog hero and Omakase unchanged.
 - Content update: fixed setup links and Getting started paths for Vaultwarden, YunoHost, Nextcloud (AIO), PeerTube (Docker), Element and Syncthing.
 - Short Watch out notes for known pitfalls in the official guides of Garage, Jellyfin, ONLYOFFICE, CryptPad, Paperless-ngx and openHAB.
 - "(tentative)" removed from remaining category labels in dossiers that the v2.1 package did not re-export.
