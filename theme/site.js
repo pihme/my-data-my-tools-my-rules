@@ -16,22 +16,27 @@
     });
   }
 
-  // Catalog filters (index page only).
+  // Catalog filters (index page only). Groups combine with AND, and with the active category.
   var cards = document.querySelectorAll(".card[data-cat]");
-  var bar = document.querySelector(".filters");
+  var bar = document.querySelector(".filterbar");
   if (!cards.length || !bar) return;
   bar.hidden = false;
-  var state = { kind: "all", cat: "all" };
+  var groups = ["lic", "run", "aud"];
+  var state = { lic: "all", run: "all", aud: "all", cat: "all" };
   var navLinks = document.querySelectorAll(".cats a[data-cat]");
   var empty = document.querySelector(".empty");
+
+  function has(list, v) { return (" " + list + " ").indexOf(" " + v + " ") >= 0; }
 
   function apply() {
     var shown = 0;
     cards.forEach(function (c) {
-      var okKind = state.kind === "all" || (" " + c.dataset.kinds + " ").indexOf(" " + state.kind + " ") >= 0;
-      var okCat = state.cat === "all" || c.dataset.cat === state.cat;
-      c.hidden = !(okKind && okCat);
-      if (!c.hidden) shown++;
+      var ok = (state.lic === "all" || has(c.dataset.kinds, state.lic)) &&
+        (state.run === "all" || has(c.dataset.kinds, state.run)) &&
+        (state.aud === "all" || c.dataset.aud === state.aud) &&
+        (state.cat === "all" || c.dataset.cat === state.cat);
+      c.hidden = !ok;
+      if (ok) shown++;
     });
     document.querySelectorAll("section.cat").forEach(function (s) {
       var n = s.querySelectorAll(".card:not([hidden])").length;
@@ -42,21 +47,34 @@
       var cnt = s.querySelector(".cnt");
       if (cnt) cnt.textContent = n + (n === 1 ? " entry" : " entries");
     });
-    bar.querySelectorAll("button").forEach(function (b) {
-      var on = b.dataset.kind === state.kind;
-      b.classList.toggle("on", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
+    groups.forEach(function (g) {
+      bar.querySelectorAll("button[data-" + g + "]").forEach(function (b) {
+        var on = b.getAttribute("data-" + g) === state[g];
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
     });
+    var filtered = groups.some(function (g) { return state[g] !== "all"; }) || state.cat !== "all";
+    bar.classList.toggle("is-filtered", filtered);
     navLinks.forEach(function (a) { a.classList.toggle("on", a.dataset.cat === state.cat); });
     if (empty) empty.hidden = shown > 0;
+  }
+
+  function reset() {
+    groups.forEach(function (g) { state[g] = "all"; });
+    state.cat = "all";
+    history.replaceState(null, "", location.pathname);
+    apply();
   }
 
   bar.addEventListener("click", function (e) {
     var b = e.target.closest("button");
     if (!b) return;
-    state.kind = b.dataset.kind;
+    if (b.classList.contains("freset")) { reset(); return; }
+    groups.forEach(function (g) { if (b.hasAttribute("data-" + g)) state[g] = b.getAttribute("data-" + g); });
     apply();
   });
+  document.querySelectorAll(".empty .freset").forEach(function (r) { r.addEventListener("click", reset); });
   navLinks.forEach(function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();
@@ -69,4 +87,23 @@
   var h = decodeURIComponent(location.hash.slice(1));
   if (h && document.querySelector('.cats a[data-cat="' + h + '"]')) state.cat = h;
   apply();
+})();
+
+/* right-edge fade on horizontally scrollable filter rows */
+(function () {
+  var groups = document.querySelectorAll(".filterbar .fgroup");
+  function upd(g) {
+    var p = g.querySelector(".pills");
+    if (!p) return;
+    g.style.setProperty("--ph", p.offsetHeight + "px");
+    g.classList.toggle("more", p.scrollWidth - p.clientWidth - p.scrollLeft > 2);
+  }
+  function all() { groups.forEach(upd); }
+  groups.forEach(function (g) {
+    var p = g.querySelector(".pills");
+    if (p) p.addEventListener("scroll", function () { upd(g); }, { passive: true });
+  });
+  window.addEventListener("resize", all);
+  window.addEventListener("load", all);
+  all();
 })();

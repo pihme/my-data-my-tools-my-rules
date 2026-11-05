@@ -19,14 +19,23 @@ Exact field names (YAML):
 | `category` | yes | string | Tentative taxonomy label (not final) |
 | `license` | yes | string | SPDX id; for source-available without SPDX use `LicenseRef-<Name>` (e.g. `LicenseRef-SourceFirst-1.1`) |
 | `open_source` | yes | bool | `true` only for OSI-approved licenses; otherwise `false` |
-| `type` | yes | string or list | `App` or `Server`; list both when applicable |
+| `type` | yes | string or list | `App` or `Server`; list both when applicable (the site labels `Server` as "Self-host") |
+| `audience` | yes | string | Who can run it for private use: `end-user` (apps and desktop applications you just install), `enthusiast` (Docker containers, home server, self-hosting with some setup), `expert` (needs deep ops knowledge, e.g. your own S3/object storage or mail server). One value; for borderline cases pick one |
 | `url` | yes | string | Official website |
 | `repo` | yes | string | Source code repository URL |
 | `source_url` | yes | string | Direct link to the project's LICENSE file (used to check the license) |
 | `checked` | yes | date | Verification date (`YYYY-MM-DD`) |
 | `note` | no | string | One short sentence for the project card (~120 characters max) |
+| `summary` | no | string | Short card paragraph: 2-4 plain, factual sentences (~250-400 characters), no marketing superlatives. Shown instead of `note` where the layout has room |
 | `corporate_note` | no | string | Optional corporate / org binding (info only, never exclusion) |
-| `funding_note` | no | string | Optional brief funding note with source; funding is not decisive |
+| `funding_note` | no | string | Optional one-sentence funding note; the source URL goes into `sources`; funding is not decisive and not proof of a license |
+| `funders` | no | list | Funder slugs linking to the Funders page, e.g. `[futo, nlnet, ngi]` |
+| `icon` | no | string | Path to the official logo, `assets/icons/<slug>.svg` or `.png`; only when its license/terms are documented in ASSETS.md |
+| `icon_credit` | no | string | Credit/trademark line shown with the icon |
+| `icon_source` | no | string | URL the icon file was taken from |
+| `screenshot` | no | string | Path to an official screenshot, `assets/screenshots/<slug>.webp` (max 1600 px wide); only with a documented reuse license |
+| `screenshot_credit` | no | string | Credit/license line shown with the screenshot |
+| `screenshot_source` | no | string | URL the screenshot was taken from |
 | `sources` | yes | list | URLs used for verification |
 
 ## Body sections
@@ -35,7 +44,7 @@ Free-form Markdown after the front matter. Keep each dossier short. Suggested he
 
 1. Short neutral description (2–4 sentences)
 2. `## Why it fits` — free private self-install
-3. `## Getting started` — link to official install docs only
+3. `## Getting started` — short prerequisites list, 3-6 high-level steps, and the official install-doc link
 4. `## Notes` — caveats, labels, unverified items
 
 ## Admission rule (context)
@@ -44,4 +53,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-Initial set: 24 candidates from the initial research (checked 2026-11-05, Europe/Berlin). Taxonomy for `category` is tentative.
+30 dossiers (24 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Taxonomy for `category` is tentative; categories used include Backup, Monitoring and AI.

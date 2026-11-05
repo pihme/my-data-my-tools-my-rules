@@ -1,0 +1,39 @@
+name: Suggest a project
+description: Suggest an open-source or source-available project for the catalog.
+title: "Suggestion: "
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the tip! We check every suggestion against the [selection criteria](https://pihme.github.io/my-data-my-tools-my-rules/about.html#selection-criteria) before adding anything.
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+      placeholder: e.g. Syncthing
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source code link
+      description: Link to the public source code repository.
+      placeholder: https://github.com/...
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: SPDX id or license name, if you know it.
+      placeholder: e.g. GPL-3.0-or-later
+    validations:
+      required: false
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it fits
+      description: One sentence or more on how it helps people keep control of their data.
+    validations:
+      required: true
