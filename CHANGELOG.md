@@ -17,9 +17,7 @@
 - "hand-picked" is now "curated"; the "All projects" entry is now "Catalog".
 - About page starts with "What belongs here", followed by the selection criteria.
 - Vaultwarden getting-started link points to the Using-Docker-Compose wiki page.
-
-## 1.1
-- US spelling throughout; compact, horizontally scrolling category chips on mobile; mobile spacing fixes.
+- US spelling throughout; compact, horizontally scrolling category chips on mobile; mobile spacing fixes (merged after 1.0, first released with 2.0).
 
 ## 1.0
 - First version of the site with 24 project dossiers.
