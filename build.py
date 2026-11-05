@@ -80,7 +80,7 @@ def inline(t):
 
 def markdown(src, shift=0):
     """Paragraphs, headings, ordered/unordered lists (blank lines between items are fine,
-    numbering is kept), fenced code blocks (also indented inside a list item)."""
+    numbering is kept), fenced code blocks (also indented inside a list item), `> ` callouts."""
     out, para, lst = [], [], None   # lst = [kind, start, [item_html, ...]]
     def flush_para():
         nonlocal para
@@ -101,6 +101,12 @@ def markdown(src, shift=0):
             if lst and ind > 0: lst[2][-1] += html_code
             else: flush_para(); flush_list(); out.append(html_code)
             i += 1; continue
+        if l.startswith(">"):
+            flush_para(); flush_list(); q = []
+            while i < len(lines) and lines[i].startswith(">"):
+                q.append(lines[i][1:].strip()); i += 1
+            out.append('<aside class="callout">' + "".join(f"<p>{inline(x)}</p>" for x in "\n".join(q).split("\n\n") if x.strip()).replace("\n", " ") + "</aside>")
+            continue
         if re.match(r"^#{1,6} ", l):
             flush_para(); flush_list(); n = len(l) - len(l.lstrip("#")); h = min(6, n + shift)
             out.append(f"<h{h}>{inline(l[n+1:].strip())}</h{h}>")
@@ -350,7 +356,7 @@ def about(cats):
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
 <h2 id="suggest-a-project">Suggest a project</h2>
-<p>Tips and suggestions are always welcome. If you know a project that belongs here, or spot a mistake or an outdated license, please <a href="{REPO}/issues/new">open an issue on GitHub</a>. We look at every suggestion and check it against the criteria above before adding anything.</p>
+<p>Tips and suggestions are always welcome. If you know a project that belongs here, or spot a mistake or an outdated license, please <a href="{REPO}/issues/new?template=suggest-a-project.yml">open an issue on GitHub</a>. We look at every suggestion and check it against the criteria above before adding anything.</p>
 </article></div>'''
     return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.")
 
