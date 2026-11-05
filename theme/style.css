@@ -105,8 +105,9 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
   .brand { margin: 0 0 14px 2px; }
   .brand img { width: 148px; }
   .nav > .lbl { margin: 0 0 8px; }
+  .nav .cats + .lbl { margin-top: 6px; }
   .nav > .lbl .prov { display: none; }
-  .cats {
+  .nav .cats {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
