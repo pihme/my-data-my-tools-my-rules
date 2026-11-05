@@ -18,10 +18,12 @@
 
   // Catalog filters (index page only).
   var cards = document.querySelectorAll(".card[data-cat]");
-  var bar = document.querySelector(".filters");
+  var bar = document.querySelector(".filters:not(.aud-filters)");
+  var audBar = document.querySelector(".aud-filters");
   if (!cards.length || !bar) return;
   bar.hidden = false;
-  var state = { kind: "all", cat: "all" };
+  if (audBar) audBar.hidden = false;
+  var state = { kind: "all", cat: "all", aud: "all" };
   var navLinks = document.querySelectorAll(".cats a[data-cat]");
   var empty = document.querySelector(".empty");
 
@@ -30,7 +32,8 @@
     cards.forEach(function (c) {
       var okKind = state.kind === "all" || (" " + c.dataset.kinds + " ").indexOf(" " + state.kind + " ") >= 0;
       var okCat = state.cat === "all" || c.dataset.cat === state.cat;
-      c.hidden = !(okKind && okCat);
+      var okAud = state.aud === "all" || c.dataset.aud === state.aud;
+      c.hidden = !(okKind && okCat && okAud);
       if (!c.hidden) shown++;
     });
     document.querySelectorAll("section.cat").forEach(function (s) {
@@ -47,6 +50,11 @@
       b.classList.toggle("on", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    if (audBar) audBar.querySelectorAll("button").forEach(function (b) {
+      var on = b.dataset.aud === state.aud;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
     navLinks.forEach(function (a) { a.classList.toggle("on", a.dataset.cat === state.cat); });
     if (empty) empty.hidden = shown > 0;
   }
@@ -55,6 +63,12 @@
     var b = e.target.closest("button");
     if (!b) return;
     state.kind = b.dataset.kind;
+    apply();
+  });
+  if (audBar) audBar.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    state.aud = b.dataset.aud;
     apply();
   });
   navLinks.forEach(function (a) {

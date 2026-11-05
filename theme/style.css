@@ -144,3 +144,57 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
   .hero { padding: 28px 0 28px; gap: 28px; }
   .intro { font-size: 17px; margin-bottom: 18px; }
 }
+
+/* v1.2: project icons, audience indicator, screenshots, funding, funders page */
+.lt.ic{background:var(--icbg,#f1efe9);padding:5px;overflow:hidden}
+.lt.ic img{display:block;width:100%;height:100%;object-fit:contain}
+:root.dark .lt.ic{--icbg:#f1efe9}
+.phead h1 .lt.ic{padding:12px}
+.card p{font-size:14px;line-height:1.55}
+.lnk .aud{flex:none;color:var(--mut);white-space:nowrap;font:500 11.5px "JetBrains Mono"}
+.lnk .web{flex:1 1 auto}
+.lnk .repo{margin-left:0}
+.aud-l{font:500 13px "JetBrains Mono";color:var(--mut)}
+.facts .sub{font-size:12.5px;color:var(--mut);margin-top:4px;overflow-wrap:normal}
+.facts .fund{margin:0;padding-left:18px}
+.facts .fund li+li{margin-top:6px}
+.phead .intro{font-size:18px;max-width:52ch}
+.filters+.filters{margin-top:10px}
+.prose pre{background:color-mix(in srgb,var(--ink) 6%,transparent);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font:500 13.5px/1.55 "JetBrains Mono";margin:0 0 14px}
+.prose pre code{background:none;padding:0;font:inherit}
+.prose ol,.prose ul{padding-left:24px;margin:0 0 14px}
+.prose li+li{margin-top:4px}
+.shot{margin:22px 0 26px}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#ece8e0}
+.shot figcaption{font-size:13.5px;color:var(--mut);margin-top:8px;line-height:1.5}
+.shot .cr{display:block;font:12px/1.5 "JetBrains Mono"}
+.shot code,.facts dd code{font-size:.9em}
+.funder{padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line);scroll-margin-top:12px}
+.funder h2{font-size:34px}
+.funder .fmeta{font:500 13px "JetBrains Mono";color:var(--mut)}
+.funder blockquote{margin:0 0 16px;padding:4px 0 4px 18px;border-left:4px solid var(--ink);font-size:19px;line-height:1.45}
+.funder blockquote p{margin:0 0 6px}
+.funder blockquote footer{font-size:13px;color:var(--mut)}
+.funder h3{font:700 17px "Inter Tight","Inter";margin:22px 0 8px}
+.fsrc{margin:14px 0 4px!important;font-size:13px;color:var(--mut)}
+.flist{font:13px/1.7 "JetBrains Mono";padding-left:22px!important}
+@media (max-width:640px){.lnk{flex-wrap:wrap;row-gap:6px}.lnk .web{flex-basis:100%}.lnk .aud{order:2}.lnk .repo{order:3;margin-left:auto}.lnk .more{order:4}.phead .intro{font-size:16px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
+/* omakase: menu card */
+.omk-head h1 .jp{font:400 .32em/1 "Inter",sans-serif;letter-spacing:.08em;color:var(--mut);vertical-align:.9em;margin-left:.2em}
+.omakase{max-width:860px;margin:0 auto;padding:30px 0 10px}
+.course{margin:26px 0 40px}
+.course h2{font:800 44px/1 "Bricolage Grotesque";letter-spacing:-.02em;margin:0 0 16px;padding-bottom:12px;border-bottom:3px double var(--ink);display:flex;align-items:baseline;gap:16px}
+.course h2 .cn{font:600 14px "JetBrains Mono";color:var(--mut);letter-spacing:.1em}
+.menu{list-style:none;margin:0;padding:0}
+.on-row{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:baseline;padding:14px 0;border-bottom:1px dotted var(--line)}
+.on-head{display:flex;align-items:center;gap:12px;align-self:center}
+.on-head .lt{width:30px;height:30px;border-radius:8px;font-size:15px;background:var(--ink);color:var(--bg)}
+.on-head .lt.ic{background:#f1efe9}
+.on-name{font:700 18px/1.2 "Inter Tight","Inter"}
+.on-name:hover{text-decoration:underline;text-underline-offset:3px}
+.on-why{margin:0;font-size:16px;line-height:1.5}
+.on-note{display:block;margin-top:4px;font-size:13.5px;font-style:italic;color:var(--mut)}
+@media (max-width:640px){.on-row{grid-template-columns:1fr;gap:6px}.course h2{font-size:34px}.omk-head h1 .jp{display:inline-block}}
+.omk-head{grid-template-columns:1fr;gap:18px}
+.omk-head .intro{max-width:60ch}
+.on-head .lt.ic{background:#fff;box-shadow:none}

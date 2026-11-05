@@ -25,6 +25,11 @@ python3 tools/check_links.py  # check internal links in ./site
 tools/deploy.sh               # build, check and publish to the gh-pages branch
 ```
 
+Other content: `funders/` (one Markdown file per funding organization,
+used for the Funders page), `content/` (selection criteria shown on the
+About page and the optional Omakase page), project logos and screenshots in
+`assets/projects/<slug>/` (licenses tracked in `projects/MEDIA.md`).
+
 The theme lives in `theme/` (HTML template, CSS, a small script for the
 filters and dark mode, self-hosted fonts under the SIL Open Font License),
 logos and favicons in `assets/`. All links are relative, so the output
