@@ -263,8 +263,11 @@ def categories(ps):
 
 def nav(cats, root, active=None, index=False):
     items = []
+    total = sum(len(c[3]) for c in cats)
     if index:
-        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{sum(len(c[3]) for c in cats)}</span></a></li>')
+        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{total}</span></a></li>')
+    else:
+        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span>{total}</span></a></li>')
     for i, (cid, n, col, ps) in enumerate(cats):
         href = f"#{cid}" if index else f"{root}index.html#{cid}"
         on = ' class="on"' if cid == active else ""
