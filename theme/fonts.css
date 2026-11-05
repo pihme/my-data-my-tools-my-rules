@@ -1,0 +1,5 @@
+/* Self-hosted fonts, SIL Open Font License 1.1 (see fonts/OFL.txt). */
+@font-face{font-family:"Bricolage Grotesque";src:url("fonts/BricolageGrotesque-Variable.ttf") format("truetype");font-weight:200 800;font-stretch:75% 100%;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter-Variable.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url("fonts/InterTight-Variable.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/JetBrainsMono-Variable.ttf") format("truetype");font-weight:100 800;font-display:swap}
