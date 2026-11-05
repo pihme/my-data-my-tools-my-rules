@@ -17,7 +17,7 @@ sources:
   - https://f-droid.org/docs/
 ---
 
-F-Droid is an Android app catalogue and client focused on free and open-source applications. The client README states GPL version 3 or, at your option, any later version. Separate components exist for the server/repo tooling.
+F-Droid is an Android app catalog and client focused on free and open-source applications. The client README states GPL version 3 or, at your option, any later version. Separate components exist for the server/repo tooling.
 
 ## Why it fits
 

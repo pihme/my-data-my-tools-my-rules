@@ -157,7 +157,7 @@ def index(ps, cats):
         secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
                  f'<div><h2>{E(n)}</h2><p>Provisional category · <span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
-    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalogue · categories are provisional</p>
+    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog · categories are provisional</p>
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A hand-picked list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
 <div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
@@ -165,7 +165,7 @@ def index(ps, cats):
 <div class="catflow">
 {secs}</div><p class="empty" hidden>No entries match this filter.</p>'''
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
-                "An open catalogue of open-source and source-available software that keeps your data under your control.")
+                "An open catalog of open-source and source-available software that keeps your data under your control.")
 
 def project(p, cats):
     cid = cat_id(p["category"]); i, col = next((k, c[2]) for k, c in enumerate(cats) if c[0] == cid)
@@ -175,17 +175,17 @@ def project(p, cats):
             ("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
             ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a> (provisional)')]
-    if p.get("corporate_note"): rows.append(("Organisation", inline(p["corporate_note"])))
+    if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note"): rows.append(("Funding", inline(p["funding_note"])))
     rows.append(("Checked", f'<time datetime="{E(str(p["checked"]))}">{nice_date(p["checked"])}</time>'))
     facts = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows)
     srcs = "".join(f'<li><a href="{E(s)}">{E(host(s))}</a></li>' for s in p["sources"])
-    main = f'''<section class="phead" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalogue</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
+    main = f'''<section class="phead" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
 <h1><span class="lt" aria-hidden="true">{E(p["name"][0].upper())}</span>{E(p["name"])}</h1></div>
 <p class="intro">{E(p.get("note", ""))}</p></section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{markdown(p["body"])}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
-<a class="back" href="../index.html#{cid}">← Back to the catalogue</a></article>
+<a class="back" href="../index.html#{cid}">← Back to the catalog</a></article>
 <aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside></div>'''
     return page(f'{p["name"]} · My Data, My Tools, My Rules', main, "../", nav(cats, "../", active=cid),
                 p.get("note") or p["name"])
@@ -194,8 +194,8 @@ def about(cats):
     readme = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
     m = re.search(r"^## About this site\n(.*?)(?=^## |\Z)", readme, re.S | re.M)
     if not m: sys.exit("README.md: no '## About this site' section")
-    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalogue</a> · About</p><h1>About this site</h1></div>
-<p class="intro">How this catalogue is made, what goes in and what the labels mean.</p></section>
+    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · About</p><h1>About this site</h1></div>
+<p class="intro">How this catalog is made, what goes in and what the labels mean.</p></section>
 <div class="body-wrap"><article class="prose">{markdown(m.group(1).strip())}
 <h2 id="what-belongs-here">What belongs here</h2>
 <p>Open-source and source-available projects that help people keep control of their data and stay independent of large tech companies. Anything an individual can install for private use free of charge qualifies. The categories are provisional and will be refined.</p>
