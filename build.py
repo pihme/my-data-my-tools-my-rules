@@ -291,9 +291,9 @@ def index(ps, cats):
     for i, (cid, n, col, cps) in enumerate(cats):
         k = min(len(cps), 4)
         secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
-                 f'<div><h2>{E(n)}</h2><p>Provisional category · <span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
+                 f'<div><h2>{E(n)}</h2><p><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
-    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog · categories are provisional</p>
+    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A curated list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
 <div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
@@ -329,7 +329,7 @@ def project(p, cats):
     if p.get("audience"): rows.append(("Audience", f'{aud_html(p, "aud aud-l")}<div class="sub">{E(AUD_HELP[p["audience"]])}</div>'))
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
-             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a> (provisional)')]
+             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):
         rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))
@@ -363,7 +363,7 @@ def about(cats):
 <p class="intro">What goes in, how projects are selected and what the labels mean.</p></section>
 <div class="body-wrap"><article class="prose">
 <h2 id="what-belongs-here">What belongs here</h2>
-<p>Open-source and source-available projects that help people keep control of their data and stay independent of large tech companies. Anything an individual can install for private use free of charge qualifies. The categories are provisional and will be refined.</p>
+<p>Open-source and source-available projects that help people keep control of their data and stay independent of large tech companies. Anything an individual can install for private use free of charge qualifies.</p>
 {crit_html}
 <h2 id="how-this-site-is-made">How this site is made</h2>
 {markdown(m.group(1).strip())}

@@ -13,7 +13,6 @@ a{color:inherit;text-decoration:none}
 .brand{display:block;margin:0 0 30px 2px}
 .brand img{display:block;width:189px;height:auto}
 .lbl{font:600 11px "Inter";letter-spacing:.14em;text-transform:uppercase;color:#8d8a83;margin:20px 0 10px}
-.lbl .prov{letter-spacing:.06em;text-transform:none;font-weight:500;color:#6d6a63;margin-left:4px}
 .nav ul{list-style:none;margin:0;padding:0}
 .nav li a{display:flex;align-items:center;gap:12px;padding:7px 10px;border-radius:8px;font-weight:500;white-space:nowrap;font-size:14.5px}
 .nav li a:hover{background:#ffffff12}
@@ -106,7 +105,6 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
   .brand img { width: 148px; }
   .nav > .lbl { margin: 0 0 8px; }
   .nav .cats + .lbl { margin-top: 16px; }
-  .nav > .lbl .prov { display: none; }
   .nav .cats {
     display: flex;
     flex-direction: row;
