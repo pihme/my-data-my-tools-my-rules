@@ -12,6 +12,8 @@
 - "Watch out:" lines in dossiers render as styled callouts.
 - Sidebar "Catalog" entry on every page (not only the index), linking back to the catalog. About-list entries (Omakase, About this site, Funders) get `class="on"` on their own page.
 - Cache-bust query `?v=<VERSION>` also on `theme/fonts.css`.
+- Funders page no longer lists supported projects per funder (PM v2.2); dossiers with `funders:` link to `#futo` / `#nlnet` / `#ngi` on the Funders page.
+- Tested projects show a Setup row in the dossier fact box (below Audience), repeating e.g. "5 steps · clarity 3/5" with the check date; the same line stays under Getting started.
 
 ## 2.0.1 (unreleased)
 

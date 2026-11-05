@@ -352,10 +352,16 @@ def media_credit(path):
 
 def fid(name): return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
+FUNDER_LABELS = {"futo": "FUTO", "nlnet": "NLnet", "ngi": "NGI"}
+
 def funding_html(p, fs):
-    links = ", ".join(f'<a href="../funders.html#{fid(fs["known"][x])}">{E(fs["known"][x].split(" (")[0].split(",")[0])}</a>' for x in p.get("funders") or [])
+    """Funder names link to stable section ids on funders.html (#futo, #nlnet, #ngi)."""
+    links = ", ".join(
+        f'<a href="../funders.html#{E(x)}">{E(FUNDER_LABELS.get(x, x))}</a>'
+        for x in (p.get("funders") or []) if x in fs["known"]
+    )
     note = f'<div>{inline(p["funding_note"])}</div>' if p.get("funding_note") else ""
-    fl = f'<div class="sub">Funders page: {links}</div>' if links else ""
+    fl = f'<div class="sub">Funders: {links}</div>' if links else ""
     return note + fl
 
 def shots_html(p):
@@ -370,6 +376,9 @@ def project(p, cats):
     rows = [("License", f'<a href="{E(p["source_url"])}"><code>{E(p["license"])}</code></a><div class="tags">{license_tag(p)}</div>'),
             ("Type", f'{tlabel}<div class="tags">{type_tags(p)}</div>')]
     if p.get("audience"): rows.append(("Audience", f'{aud_html(p, "aud aud-l")}<div class="sub">{E(AUD_HELP[p["audience"]])}</div>'))
+    if p.get("setup_tested"):
+        rows.append(("Setup", f'{p["setup_steps"]} steps · clarity {p["setup_clarity"]}/5'
+                     f'<div class="sub">Checked <time datetime="{E(str(p["setup_tested"]))}">{nice_date(p["setup_tested"])}</time></div>'))
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
              ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
@@ -430,10 +439,24 @@ def about(cats):
     return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.", about="about")
 
 def funders_page(fs, ps, cats):
+    """Render content/funders.md. Section ids for known funders are the dossier slugs
+    (futo, nlnet, ngi); other headings keep a slugified id. Project lists live on the
+    funders' own sites — this page does not generate per-funder project lists."""
     body = re.sub(r"^#\s+.*\n", "", fs["body"].lstrip(), count=1)
     intro, _, rest = body.partition("\n## ")
     html_rest = markdown("## " + rest)
-    html_rest = re.sub(r"<h2>(.*?)</h2>", lambda m: f'<h2 id="{fid(re.sub("<[^>]+>", "", m.group(1)))}">{m.group(1)}</h2>', html_rest)
+    by_head = {h: slug for slug, h in fs["known"].items()}
+    def h2id(m):
+        text = re.sub(r"<[^>]+>", "", m.group(1))
+        slug = by_head.get(text)
+        if not slug:
+            for s, word in FUNDER_IDS.items():
+                if text.startswith(word):
+                    slug = s; break
+        if not slug:
+            slug = fid(text)
+        return f'<h2 id="{E(slug)}">{m.group(1)}</h2>'
+    html_rest = re.sub(r"<h2>(.*?)</h2>", h2id, html_rest)
     main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
