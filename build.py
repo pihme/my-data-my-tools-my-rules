@@ -274,13 +274,20 @@ def nav(cats, root, active=None, index=False):
         items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}><b>{i+1:02d}</b>{E(n)}<span>{len(ps)}</span></a></li>')
     return "".join(items)
 
-def page(title, main, root, navhtml, desc, bodyclass=""):
+def page(title, main, root, navhtml, desc, bodyclass="", about=None):
+    """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
+    on = ' class="on"'
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
            "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass}
     rep["{{VERSION}}"] = VERSION
-    rep["{{OMAKASE}}"] = '<li><a href="{{ROOT}}omakase.html">Omakase</a></li>' if os.path.isfile(OMAKASE) else ""
-    rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>' if os.path.isfile(OMAKASE) else ""
+    if os.path.isfile(OMAKASE):
+        rep["{{OMAKASE}}"] = f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>Omakase</a></li>'
+        rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>'
+    else:
+        rep["{{OMAKASE}}"] = ""; rep["{{OMAKASE_FOOT}}"] = ""
+    rep["{{ABOUT_ON}}"] = on if about == "about" else ""
+    rep["{{FUNDERS_ON}}"] = on if about == "funders" else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
@@ -420,7 +427,7 @@ def about(cats):
 <h2 id="suggest-a-project">Suggest a project</h2>
 {markdown(open(os.path.join(ROOT, "content", "suggest.md"), encoding="utf-8").read())}
 </article></div>'''
-    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.")
+    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.", about="about")
 
 def funders_page(fs, ps, cats):
     body = re.sub(r"^#\s+.*\n", "", fs["body"].lstrip(), count=1)
@@ -431,7 +438,7 @@ def funders_page(fs, ps, cats):
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
-    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.")
+    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.", about="funders")
 
 OMAKASE = os.path.join(ROOT, "content", "omakase.md")
 
@@ -481,7 +488,7 @@ def omakase_page(ps, cats):
     main = f'''<section class="phead omk-head"><div><p class="kick"><a href="index.html">Catalog</a> · Omakase</p>
 <h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
-    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk")
+    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase")
 
 def build(out):
     global FS

@@ -10,7 +10,8 @@
 ### Added
 - Optional dossier fields `setup_steps`, `setup_clarity` (1–5) and `setup_tested` (date). When a project was hands-on checked, the Getting started section (and the catalog card) show e.g. "7 steps · clarity 4/5"; untested projects show nothing. No minutes.
 - "Watch out:" lines in dossiers render as styled callouts.
-- Sidebar "Catalog" entry on every page (not only the index), linking back to the catalog.
+- Sidebar "Catalog" entry on every page (not only the index), linking back to the catalog. About-list entries (Omakase, About this site, Funders) get `class="on"` on their own page.
+- Cache-bust query `?v=<VERSION>` also on `theme/fonts.css`.
 
 ## 2.0.1 (unreleased)
 
