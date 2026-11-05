@@ -88,3 +88,22 @@
   if (h && document.querySelector('.cats a[data-cat="' + h + '"]')) state.cat = h;
   apply();
 })();
+
+/* right-edge fade on horizontally scrollable filter rows */
+(function () {
+  var groups = document.querySelectorAll(".filterbar .fgroup");
+  function upd(g) {
+    var p = g.querySelector(".pills");
+    if (!p) return;
+    g.style.setProperty("--ph", p.offsetHeight + "px");
+    g.classList.toggle("more", p.scrollWidth - p.clientWidth - p.scrollLeft > 2);
+  }
+  function all() { groups.forEach(upd); }
+  groups.forEach(function (g) {
+    var p = g.querySelector(".pills");
+    if (p) p.addEventListener("scroll", function () { upd(g); }, { passive: true });
+  });
+  window.addEventListener("resize", all);
+  window.addEventListener("load", all);
+  all();
+})();

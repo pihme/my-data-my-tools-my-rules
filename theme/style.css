@@ -219,7 +219,11 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
   .frow{display:contents}
   .filterbar{gap:14px}
   .fdiv{display:none}
-  .pills{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-right:-16px;padding-right:16px}
+  .pills{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-right:-16px;padding-right:0}
+  .pills::after{content:"";flex:0 0 16px}
+  .fgroup{position:relative}
+  .fgroup::after{content:"";position:absolute;right:-16px;bottom:0;width:40px;height:var(--ph,34px);background:linear-gradient(to right,transparent,var(--bg));pointer-events:none;opacity:0;transition:opacity .15s}
+  .fgroup.more::after{opacity:1}
   .pills::-webkit-scrollbar{display:none}
   .filterbar>.frow>.freset{align-self:flex-start;padding:0}
 }
