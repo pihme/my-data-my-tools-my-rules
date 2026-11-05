@@ -10,9 +10,15 @@ url: https://www.onlyoffice.com/
 repo: https://github.com/ONLYOFFICE/DocumentServer
 source_url: https://github.com/ONLYOFFICE/DocumentServer/blob/master/LICENSE
 checked: 2026-11-05
-note: "Office suite: free Desktop Editors plus self-hostable Docs Community Edition."
-summary: "ONLYOFFICE is an office suite for text documents, spreadsheets, presentations and PDFs with strong compatibility with Microsoft Office formats. The free Desktop Editors run offline on Windows, macOS and Linux. Docs Community Edition is a self-hosted server for editing and co-editing in the browser; it needs a host platform such as Nextcloud and is recommended for up to 20 users."
-corporate_note: "Developed by Ascensio System SIA (Riga, Latvia), which also sells proprietary Enterprise and Developer editions of Docs."
+note: Office suite: free Desktop Editors plus self-hostable Docs Community Edition.
+summary: ONLYOFFICE is an office suite for text documents, spreadsheets, presentations and PDFs with strong compatibility with Microsoft Office formats. The free Desktop Editors run offline on Windows, macOS and Linux. Docs Community Edition is a self-hosted server for editing and co-editing in the browser; it needs a host platform such as Nextcloud and is recommended for up to 20 users.
+corporate_note: Developed by Ascensio System SIA (Riga, Latvia), which also sells proprietary Enterprise and Developer editions of Docs.
+icon: assets/icons/onlyoffice.svg
+icon_credit: ONLYOFFICE is a trademark of Ascensio System SIA. Official logo symbol from the ONLYOFFICE press kit, unmodified
+icon_source: https://static-site.onlyoffice.com/public/images/templates/press-downloads/logo/logos/logo_symbol_color.svg
+screenshot: assets/screenshots/onlyoffice.webp
+screenshot_credit: Screenshot from the ONLYOFFICE DocumentServer repository; non-code elements CC BY-SA 4.0 per the LICENSE additional terms; ONLYOFFICE is a trademark of Ascensio System SIA
+screenshot_source: https://github.com/ONLYOFFICE/DocumentServer/blob/master/screenshots/ONLYOFFICE%20Docs.png
 sources:
   - https://www.onlyoffice.com/
   - https://github.com/ONLYOFFICE/DocumentServer/blob/master/LICENSE
@@ -51,4 +57,4 @@ Desktop Editors download: <https://www.onlyoffice.com/download-desktop>
 
 ## Notes
 
-The LICENSE files add terms under AGPL Section 7: keep all copyright and attribution notices; mark modified versions as modified and as based on ONLYOFFICE by Ascensio System SIA; show these notices in the user interface; no trademark rights are granted (see the ONLYOFFICE Trademark Policy); non-code elements such as illustrations and icons are CC BY-SA 4.0. Source file headers state `SPDX-License-Identifier: AGPL-3.0-only`. ONLYOFFICE's license FAQ says the original logo may not be removed from its products. The README lists Community Edition as "up to 20 recommended" users; no hard connection limit was verified in the current docs. Mobile web editors are listed as not included in Community Edition. Typed as App and Server; `audience` is set for the Desktop Editors (end-user), while self-hosting Docs is enthusiast level.
+The LICENSE files add terms under AGPL Section 7: keep all copyright and attribution notices; mark modified versions as modified and as based on ONLYOFFICE by Ascensio System SIA; show these notices in the user interface; no trademark rights are granted (see the ONLYOFFICE Trademark Policy); non-code elements such as illustrations and icons are CC BY-SA 4.0. Source file headers state `SPDX-License-Identifier: AGPL-3.0-only`. ONLYOFFICE's license FAQ says the original logo may not be removed from its products. The README lists Community Edition as "up to 20 recommended" users; the current docs state no hard connection limit. Mobile web editors are listed as not included in Community Edition. The Desktop Editors are a normal app install; self-hosting Docs Community Edition takes server and Docker experience.

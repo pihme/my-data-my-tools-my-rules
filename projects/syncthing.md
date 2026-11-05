@@ -5,18 +5,16 @@ category: Cloud/Files (tentative)
 license: MPL-2.0
 open_source: true
 type: App
+audience: end-user
 url: https://syncthing.net/
 repo: https://github.com/syncthing/syncthing
 source_url: https://github.com/syncthing/syncthing/blob/main/LICENSE
 checked: 2026-11-05
 note: Peer-to-peer continuous file synchronization across your devices.
-summary: "Syncthing continuously synchronizes folders between two or more of your devices, directly and encrypted, without a central cloud server. It is an alternative to Dropbox-style sync services for files you want on several machines. You install it on each device and pair them; it runs on Windows, macOS, Linux, and other systems."
-audience: Enthusiast
-icon:
-  file: "icon.svg"
-  credit: "The Syncthing Authors"
-  license: "MPL-2.0"
-  source: "https://github.com/syncthing/syncthing/blob/main/assets/logo-only.svg"
+summary: Syncthing continuously synchronizes folders between your own devices over the local network or the internet, without a central cloud. Data is transferred encrypted, and devices are paired by exchanging device IDs. It runs on Windows, macOS, Linux and other systems and is managed through a local web interface.
+icon: assets/icons/syncthing.svg
+icon_credit: Syncthing logo, MPL-2.0 (same license as the source); used unmodified to identify the project
+icon_source: https://github.com/syncthing/syncthing/blob/main/assets/logo-only.svg
 sources:
   - https://syncthing.net/
   - https://github.com/syncthing/syncthing/blob/main/LICENSE
@@ -31,7 +29,19 @@ Binaries and source are free to install for private use on your own machines.
 
 ## Getting started
 
-Official getting started: <https://docs.syncthing.net/intro/getting-started.html>
+Prerequisites (from the official docs):
+
+- At least two devices you want to keep in sync
+- Network access between them (Syncthing can relay if direct connections are blocked)
+
+Steps:
+
+1. Install Syncthing on each device from the official downloads or your package manager.
+2. Open the local web interface (by default http://127.0.0.1:8384).
+3. Add the other device by its device ID on both sides.
+4. Share a folder and accept it on the other device.
+
+Official getting started guide: <https://docs.syncthing.net/intro/getting-started.html>
 
 ## Notes
 

@@ -10,8 +10,11 @@ url: https://beszel.dev/
 repo: https://github.com/henrygd/beszel
 source_url: https://github.com/henrygd/beszel/blob/main/LICENSE
 checked: 2026-11-05
-note: "Lightweight server monitoring with a central hub and small agents."
-summary: "Beszel is a lightweight server monitoring tool with a central hub and a small agent on each monitored machine. It shows CPU, memory, disk, network and Docker container usage over time and can send alerts through many notification services. The hub runs as a single binary or Docker container with a web interface. It is licensed under MIT."
+note: Lightweight server monitoring with a central hub and small agents.
+summary: Beszel is a lightweight server monitoring tool with a central hub and a small agent on each monitored machine. It shows CPU, memory, disk, network and Docker container usage over time and can send alerts through many notification services. The hub runs as a single binary or Docker container with a web interface. It is licensed under MIT.
+icon: assets/icons/beszel.svg
+icon_credit: Beszel icon from the MIT-licensed repository; used to identify the project
+icon_source: https://github.com/henrygd/beszel/blob/main/internal/site/public/static/icon.svg
 sources:
   - https://beszel.dev/
   - https://github.com/henrygd/beszel/blob/main/LICENSE
@@ -44,4 +47,4 @@ Official getting started guide: <https://beszel.dev/guide/getting-started>
 
 ## Notes
 
-Screenshots are published on beszel.dev and a CDN, not in the repository, and carry no stated license, so none is included.
+Agents can also run on systems without Docker as a single binary; GPU and S.M.A.R.T. disk data are supported on suitable hardware, per the project README.

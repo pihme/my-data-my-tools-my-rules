@@ -5,39 +5,28 @@ category: Mobile/App Stores (tentative)
 license: GPL-3.0-or-later
 open_source: true
 type: App
+audience: end-user
 url: https://f-droid.org/
 repo: https://github.com/f-droid/fdroidclient
 source_url: https://github.com/f-droid/fdroidclient/blob/master/LICENSE
 checked: 2026-11-05
 note: Android app store client for free and open-source apps; repos can be self-hosted.
+summary: F-Droid is an Android app store client that lists free and open-source apps only. Apps in the main repository are built from source by F-Droid, and listings flag anti-features such as tracking or non-free network services. The client needs no account. You can add third-party repositories or host your own with F-Droid's server tools.
 corporate_note: Alternative distribution to Google Play (info only).
-summary: "F-Droid is a catalog of free and open-source Android apps together with a client app to install and update them. It is an alternative to Google Play for the apps it carries, and its main repository builds apps from their source code. You install the F-Droid client on your phone; the server tools also let you publish your own app repository."
-audience: End user
-icon:
-  file: "icon.svg"
-  credit: "William Theaker, Robert Martinez, Andrew Nayenko"
-  license: "CC-BY-SA-3.0 OR GPL-3.0-or-later"
-  source: "https://github.com/f-droid/fdroidclient/blob/master/logo-icon.svg"
-  note: "License stated at https://f-droid.org/docs/Licenses/"
-screenshots:
-  - file: "screenshot-1.webp"
-    caption: "Latest apps, search, and app details in the Android client"
-    credit: "F-Droid contributors"
-    license: "GPL-3.0-or-later"
-    source: "https://github.com/f-droid/fdroidclient/tree/master/src/full/fastlane/metadata/android/en-US/images/phoneScreenshots"
-funding:
-  - funder: "NLnet"
-    what: "NGI0 Entrust grant (Reproducible F-Droid)"
-    when: "2023-06 to 2025-05"
-    source: "https://nlnet.nl/project/Reproducible-F-Droid/"
-  - funder: "NLnet"
-    what: "NGI Mobifree grant (F-Droid App Overhaul)"
-    when: "2025-04 to 2026-05"
-    source: "https://nlnet.nl/project/F-Droid-App/"
+funding_note: NLnet funded F-Droid work through the NGI Mobifree and NGI0 Entrust funds (EU Next Generation Internet).
+funders: [nlnet, ngi]
+icon: assets/icons/f-droid.svg
+icon_credit: F-Droid logo © 2012 William Theaker, 2013 Robert Martinez, 2015 Andrew Nayenko; CC BY-SA 3.0 or GPL-3.0-or-later
+icon_source: https://github.com/f-droid/fdroidclient/blob/master/logo-icon.svg
+screenshot: assets/screenshots/f-droid.webp
+screenshot_credit: Screenshot from the F-Droid client repository, GPL-3.0-or-later
+screenshot_source: https://github.com/f-droid/fdroidclient/blob/master/src/full/fastlane/metadata/android/en-US/images/phoneScreenshots/01-latest.png
 sources:
   - https://f-droid.org/
   - https://github.com/f-droid/fdroidclient/blob/master/LICENSE
   - https://f-droid.org/docs/
+  - https://nlnet.nl/project/F-Droid-App/
+  - https://nlnet.nl/project/Reproducible-F-Droid/
 ---
 
 F-Droid is an Android app catalog and client focused on free and open-source applications. The client README states GPL version 3 or, at your option, any later version. Separate components exist for the server/repo tooling.
@@ -48,8 +37,22 @@ The client installs without Google Play. You can also host your own package repo
 
 ## Getting started
 
-Official site and docs: <https://f-droid.org/> · <https://f-droid.org/docs/>
+Prerequisites (from the official docs):
+
+- An Android device
+- Permission to install an app from your browser
+
+Steps:
+
+1. Download the F-Droid client APK from the official site.
+2. Allow your browser to install apps, then install F-Droid.
+3. Open F-Droid and let it update its repository index.
+4. Search for apps and install them; F-Droid notifies you about updates.
+
+Official site: <https://f-droid.org/>
+
+Documentation: <https://f-droid.org/docs/>
 
 ## Notes
 
-License verified for the client repository named in `source_url`. Server/repo tools are adjacent projects.
+The license shown is that of the client repository. The server and repository tools are separate projects.

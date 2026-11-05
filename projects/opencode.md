@@ -10,9 +10,15 @@ url: https://opencode.ai/
 repo: https://github.com/anomalyco/opencode
 source_url: https://github.com/anomalyco/opencode/blob/dev/LICENSE
 checked: 2026-11-05
-note: "Free, open-source AI coding agent; needs an AI model (some hosted ones are free, local is possible)."
-summary: "OpenCode is an open-source AI coding agent that runs in the terminal, with a desktop app and web interface as alternatives. The tool itself is free under MIT, but it needs an AI model: you connect a hosted provider or a local model server such as Ollama or LM Studio. OpenCode's own service offers some hosted models free for a limited time; paid plans are optional."
-corporate_note: "Developed by Anomaly (site footer); the repository moved from github.com/sst/opencode to github.com/anomalyco/opencode. Anomaly sells optional pay-as-you-go model access (OpenCode Console) and OpenCode Go subscriptions (USD 10, 40 or 20 per member per month)."
+note: Free, open-source AI coding agent; needs an AI model (some hosted ones are free, local is possible).
+summary: OpenCode is an open-source AI coding agent that runs in the terminal, with a desktop app and web interface as alternatives. The tool itself is free under MIT, but it needs an AI model: you connect a hosted provider or a local model server such as Ollama or LM Studio. OpenCode's own service offers some hosted models free for a limited time; paid plans are optional.
+corporate_note: Developed by Anomaly (copyright notice on opencode.ai; the repository moved from github.com/sst/opencode to github.com/anomalyco/opencode). Anomaly sells optional pay-as-you-go model access (OpenCode Console) and OpenCode Go subscriptions (Go USD 10/month, Go Plus USD 40/month, Go Teams USD 20 per member/month, per the docs).
+icon: assets/icons/opencode.svg
+icon_credit: OpenCode logo from the brand folder of the MIT-licensed repository (brand guidelines at opencode.ai/brand); used to identify the project
+icon_source: https://github.com/anomalyco/opencode/blob/dev/packages/console/app/src/asset/brand/opencode-logo-light-square.svg
+screenshot: assets/screenshots/opencode.webp
+screenshot_credit: Screenshot from the OpenCode repository, MIT
+screenshot_source: https://github.com/anomalyco/opencode/blob/dev/packages/web/src/assets/lander/screenshot.png
 sources:
   - https://opencode.ai/
   - https://github.com/anomalyco/opencode/blob/dev/LICENSE
@@ -52,4 +58,4 @@ Models and local providers: <https://opencode.ai/v2/docs/models/>
 
 ## Notes
 
-> Model dependence, per the official docs: OpenCode supports 75+ providers and discovers local models from Ollama, LM Studio and vLLM automatically. Local models work but need strong hardware (enough RAM or GPU memory for the model) to be practical. OpenCode's own model service lists several models as free "for a limited time" (for example Big Pickle, GLM-5.3-Flash Free and DeepSeek V4.1 Flash Free at the time of checking); availability, regions and data handling differ per model (some providers use the free period to collect feedback, others state zero retention), and the list can change at any time. Free models can be hidden with `OPENCODE_DISABLE_FREE_MODELS=1`. OpenCode Console (pay-as-you-go) and OpenCode Go (subscription) are optional. "OpenCode Zen" from earlier docs now appears as OpenCode Models / Console. The current docs describe OpenCode 2 (`opencode.ai/v2/docs`); OpenCode 1 docs remain at `opencode.ai/docs`. Not tested with a model provider; QA results pending.
+Model dependence: per the official docs, OpenCode works with many hosted providers and discovers local models from Ollama, LM Studio and vLLM automatically. In practice, local models work but need strong hardware (enough RAM or GPU memory for the model) to be pleasant to use. OpenCode's own model service lists several models as free "for a limited time" (for example Big Pickle, GLM-5.3-Flash Free and DeepSeek V4.1 Flash Free at the time of checking); availability, regions and data handling differ per model (some providers use the free period to collect feedback, others state zero retention; some, such as Crouton Alpha Free and Pulse Alpha Free, are not available in the European Union), and the list can change at any time. Free models can be hidden with `OPENCODE_DISABLE_FREE_MODELS=1`. OpenCode Console (pay-as-you-go) and OpenCode Go (subscription) are optional. The current docs describe OpenCode 2 (`opencode.ai/v2/docs`); OpenCode 1 docs remain at `opencode.ai/docs`. Not tested with a model provider here.

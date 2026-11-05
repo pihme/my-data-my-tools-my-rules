@@ -1,7 +1,7 @@
 ---
 name: restic
 slug: restic
-category: Cloud/Files (tentative)
+category: Backup
 license: BSD-2-Clause
 open_source: true
 type: App
@@ -10,9 +10,9 @@ url: https://restic.net/
 repo: https://github.com/restic/restic
 source_url: https://github.com/restic/restic/blob/master/LICENSE
 checked: 2026-11-05
-note: "Encrypted, deduplicated command-line backups to disks, SFTP or cloud storage."
-summary: "restic is a command-line backup program for Linux, macOS, Windows and BSD. It stores encrypted, deduplicated snapshots in a repository on a local disk, an SFTP server, or S3-compatible and other cloud storage. You can restore single files or whole snapshots. restic has no built-in scheduler, so regular backups are set up with cron, systemd timers or Task Scheduler."
-funding_note: "The project README states that AppsCode sponsors the backend integration tests for Google Cloud Storage and Azure Blob Storage."
+note: Encrypted, deduplicated command-line backups to disks, SFTP or cloud storage.
+summary: restic is a command-line backup program for Linux, macOS, Windows and BSD. It stores encrypted, deduplicated snapshots in a repository on a local disk, an SFTP server, or S3-compatible and other cloud storage. You can restore single files or whole snapshots. restic has no built-in scheduler, so regular backups are set up with cron, systemd timers or Task Scheduler.
+funding_note: The project README states that AppsCode sponsors the backend integration tests for Google Cloud Storage and Azure Blob Storage.
 sources:
   - https://restic.net/
   - https://github.com/restic/restic/blob/master/LICENSE
@@ -49,4 +49,4 @@ Backing up and scheduling: <https://restic.readthedocs.io/en/stable/040_backup.h
 
 ## Notes
 
-CLI only; graphical front ends are separate community projects and are not covered here. The project logo was not used: it is gopher-style artwork without stated license or credit in the repository (see REPORT.md). Typed as App because it runs on your own machine; there is no restic server component to host.
+CLI only; graphical front ends are separate community projects and are not covered here.

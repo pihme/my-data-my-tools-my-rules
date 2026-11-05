@@ -10,9 +10,15 @@ url: https://docs.paperless-ngx.com/
 repo: https://github.com/paperless-ngx/paperless-ngx
 source_url: https://github.com/paperless-ngx/paperless-ngx/blob/dev/LICENSE
 checked: 2026-11-05
-note: "Self-hosted document archive with OCR, tagging and full-text search."
-summary: "Paperless-ngx is a document management system that turns scanned paper and PDFs into a searchable archive. It runs OCR on incoming documents, assigns tags, correspondents and document types, and keeps the originals on your server. It is the community-maintained successor of Paperless and Paperless-ng and is usually installed with Docker Compose."
-funding_note: "The project README credits Fyra Stack with hosting the public demo."
+note: Self-hosted document archive with OCR, tagging and full-text search.
+summary: Paperless-ngx is a document management system that turns scanned paper and PDFs into a searchable archive. It runs OCR on incoming documents, assigns tags, correspondents and document types, and keeps the originals on your server. It is the community-maintained successor of Paperless and Paperless-ng and is usually installed with Docker Compose.
+funding_note: The project README credits Fyra Stack with hosting the public demo.
+icon: assets/icons/paperless-ngx.svg
+icon_credit: Paperless-ngx leaf logo from the GPL-3.0 repository; used to identify the project
+icon_source: https://github.com/paperless-ngx/paperless-ngx/blob/dev/docs/assets/logo_leaf.svg
+screenshot: assets/screenshots/paperless-ngx.webp
+screenshot_credit: Screenshot from the Paperless-ngx documentation, GPL-3.0 repository
+screenshot_source: https://github.com/paperless-ngx/paperless-ngx/blob/dev/docs/assets/screenshots/documents-smallcards.png
 sources:
   - https://docs.paperless-ngx.com/
   - https://github.com/paperless-ngx/paperless-ngx/blob/dev/LICENSE
@@ -46,4 +52,4 @@ Official setup guide: <https://docs.paperless-ngx.com/setup/>
 
 ## Notes
 
-The original request named "paperless-ng". That project is discontinued: its GitHub repository is archived (last push February 2023) and its README points to paperless-ngx as the direct continuation and drop-in replacement. The paperless-ngx README calls itself the official successor of Paperless and Paperless-ng. The docs site (docs.paperless-ngx.com) blocks some automated fetches; setup details were checked in `docs/setup.md` in the repository.
+The earlier project paperless-ng is discontinued: its GitHub repository is archived (last push February 2023) and its README points to paperless-ngx as the direct continuation and drop-in replacement. The paperless-ngx README calls itself the official successor of Paperless and Paperless-ng.

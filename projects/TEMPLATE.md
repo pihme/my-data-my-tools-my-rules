@@ -6,16 +6,25 @@ license: SPDX-or-LicenseRef
 open_source: true
 type: App
 # type can also be a list, e.g. [App, Server]
+audience: enthusiast
+# audience: end-user (just install an app) | enthusiast (Docker/home server, some setup) | expert (deep ops knowledge, e.g. own object storage or mail server)
 url: https://example.org/
 repo: https://github.com/example/project
 source_url: https://github.com/example/project/blob/main/LICENSE
 checked: 2026-11-05
 note: Optional card blurb, max about 120 characters.
+summary: Optional card paragraph, 2-4 plain factual sentences (about 250-400 characters), no superlatives.
 corporate_note: Optional org binding (info only).
-summary: "Optional card paragraph, 2-4 sentences: what it is, what it replaces, how you run it."
-audience: End user
-# audience: End user | Enthusiast | Expert
-# icon, screenshots, funding: see README.md for the map/list format
+funding_note: Optional one-sentence funding note (source URL in sources).
+funders: [futo]
+# optional; funder slugs for the Funders page
+icon: assets/icons/project-name.svg
+icon_credit: Logo (c) Project, license or trademark line
+icon_source: https://github.com/example/project/blob/main/logo.svg
+screenshot: assets/screenshots/project-name.webp
+screenshot_credit: Screenshot from the project repository, license
+screenshot_source: https://github.com/example/project/blob/main/docs/screenshot.png
+# icon/screenshot fields are optional; use only assets cleared in ASSETS.md
 sources:
   - https://example.org/
   - https://github.com/example/project/blob/main/LICENSE
@@ -29,16 +38,14 @@ Explain free private self-install in one or two sentences.
 
 ## Getting started
 
-Prerequisites: what you need before you start.
+Prerequisites (from the official docs):
 
-1. First step.
-2. Second step, for example:
+- What you need (device, OS, Docker, domain, RAM ...)
 
-   ```sh
-   docker compose up -d
-   ```
+Steps:
 
-3. Third step.
+1. Three to six high-level steps.
+2. ...
 
 Official install docs: <https://example.org/docs/install>
 
