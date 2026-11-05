@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.1 (unreleased)
+
+### Fixed
+- Logos no longer spill out of their tiles. Cause: browsers kept the cached 1.x stylesheet, which has no logo rules, so logos were drawn at their full file size (up to 512 px). The stylesheet and script are now loaded as `theme/style.css?v=<VERSION>` and `theme/site.js?v=<VERSION>`, with `VERSION` in `build.py` bumped per release.
+- Every logo `<img>` now has explicit `width`/`height` attributes (24 px on cards, 20 px on Omakase rows, 60 px on project pages), so logos stay small even without the stylesheet. Tiles are fixed-size with `overflow: hidden` and fixed pixel logo sizes in CSS (40 px project-page logo on screens up to 600 px), with no percentage heights. Percentage heights can resolve against an SVG's intrinsic size in WebKit.
+
+### Changed
+- "Provisional" wording removed: no "provisional" label next to Categories in the sidebar, category headers show only the entry count, the hero kicker reads "An open catalog", project pages no longer mark the category as provisional, and the About text drops the sentence about provisional categories.
+
+### Added
+- Optional `icon_scale` (1–2) in dossiers to optically enlarge logos with built-in whitespace. The logo file stays unchanged. Used for ONLYOFFICE (2).
+
 ## 2.0 (unreleased)
 
 ### Added

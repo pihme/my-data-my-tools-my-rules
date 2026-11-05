@@ -16,6 +16,7 @@ corporate_note: Developed by Ascensio System SIA (Riga, Latvia), which also sell
 icon: assets/icons/onlyoffice.svg
 icon_credit: ONLYOFFICE is a trademark of Ascensio System SIA. Official logo symbol from the ONLYOFFICE press kit, unmodified
 icon_source: https://static-site.onlyoffice.com/public/images/templates/press-downloads/logo/logos/logo_symbol_color.svg
+icon_scale: 2
 screenshot: assets/screenshots/onlyoffice.webp
 screenshot_credit: Screenshot from the ONLYOFFICE DocumentServer repository; non-code elements CC BY-SA 4.0 per the LICENSE additional terms; ONLYOFFICE is a trademark of Ascensio System SIA
 screenshot_source: https://github.com/ONLYOFFICE/DocumentServer/blob/master/screenshots/ONLYOFFICE%20Docs.png

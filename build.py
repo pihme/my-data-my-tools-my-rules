@@ -13,6 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
+VERSION = "2.0.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -205,6 +206,10 @@ def load_projects():
             p["audience"] = norm.get(str(p["audience"]).strip().lower().replace(" ", "-"), p["audience"])
         if p.get("audience") and p["audience"] not in AUDIENCE:
             sys.exit(f"projects/{f}: audience must be one of {', '.join(AUDIENCE)}")
+        if p.get("icon_scale"):
+            try: ok = 1 <= float(p["icon_scale"]) <= 2
+            except ValueError: ok = False
+            if not ok: sys.exit(f"projects/{f}: icon_scale must be a number between 1 and 2")
         check_media(f, p)
         ps.append(p)
     return sorted(ps, key=lambda p: p["name"].lower())
@@ -244,16 +249,24 @@ def page(title, main, root, navhtml, desc, bodyclass=""):
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
            "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass}
+    rep["{{VERSION}}"] = VERSION
     rep["{{OMAKASE}}"] = '<li><a href="{{ROOT}}omakase.html">Omakase</a></li>' if os.path.isfile(OMAKASE) else ""
     rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>' if os.path.isfile(OMAKASE) else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
-def icon_html(p, root, cls="lt"):
+ICON_PX = {"card": 24, "omakase": 20, "dossier": 60}
+
+def icon_html(p, root, kind="card", cls="lt"):
+    """Logo tile. The <img> carries explicit width/height so it stays small even if the
+    stylesheet is missing or stale; `icon_scale` (1-2) optically enlarges logos with built-in whitespace."""
     ic = p.get("icon")
     if ic:
-        return (f'<a class="{cls} ic" href="{E(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{root}{E(ic)}" alt="" '
-                f'loading="lazy" decoding="async"></a>')
+        px = ICON_PX[kind]
+        sc = p.get("icon_scale")
+        st = f' style="--s:{float(sc):g}"' if sc else ""
+        return (f'<a class="{cls} ic ic-{kind}" href="{E(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{root}{E(ic)}" alt="" '
+                f'width="{px}" height="{px}"{st} loading="lazy" decoding="async"></a>')
     return f'<span class="{cls}" aria-hidden="true">{E(p["name"][0].upper())}</span>'
 
 def aud_html(p, cls="aud"):
@@ -278,9 +291,9 @@ def index(ps, cats):
     for i, (cid, n, col, cps) in enumerate(cats):
         k = min(len(cps), 4)
         secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
-                 f'<div><h2>{E(n)}</h2><p>Provisional category · <span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
+                 f'<div><h2>{E(n)}</h2><p><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
-    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog · categories are provisional</p>
+    main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A curated list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
 <div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
@@ -316,7 +329,7 @@ def project(p, cats):
     if p.get("audience"): rows.append(("Audience", f'{aud_html(p, "aud aud-l")}<div class="sub">{E(AUD_HELP[p["audience"]])}</div>'))
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
-             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a> (provisional)')]
+             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):
         rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))
@@ -330,7 +343,7 @@ def project(p, cats):
         body = body[:k + 4] + shots + body[k + 4:] if k >= 0 else shots + body
     summary = p.get("summary") or p.get("note", "")
     main = f'''<section class="phead" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
-<h1>{icon_html(p, "../")}{E(p["name"])}</h1></div>
+<h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1></div>
 <p class="intro">{E(summary)}</p></section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
@@ -350,7 +363,7 @@ def about(cats):
 <p class="intro">What goes in, how projects are selected and what the labels mean.</p></section>
 <div class="body-wrap"><article class="prose">
 <h2 id="what-belongs-here">What belongs here</h2>
-<p>Open-source and source-available projects that help people keep control of their data and stay independent of large tech companies. Anything an individual can install for private use free of charge qualifies. The categories are provisional and will be refined.</p>
+<p>Open-source and source-available projects that help people keep control of their data and stay independent of large tech companies. Anything an individual can install for private use free of charge qualifies.</p>
 {crit_html}
 <h2 id="how-this-site-is-made">How this site is made</h2>
 {markdown(m.group(1).strip())}
@@ -417,7 +430,7 @@ def omakase_page(ps, cats):
         items = ""
         for r in rows:
             if "p" in r:
-                p = r["p"]; head = f'{icon_html(p, "")}<a class="on-name" href="projects/{p["slug"]}.html">{E(p["name"])}</a>'
+                p = r["p"]; head = f'{icon_html(p, "", "omakase")}<a class="on-name" href="projects/{p["slug"]}.html">{E(p["name"])}</a>'
             else:
                 head = f'<span class="lt" aria-hidden="true">{E(r["name"][0].upper())}</span><a class="on-name" href="{E(r["url"])}">{E(r["name"])} ↗</a>'
             note = f'<span class="on-note">{inline(r["note"])}</span>' if r.get("note") else ""
