@@ -13,7 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-SKIP = {"README.md", "TEMPLATE.md", "MEDIA.md"}
+SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
 
@@ -158,24 +158,31 @@ AUDIENCE = {"End user": 1, "Enthusiast": 2, "Expert": 3}
 AUD_HELP = {"End user": "Installs like any other app or program",
             "Enthusiast": "Needs some comfort with a home server, Docker or similar",
             "Expert": "Running it well needs server administration skills and ongoing maintenance"}
-ICON_KEYS = ["file", "credit", "license", "source"]
-SHOT_KEYS = ["file", "caption", "credit", "license", "source"]
-FUND_KEYS = ["funder", "what", "source"]
+ASSETS = os.path.join(ROOT, "assets", "ASSETS.md")
+
+def load_assets():
+    """assets/ASSETS.md tables: | File | Project | Source URL | License / terms URL | Terms in short | Credit line | Verdict |.
+    Only rows whose verdict starts with "ok" may be used."""
+    out = {}
+    if not os.path.isfile(ASSETS): return out
+    for l in open(ASSETS, encoding="utf-8"):
+        c = [x.strip() for x in l.strip().strip("|").split("|")]
+        if len(c) == 7 and c[0].startswith(("icons/", "screenshots/")) and c[6].lower().startswith("ok"):
+            terms = re.findall(r"https?://[^\s;,)]+", c[3])
+            out["assets/" + c[0]] = {"source": c[2], "terms": terms[0] if terms else c[2], "short": c[4], "credit": c[5]}
+    return out
+
+MEDIA = load_assets()
 
 def check_media(f, p):
-    def need(d, keys, what):
-        if not isinstance(d, dict): sys.exit(f"projects/{f}: {what} must be a map")
-        miss = [k for k in keys if not d.get(k)]
-        if miss: sys.exit(f"projects/{f}: {what} missing {', '.join(miss)}")
-    def exists(name):
-        path = os.path.join(ROOT, "assets", "projects", p["slug"], name)
-        if not os.path.isfile(path): sys.exit(f"projects/{f}: file not found: assets/projects/{p['slug']}/{name}")
-    if p.get("icon"):
-        need(p["icon"], ICON_KEYS, "icon"); exists(p["icon"]["file"])
-    for s in p.get("screenshots") or []:
-        need(s, SHOT_KEYS, "screenshot"); exists(s["file"])
-    for x in p.get("funding") or []:
-        need(x, FUND_KEYS, "funding entry")
+    for k in ("icon", "screenshot"):
+        v = p.get(k)
+        if not v: continue
+        if not isinstance(v, str): sys.exit(f"projects/{f}: {k} must be a path like assets/{k}s/<slug>.<ext>")
+        if v not in MEDIA: sys.exit(f"projects/{f}: {k} '{v}' is not cleared (verdict ok) in assets/ASSETS.md")
+        if not os.path.isfile(os.path.join(ROOT, v)): sys.exit(f"projects/{f}: file not found: {v}")
+        if p.get(k + "_source") and p[k + "_source"] != MEDIA[v]["source"]:
+            print(f"warning: projects/{f}: {k}_source differs from assets/ASSETS.md", file=sys.stderr)
 
 REQUIRED = ["name", "slug", "category", "license", "open_source", "type", "url", "repo", "source_url", "checked", "sources"]
 
@@ -202,17 +209,21 @@ def load_projects():
         ps.append(p)
     return sorted(ps, key=lambda p: p["name"].lower())
 
+FUNDERS = os.path.join(ROOT, "content", "funders.md")
+FUNDER_IDS = {"futo": "FUTO", "nlnet": "NLnet", "ngi": "Next Generation Internet"}
+
 def load_funders(ps):
-    d = os.path.join(ROOT, "funders"); fs = {}
-    for f in sorted(os.listdir(d)):
-        if not f.endswith(".md") or f in SKIP: continue
-        x = parse(os.path.join(d, f))
-        miss = [k for k in ("name", "url", "mission", "mission_source", "sources") if not x.get(k)]
-        if miss: sys.exit(f"funders/{f}: missing {', '.join(miss)}")
-        fs[x["name"]] = x
+    """content/funders.md: `## Funder` sections. Dossiers reference them with `funders: [slug, ...]`."""
+    fs = parse(FUNDERS)
+    heads = re.findall(r"^##\s+(.*)$", fs["body"], re.M)
+    known = {}
+    for slug, word in FUNDER_IDS.items():
+        h = next((x for x in heads if x.startswith(word)), None)
+        if h: known[slug] = h
     for p in ps:
-        for e in p.get("funding") or []:
-            if e["funder"] not in fs: sys.exit(f"projects/{p['slug']}.md: funder '{e['funder']}' has no file in funders/")
+        for x in p.get("funders") or []:
+            if x not in known: sys.exit(f"projects/{p['slug']}.md: funder '{x}' has no section in content/funders.md")
+    fs["known"] = known
     return fs
 
 def categories(ps):
@@ -234,14 +245,15 @@ def page(title, main, root, navhtml, desc, bodyclass=""):
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
            "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass}
     rep["{{OMAKASE}}"] = '<li><a href="{{ROOT}}omakase.html">Omakase</a></li>' if os.path.isfile(OMAKASE) else ""
+    rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>' if os.path.isfile(OMAKASE) else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
 def icon_html(p, root, cls="lt"):
     ic = p.get("icon")
     if ic:
-        return (f'<span class="{cls} ic" aria-hidden="true"><img src="{root}assets/projects/{E(p["slug"])}/{E(ic["file"])}" alt="" '
-                f'loading="lazy" decoding="async"></span>')
+        return (f'<a class="{cls} ic" href="{E(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{root}{E(ic)}" alt="" '
+                f'loading="lazy" decoding="async"></a>')
     return f'<span class="{cls}" aria-hidden="true">{E(p["name"][0].upper())}</span>'
 
 def aud_html(p, cls="aud"):
@@ -278,27 +290,23 @@ def index(ps, cats):
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
                 "An open catalog of open-source and source-available software that keeps your data under your control.")
 
-def media_credit(m):
-    note = f'<div class="sub">{inline(m["note"])}</div>' if m.get("note") else ""
-    return f'{E(m["credit"])} · <code>{E(m["license"])}</code> · <a href="{E(m["source"])}">source</a>{note}'
-
-def funding_html(p):
-    out = []
-    for e in p.get("funding") or []:
-        when = f', {E(e["when"])}' if e.get("when") else ""
-        out.append(f'<li><a href="../funders.html#{fid(e["funder"])}">{E(e["funder"])}</a>: {E(e["what"])}{when} '
-                   f'(<a href="{E(e["source"])}">source</a>)</li>')
-    return f'<ul class="fund">{"".join(out)}</ul>' if out else ""
+def media_credit(path):
+    m = MEDIA[path]
+    return f'{E(m["credit"])} · <a href="{E(m["terms"])}">terms</a> · <a href="{E(m["source"])}">source</a>'
 
 def fid(name): return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
+def funding_html(p, fs):
+    links = ", ".join(f'<a href="../funders.html#{fid(fs["known"][x])}">{E(fs["known"][x].split(" (")[0].split(",")[0])}</a>' for x in p.get("funders") or [])
+    note = f'<div>{inline(p["funding_note"])}</div>' if p.get("funding_note") else ""
+    fl = f'<div class="sub">Funders page: {links}</div>' if links else ""
+    return note + fl
+
 def shots_html(p):
-    figs = []
-    for s in p.get("screenshots") or []:
-        figs.append(f'<figure class="shot"><img src="../assets/projects/{E(p["slug"])}/{E(s["file"])}" alt="{E(p["name"])}: {E(s["caption"])}" '
-                    f'width="1600" height="1000" loading="lazy" decoding="async"><figcaption>{E(s["caption"])}. '
-                    f'<span class="cr">Screenshot: {media_credit(s)}</span></figcaption></figure>')
-    return "".join(figs)
+    s = p.get("screenshot")
+    if not s: return ""
+    return (f'<figure class="shot"><img src="../{E(s)}" alt="Screenshot of {E(p["name"])}" '
+            f'loading="lazy" decoding="async"><figcaption><span class="cr">Screenshot: {media_credit(s)}</span></figcaption></figure>')
 
 def project(p, cats):
     cid = cat_id(p["category"]); i, col = next((k, c[2]) for k, c in enumerate(cats) if c[0] == cid)
@@ -310,8 +318,8 @@ def project(p, cats):
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
              ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a> (provisional)')]
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
-    if p.get("funding"): rows.append(("Funding", funding_html(p) + '<div class="sub">Funding says nothing about the license.</div>'))
-    if p.get("funding_note"): rows.append(("Funding note", inline(p["funding_note"])))
+    if p.get("funding_note") or p.get("funders"):
+        rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))
     if p.get("icon"): rows.append(("Logo", media_credit(p["icon"]) + '<div class="sub">Shown unmodified to identify the project. No endorsement implied.</div>'))
     rows.append(("Checked", f'<time datetime="{E(str(p["checked"]))}">{nice_date(p["checked"])}</time>'))
     facts = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows)
@@ -363,57 +371,49 @@ def about(cats):
     return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.")
 
 def funders_page(fs, ps, cats):
-    secs = []
-    for name, f in sorted(fs.items(), key=lambda x: x[0].lower()):
-        items = []
-        for p in ps:
-            es = [e for e in (p.get("funding") or []) if e["funder"] == name]
-            if not es: continue
-            what = "; ".join(f'{E(e["what"])}{", " + E(e["when"]) if e.get("when") else ""} (<a href="{E(e["source"])}">source</a>)' for e in es)
-            items.append(f'<li><a href="projects/{p["slug"]}.html">{E(p["name"])}</a>: {what}</li>')
-        srcs = "".join(f'<li><a href="{E(u)}">{E(host(u))}</a></li>' for u in f["sources"])
-        secs.append(f'''<section class="funder" id="{fid(name)}"><h2>{E(name)}</h2>
-<p class="fmeta"><a href="{E(f["url"])}">{E(host(f["url"]))}</a></p>
-<blockquote><p>“{E(f["mission"])}”</p><footer>— <a href="{E(f["mission_source"])}">{E(name)}, {E(host(f["mission_source"]))}</a></footer></blockquote>
-{markdown(f["body"])}
-<h3>Projects in this catalog ({len(items)})</h3><ul>{"".join(items)}</ul>
-<p class="fsrc">Sources: </p><ol class="flist">{srcs}</ol></section>''')
-    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · Funders</p><h1>Funders</h1></div>
-<p class="intro">Organizations that develop or fund projects listed in this catalog, described in their own words. Funding is shown for transparency; it never decides inclusion and says nothing about a project's license.</p></section>
-<div class="body-wrap"><article class="prose">{"".join(secs)}
+    body = re.sub(r"^#\s+.*\n", "", fs["body"].lstrip(), count=1)
+    intro, _, rest = body.partition("\n## ")
+    html_rest = markdown("## " + rest)
+    html_rest = re.sub(r"<h2>(.*?)</h2>", lambda m: f'<h2 id="{fid(re.sub("<[^>]+>", "", m.group(1)))}">{m.group(1)}</h2>', html_rest)
+    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
+<div class="intro">{markdown(intro.strip())}</div></section>
+<div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
     return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.")
 
 OMAKASE = os.path.join(ROOT, "content", "omakase.md")
 
 def omakase_page(ps, cats):
-    """content/omakase.md: front matter (title, intro), then `## Course` headings with
-    `- slug: why` rows (or `- [Name](https://url): why` for things outside the catalog);
-    an indented `note: ...` line adds a side note to the row above."""
+    """content/omakase.md: front matter (title), a `# Heading`, an intro paragraph, then
+    `## Course` sections with `- **[Name](projects/<slug>.html)**: why` rows (or an external
+    https link for things outside the catalog). An indented `*...*` line is a side note."""
     o = parse(OMAKASE); by = {p["slug"]: p for p in ps}
-    by.update({p["name"].lower(): p for p in ps})
-    courses, cur, row = [], None, None
+    courses, cur, row, h1, intro = [], None, None, None, []
     for l in o["body"].splitlines():
         if not l.strip(): continue
-        h = re.match(r"^##\s+(.*)$", l)
-        if h: cur = (h.group(1).strip(), []); courses.append(cur); continue
-        if cur is None:
+        m = re.match(r"^#\s+(.*)$", l)
+        if m: h1 = m.group(1).strip(); continue
+        m = re.match(r"^##\s+(.*)$", l)
+        if m: cur = (m.group(1).strip(), []); courses.append(cur); row = None; continue
+        if cur is None: intro.append(l.strip()); continue
+        m = re.match(r"^\s+\*(.+)\*\s*$", l)
+        if m:
+            if row is not None: row["note"] = m.group(1).strip()
             continue
-        nm = re.match(r"^\s+note:\s*(.*)$", l)
-        if nm:
-            if row is not None: row["note"] = nm.group(1).strip().strip('"')
-            continue
-        li = re.match(r"^-\s+(?:\[([^\]]+)\]\((https?://[^)]+)\)|([^:]+?))\s*:\s*(.*)$", l)
-        if not li: sys.exit(f"content/omakase.md: cannot parse line {l!r}")
-        if li.group(1): row = {"name": li.group(1), "url": li.group(2), "why": li.group(4)}
-        else:
-            key = li.group(3).strip(); p = by.get(key) or by.get(key.lower())
-            if not p:
-                print(f"warning: content/omakase.md: '{key}' has no dossier yet, row skipped", file=sys.stderr); row = None; continue
-            row = {"p": p, "why": li.group(4)}
+        m = re.match(r"^-\s+\*\*\[([^\]]+)\]\(([^)]+)\)\*\*\s*:\s*(.*)$", l)
+        if not m: sys.exit(f"content/omakase.md: cannot parse line {l!r}")
+        name, url, why = m.groups()
+        pm = re.match(r"^projects/([a-z0-9-]+)\.html$", url)
+        if pm:
+            if pm.group(1) not in by: sys.exit(f"content/omakase.md: no dossier for '{pm.group(1)}'")
+            row = {"p": by[pm.group(1)], "why": why}
+        elif url.startswith("https://"): row = {"name": name, "url": url, "why": why}
+        else: sys.exit(f"content/omakase.md: unsupported link {url!r}")
         cur[1].append(row)
     secs = ""
     for n, (title, rows) in enumerate(courses, 1):
+        lab, _, nm = title.partition(":")
+        if not nm: lab, nm = "", title
         items = ""
         for r in rows:
             if "p" in r:
@@ -422,15 +422,18 @@ def omakase_page(ps, cats):
                 head = f'<span class="lt" aria-hidden="true">{E(r["name"][0].upper())}</span><a class="on-name" href="{E(r["url"])}">{E(r["name"])} ↗</a>'
             note = f'<span class="on-note">{inline(r["note"])}</span>' if r.get("note") else ""
             items += f'<li class="on-row"><div class="on-head">{head}</div><p class="on-why">{inline(r["why"])}{note}</p></li>'
-        secs += f'<section class="course"><h2><span class="cn">{n:02d}</span>{E(title)}</h2><ul class="menu">{items}</ul></section>'
-    intro = f'<p class="intro">{inline(o["intro"])}</p>' if o.get("intro") else ""
+        kick = f'<span class="cl">{E(lab.strip())}</span>' if lab else ""
+        secs += f'<section class="course"><h2><span class="cn">{n:02d}</span>{kick}{E(nm.strip())}</h2><ul class="menu">{items}</ul></section>'
+    intro = f'<p class="intro">{inline(" ".join(intro))}</p>' if intro else ""
+    title = h1 or o.get("title") or "Omakase"
     main = f'''<section class="phead omk-head"><div><p class="kick"><a href="index.html">Catalog</a> · Omakase</p>
-<h1>{E(o.get("title") or "Omakase")} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
+<h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
     return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk")
 
 def build(out):
-    ps = load_projects(); cats = categories(ps); fs = load_funders(ps)
+    global FS
+    ps = load_projects(); cats = categories(ps); fs = FS = load_funders(ps)
     if os.path.isdir(out): shutil.rmtree(out)
     os.makedirs(os.path.join(out, "projects"))
     w = lambda rel, s: open(os.path.join(out, rel), "w", encoding="utf-8").write(s)
@@ -439,7 +442,7 @@ def build(out):
     for p in ps: w(f"projects/{p['slug']}.html", project(p, cats))
     shutil.copytree(TH, os.path.join(out, "theme"), ignore=shutil.ignore_patterns("base.html"))
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"))
-    print(f"built {len(ps)} projects in {len(cats)} categories, {len(fs)} funders into {out}")
+    print(f"built {len(ps)} projects in {len(cats)} categories, {len(fs['known'])} funders into {out}")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

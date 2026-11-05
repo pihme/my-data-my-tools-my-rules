@@ -185,6 +185,8 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .course{margin:26px 0 40px}
 .course h2{font:800 44px/1 "Bricolage Grotesque";letter-spacing:-.02em;margin:0 0 16px;padding-bottom:12px;border-bottom:3px double var(--ink);display:flex;align-items:baseline;gap:16px}
 .course h2 .cn{font:600 14px "JetBrains Mono";color:var(--mut);letter-spacing:.1em}
+.course h2 .cl{font:500 12px "JetBrains Mono";color:var(--mut);letter-spacing:.12em;text-transform:uppercase;margin-right:-4px}
+.course h2 .cl::after{content:" ·"}
 .menu{list-style:none;margin:0;padding:0}
 .on-row{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:baseline;padding:14px 0;border-bottom:1px dotted var(--line)}
 .on-head{display:flex;align-items:center;gap:12px;align-self:center}
@@ -194,7 +196,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .on-name:hover{text-decoration:underline;text-underline-offset:3px}
 .on-why{margin:0;font-size:16px;line-height:1.5}
 .on-note{display:block;margin-top:4px;font-size:13.5px;font-style:italic;color:var(--mut)}
-@media (max-width:640px){.on-row{grid-template-columns:1fr;gap:6px}.course h2{font-size:34px}.omk-head h1 .jp{display:inline-block}}
+@media (max-width:640px){.on-row{grid-template-columns:1fr;gap:6px}.course h2{font-size:34px}.omk-head h1 .jp{display:inline-block;white-space:nowrap}.course h2{flex-wrap:wrap;row-gap:4px}}
 .omk-head{grid-template-columns:1fr;gap:18px}
 .omk-head .intro{max-width:60ch}
 .on-head .lt.ic{background:#fff;box-shadow:none}
