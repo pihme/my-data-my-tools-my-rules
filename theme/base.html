@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ROOT}}assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ROOT}}assets/favicon-16.png">
+<link rel="apple-touch-icon" href="{{ROOT}}assets/logo-mark.png">
+<link rel="stylesheet" href="{{ROOT}}theme/fonts.css">
+<link rel="stylesheet" href="{{ROOT}}theme/style.css">
+<script>try{var m=localStorage.getItem("mdmtmr-mode");if(m==="dark"||m==="light")document.documentElement.classList.add(m)}catch(e){}</script>
+</head>
+<body class="{{BODYCLASS}}">
+<aside class="nav">
+<a class="brand" href="{{ROOT}}index.html"><img src="{{ROOT}}assets/logo-lockup-dark-transparent.svg" alt="My Data, My Tools, My Rules" width="189" height="72"></a>
+<p class="lbl">Categories <span class="prov">provisional</span></p>
+<ul class="cats">{{NAV}}</ul>
+<p class="lbl">About</p>
+<ul class="plain">
+<li><a href="{{ROOT}}about.html">About this site</a></li>
+<li><a href="{{ROOT}}about.html#what-belongs-here">What belongs here</a></li>
+<li><a href="{{ROOT}}about.html#license-labels">License labels</a></li>
+<li><a href="{{REPO}}/issues">Suggest a project ↗</a></li>
+<li><a href="{{REPO}}">GitHub ↗</a></li>
+</ul>
+<button class="mode" type="button" hidden>◐ Dark / light</button>
+</aside>
+<main>
+{{MAIN}}
+<footer class="foot">
+<p>This site is largely AI-assisted, with light human editorial review. <a href="{{ROOT}}about.html">About this site</a> · Spotted a mistake? <a href="{{REPO}}/issues">Report it on GitHub</a>.</p>
+<p>Content CC BY-ND 4.0 · Built {{BUILT}}</p>
+</footer>
+</main>
+<script src="{{ROOT}}theme/site.js"></script>
+</body>
+</html>

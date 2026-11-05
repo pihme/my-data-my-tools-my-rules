@@ -1,0 +1,100 @@
+/* MDMTMR theme, based on the V3 "Editorial" design. */
+:root{--bg:#f6f3ec;--card:#fff;--ink:#111;--mut:#6b6760;--line:#e3ddd0;--navbg:#111;--navink:#f6f3ec;--osbg:#111;--osfg:#fff;--nav-w:280px}
+:root.dark{--bg:#121315;--card:#1c1e21;--ink:#f1efe9;--mut:#9a978f;--line:#2c2f33;--navbg:#0a0b0c;--navink:#f1efe9;--osbg:#f1efe9;--osfg:#111}
+@media (prefers-color-scheme:dark){:root:not(.light){--bg:#121315;--card:#1c1e21;--ink:#f1efe9;--mut:#9a978f;--line:#2c2f33;--navbg:#0a0b0c;--navink:#f1efe9;--osbg:#f1efe9;--osfg:#111}}
+:root{color-scheme:light}:root.dark{color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not(.light){color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.5 "Inter",system-ui,sans-serif;display:grid;grid-template-columns:var(--nav-w) minmax(0,1fr);background:linear-gradient(to right,var(--navbg) var(--nav-w),var(--bg) var(--nav-w))}
+a{color:inherit;text-decoration:none}
+/* sidebar */
+.nav{position:sticky;top:0;height:100vh;background:var(--navbg);color:var(--navink);padding:32px 26px;display:flex;flex-direction:column;overflow:auto}
+.brand{display:block;margin:0 0 30px 2px}
+.brand img{display:block;width:189px;height:auto}
+.lbl{font:600 11px "Inter";letter-spacing:.14em;text-transform:uppercase;color:#8d8a83;margin:20px 0 10px}
+.lbl .prov{letter-spacing:.06em;text-transform:none;font-weight:500;color:#6d6a63;margin-left:4px}
+.nav ul{list-style:none;margin:0;padding:0}
+.nav li a{display:flex;align-items:center;gap:12px;padding:7px 10px;border-radius:8px;font-weight:500;white-space:nowrap;font-size:14.5px}
+.nav li a:hover{background:#ffffff12}
+.nav li a b{font:700 12px "JetBrains Mono";color:var(--c);width:22px}
+.nav li a span{margin-left:auto;font:12px "JetBrains Mono";color:#8d8a83}
+.nav li a.on{background:#ffffff14;box-shadow:inset 3px 0 0 var(--c,#f6f3ec)}
+.plain li a{padding:6px 10px;color:#cfccc4;font-weight:400}
+.mode{margin-top:auto;font:500 13px "Inter";background:transparent;color:var(--navink);border:1px solid #3a3a3a;border-radius:999px;padding:9px 14px;text-align:left;cursor:pointer}
+main{padding:0 56px 40px;min-width:0}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:end;padding:56px 0 44px;border-bottom:3px solid var(--ink);margin-bottom:12px}
+.kick{font:600 12px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:0 0 14px}
+.kick a:hover{color:var(--ink)}
+h1{font:800 104px/.92 "Bricolage Grotesque",sans-serif;letter-spacing:-.035em;margin:0}
+h1 em{font-style:normal;background:linear-gradient(90deg,#ff5c39,#ffc531 50%,#2ec4a6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro{font-size:21px;line-height:1.45;margin:0 0 28px;max-width:40ch}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:22px}
+.stats div{padding:14px 0 12px}.stats div+div{padding-left:20px;border-left:1px solid var(--line)}
+.stats b{display:block;font:800 38px/1 "Bricolage Grotesque"}.stats span{font-size:13px;color:var(--mut)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.filters span{font:600 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.1em;color:var(--mut);margin-right:6px}
+.filters button{font:500 13px "Inter";border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:7px 15px;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--bg)}
+.empty{padding:40px 0;color:var(--mut)}
+/* category sections + cards */
+.catflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:18px}
+section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
+.cat.span-1{grid-column:span 1}.cat.span-2{grid-column:span 2}.cat.span-3{grid-column:span 3}.cat.span-4{grid-column:span 4}
+.cat .grid{grid-template-columns:repeat(var(--n,4),minmax(0,1fr))}
+.sh{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:end;margin-bottom:18px}
+.num{font:800 64px/.8 "Bricolage Grotesque";color:var(--c)}
+.sh h2{font:800 34px/1 "Bricolage Grotesque";letter-spacing:-.02em;margin:0 0 6px;overflow-wrap:anywhere}.sh p{margin:0;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:18px 20px 16px;display:flex;flex-direction:column;min-height:196px}
+.ct{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.lt{flex:none;width:34px;height:34px;border-radius:9px;background:var(--c);color:#111;display:grid;place-items:center;font:800 17px "Bricolage Grotesque"}
+.card h3{font:700 18px/1.2 "Inter Tight","Inter";margin:0}
+.card h3 a:hover{text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
+.spdx{display:block;font:500 11.5px/1.3 "JetBrains Mono";color:var(--mut);margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+.tag{font:600 11.5px/1 "Inter";padding:5px 9px;border-radius:999px;white-space:nowrap}
+.tag.t-os{background:var(--osbg);color:var(--osfg)}
+.tag.t-sa{border:1.5px dashed currentColor;padding:3.5px 8px}
+.tag.t-sh{background:color-mix(in srgb,var(--c) 22%,transparent)}
+.tag.t-app{border:1.5px solid var(--line);padding:3.5px 8px}
+.card p{margin:0 0 14px;color:var(--mut);font-size:14px;line-height:1.5;flex:1}
+.nonote{opacity:.6;font-style:italic}
+.lnk{font:500 12.5px "JetBrains Mono";border-top:1px solid var(--line);padding-top:12px;display:flex;gap:14px;align-items:baseline}
+.lnk a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lnk a:hover{color:var(--c);filter:brightness(.8)}
+.lnk .web{min-width:0}.lnk .repo{margin-left:auto;flex:none;color:var(--mut)}
+.lnk .more{flex:none;color:var(--c)}
+/* project + about pages */
+.phead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:end;padding:56px 0 40px;border-bottom:3px solid var(--ink)}
+.phead h1{font-size:96px;display:flex;align-items:center;gap:26px}
+.phead h1 .lt{width:84px;height:84px;border-radius:20px;font-size:46px;letter-spacing:0}
+.phead .intro{margin:0}
+.body-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;padding-top:36px}
+.prose{font-size:17px;line-height:1.65;max-width:72ch}
+.prose h2{font:800 26px/1.1 "Bricolage Grotesque";letter-spacing:-.01em;margin:34px 0 10px}
+.prose h2:first-child{margin-top:0}
+.prose p{margin:0 0 14px}
+.prose a{text-decoration:underline;text-decoration-color:var(--c,currentColor);text-underline-offset:3px;overflow-wrap:anywhere}
+.prose code,.facts code{font:500 .86em "JetBrains Mono";background:color-mix(in srgb,var(--ink) 7%,transparent);padding:1px 5px;border-radius:4px}
+.facts{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:8px 24px 10px;align-self:start}
+.facts dl{margin:0;display:grid;grid-template-columns:150px minmax(0,1fr)}
+.facts dt,.facts dd{padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+.facts dt{font:600 11.5px/1.6 "JetBrains Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+.facts dd{font-size:15px;overflow-wrap:anywhere}
+.facts dd a{text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
+.facts dl>:nth-last-child(-n+2){border-bottom:0}
+.facts .tags{margin:6px 0 0}
+.sources{margin:30px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.sources h2{margin-top:0}
+.sources ol{margin:0;padding-left:22px;font:14px/1.7 "JetBrains Mono"}
+.back{display:inline-block;margin-top:30px;font:500 13px "JetBrains Mono"}
+.back:hover{text-decoration:underline}
+/* footer */
+.foot{display:flex;justify-content:space-between;gap:30px;margin-top:44px;padding-top:16px;border-top:3px solid var(--ink);font-size:13px;color:var(--mut)}
+.foot p{margin:0}.foot a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+/* smaller desktops */
+@media (max-width:1700px){:root{--nav-w:264px}.nav{padding:28px 20px}main{padding:0 40px 40px}h1{font-size:84px}.phead h1{font-size:76px}.hero,.phead,.body-wrap{gap:44px}.intro{font-size:19px}.grid{gap:14px}.card{padding:16px 16px 14px}}
+@media (max-width:1280px){.catflow{display:block}.cat .grid,.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero,.phead,.body-wrap{grid-template-columns:1fr}}
+@media (max-width:960px){body{display:block;background:var(--bg)}.nav{position:static;height:auto}.mode{margin-top:20px}.cat .grid,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:0 22px 30px}h1,.phead h1{font-size:60px}.foot{flex-direction:column}}
+@media (max-width:600px){.cat .grid,.grid{grid-template-columns:minmax(0,1fr)}h1,.phead h1{font-size:46px}.stats{grid-template-columns:repeat(2,1fr)}.facts dl{grid-template-columns:1fr}.facts dt{border-bottom:0;padding-bottom:0}}
