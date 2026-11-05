@@ -11,6 +11,13 @@ source_url: https://github.com/nextcloud/server/blob/master/COPYING
 checked: 2026-11-05
 note: Self-hosted file sync and collaboration suite.
 corporate_note: Nextcloud GmbH; optional enterprise and hosted offerings exist (info only).
+summary: "Nextcloud is a self-hosted platform for file sync and sharing, with apps for calendar, contacts, mail, video calls, and more. It is an alternative to services such as Google Drive, Dropbox, or Microsoft 365. You run the server on your own hardware or a rented server and use the desktop and mobile apps to sync your files."
+audience: Enthusiast
+funding:
+  - funder: "NLnet"
+    what: "NGI0 Discovery grant (unified search)"
+    when: "2019-10 to 2022-10"
+    source: "https://nlnet.nl/project/NextCloudSearch/"
 sources:
   - https://nextcloud.com/
   - https://github.com/nextcloud/server/blob/master/COPYING

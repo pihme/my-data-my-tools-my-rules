@@ -10,7 +10,19 @@ repo: https://github.com/accrescent/accrescent
 source_url: https://github.com/accrescent/accrescent/blob/main/LICENSE
 checked: 2026-11-05
 note: Android app store client focused on modern packaging security.
-funding_note: FUTO microgrant Aug 2025 (futo.tech/grants).
+summary: "Accrescent is an Android app store client that its developers describe as focused on security, privacy, and usability. It offers a way to install and update the apps published in its catalog without going through Google Play. You install the client app on an Android phone; the project states that it is still in early alpha."
+audience: End user
+screenshots:
+  - file: "screenshot-1.webp"
+    caption: "Home, app details, and settings screens of the Android app"
+    credit: "Logan Magee / Accrescent contributors"
+    license: "ISC"
+    source: "https://github.com/accrescent/accrescent/tree/main/.screenshots"
+funding:
+  - funder: "FUTO"
+    what: "Microgrant"
+    when: "August 2025"
+    source: "https://futo.tech/grants"
 sources:
   - https://accrescent.app/
   - https://github.com/accrescent/accrescent/blob/main/LICENSE

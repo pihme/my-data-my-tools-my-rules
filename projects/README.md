@@ -26,8 +26,36 @@ Exact field names (YAML):
 | `checked` | yes | date | Verification date (`YYYY-MM-DD`) |
 | `note` | no | string | One short sentence for the project card (~120 characters max) |
 | `corporate_note` | no | string | Optional corporate / org binding (info only, never exclusion) |
-| `funding_note` | no | string | Optional brief funding note with source; funding is not decisive |
+| `summary` | no | string | Card paragraph, 2–4 sentences: what it is, what it replaces or helps with, how you run it. Neutral, facts from the project's own site or repo, US spelling. Falls back to `note` |
+| `audience` | no | string | `End user`, `Enthusiast` or `Expert` (editorial estimate of the experience needed to run it) |
+| `icon` | no | map | Project logo, only if its license or brand guidelines allow use in a catalog: `file` (in `assets/projects/<slug>/`), `credit`, `license`, `source` (URL), optional `note` (e.g. trademark terms). Shown unmodified; without it the card shows a letter tile |
+| `screenshots` | no | list of maps | Only screenshots published under a reusable license: `file` (16:10 WebP in `assets/projects/<slug>/`), `caption`, `credit`, `license`, `source` |
+| `funding` | no | list of maps | `funder` (must match `name` in `funders/<slug>.md`), `what`, optional `when`, `source` (grant page or project announcement). Funding is not decisive and says nothing about the license |
+| `funding_note` | no | string | Optional free-text funding note with source (prefer `funding`) |
 | `sources` | yes | list | URLs used for verification |
+
+Example of the map and list fields:
+
+```yaml
+icon:
+  file: "icon.svg"
+  credit: "Example Project contributors"
+  license: "CC-BY-SA-4.0"
+  source: "https://github.com/example/project/blob/main/logo.svg"
+screenshots:
+  - file: "screenshot-1.webp"
+    caption: "Main window"
+    credit: "Example Project contributors"
+    license: "GPL-3.0-only (repository license)"
+    source: "https://github.com/example/project/tree/main/screenshots"
+funding:
+  - funder: "NLnet"
+    what: "NGI0 Entrust grant"
+    when: "2023-04 to 2024-07"
+    source: "https://nlnet.nl/project/Example/"
+```
+
+Logo and screenshot decisions (used or not, and why) are tracked in [MEDIA.md](MEDIA.md). Screenshots are framed to 16:10 (letterboxed on a neutral background, never stretched or cropped into the content) and skipped if the source is too small to stay sharp.
 
 ## Body sections
 
@@ -35,7 +63,7 @@ Free-form Markdown after the front matter. Keep each dossier short. Suggested he
 
 1. Short neutral description (2–4 sentences)
 2. `## Why it fits` — free private self-install
-3. `## Getting started` — link to official install docs only
+3. `## Getting started` — prerequisites, 3–6 numbered steps (fenced code blocks allowed) and the official install docs link
 4. `## Notes` — caveats, labels, unverified items
 
 ## Admission rule (context)

@@ -11,6 +11,8 @@ source_url: https://github.com/signalapp/Signal-Android/blob/main/LICENSE
 checked: 2026-11-05
 note: Encrypted messaging clients; private Signal network self-hosting is not supported.
 corporate_note: Signal Foundation / Signal Messenger LLC.
+summary: "Signal is an end-to-end encrypted messenger for text, voice, and video calls, with apps for Android, iOS, and desktop. Its client source code is public under the AGPL. You install the app and register with a phone number; the Signal service itself is run by the Signal Foundation and is not meant to be self-hosted."
+audience: End user
 sources:
   - https://signal.org/
   - https://github.com/signalapp/Signal-Android/blob/main/LICENSE

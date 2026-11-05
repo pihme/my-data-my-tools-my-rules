@@ -11,7 +11,12 @@ source_url: https://gitlab.futo.org/videostreaming/grayjay/-/blob/master/LICENSE
 checked: 2026-11-05
 note: Multi-platform video client; source-available (Source First 1.1).
 corporate_note: FUTO Holdings product.
-funding_note: FUTO product (futo.tech/projects).
+summary: "Grayjay is a video app for Android and desktop that lets you follow creators and play videos from several platforms in one place, using a plugin for each source. Subscriptions and history are kept in the app instead of a platform account. You install the app; it is a client, not a server, and its FUTO Source First license makes it source-available, not open source."
+audience: End user
+funding:
+  - funder: "FUTO"
+    what: "Developed by FUTO"
+    source: "https://futo.tech/projects"
 sources:
   - https://grayjay.app/
   - https://gitlab.futo.org/videostreaming/grayjay/-/blob/master/LICENSE.md

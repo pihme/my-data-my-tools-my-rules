@@ -11,7 +11,12 @@ source_url: https://github.com/futo-org/android-keyboard/blob/master/LICENSE.md
 checked: 2026-11-05
 note: Android keyboard; source-available; use allowed for any purpose under its license.
 corporate_note: FUTO Holdings; positioned as offline alternative to Google keyboard.
-funding_note: FUTO product (futo.tech/projects).
+summary: "FUTO Keyboard is an Android keyboard that works offline and does not send what you type to a server. It includes swipe typing, word predictions, and on-device voice input, and is an alternative to keyboards such as Gboard. You install the app on your phone; its license (FUTO Source First) makes the code source-available, not open source."
+audience: End user
+funding:
+  - funder: "FUTO"
+    what: "Developed by FUTO"
+    source: "https://futo.tech/projects"
 sources:
   - https://keyboard.futo.org/
   - https://github.com/futo-org/android-keyboard/blob/master/LICENSE.md

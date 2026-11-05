@@ -10,7 +10,24 @@ repo: https://github.com/YunoHost/yunohost
 source_url: https://github.com/YunoHost/yunohost/blob/dev/LICENSE
 checked: 2026-11-05
 note: Debian-based server distro that packages self-hosted web apps.
-funding_note: Related NLnet InternetCube work (nlnet.nl/project/InternetCube/).
+summary: "YunoHost is a Debian-based server operating system that makes it easier to run your own server. It provides a web admin interface, single sign-on, and a catalog of packaged apps, such as Nextcloud or Jellyfin, that you can install from that interface. You install it on a home server, a Raspberry Pi, or a VPS."
+audience: Enthusiast
+icon:
+  file: "icon.svg"
+  credit: "YunoHost contributors"
+  license: "AGPL-3.0 (repository license)"
+  source: "https://github.com/YunoHost/yunohost-admin/blob/dev/app/src/assets/logo-ynh.svg"
+screenshots:
+  - file: "screenshot-1.webp"
+    caption: "Home screen of the web admin interface"
+    credit: "YunoHost contributors"
+    license: "AGPL-3.0 (repository license)"
+    source: "https://github.com/YunoHost/yunohost-admin/blob/dev/doc/admin_home_light.jpg"
+funding:
+  - funder: "NLnet"
+    what: "NGI0 PET grant (YunoHost and the Internet Cube)"
+    when: "2019-04 to 2022-10"
+    source: "https://nlnet.nl/project/InternetCube/"
 sources:
   - https://yunohost.org/
   - https://github.com/YunoHost/yunohost/blob/dev/LICENSE

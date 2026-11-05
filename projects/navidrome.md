@@ -10,7 +10,24 @@ repo: https://github.com/navidrome/navidrome
 source_url: https://github.com/navidrome/navidrome/blob/master/LICENSE
 checked: 2026-11-05
 note: Self-hosted music server compatible with Subsonic clients.
-funding_note: FUTO microgrant May 2025 (futo.tech/grants).
+summary: "Navidrome is a self-hosted music server and streamer for your own music collection, with a web player. It implements the Subsonic API, so many existing mobile and desktop music apps can connect to it. It is an alternative to streaming services for music you already own, and runs as a single binary or container, including on a Raspberry Pi."
+audience: Enthusiast
+icon:
+  file: "icon.png"
+  credit: "Navidrome contributors"
+  license: "GPL-3.0-only (repository license)"
+  source: "https://github.com/navidrome/navidrome/blob/master/resources/logo-192x192.png"
+screenshots:
+  - file: "screenshot-1.webp"
+    caption: "Album view and player in the web interface"
+    credit: "Navidrome contributors"
+    license: "GPL-3.0-only (repository license)"
+    source: "https://github.com/navidrome/navidrome/blob/master/.github/screenshots/ss-desktop-player.png"
+funding:
+  - funder: "FUTO"
+    what: "Microgrant"
+    when: "May 2025"
+    source: "https://futo.tech/grants"
 sources:
   - https://www.navidrome.org/
   - https://github.com/navidrome/navidrome/blob/master/LICENSE

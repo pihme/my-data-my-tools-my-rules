@@ -10,7 +10,19 @@ repo: https://github.com/openhab/openhab-core
 source_url: https://github.com/openhab/openhab-core/blob/main/LICENSE
 checked: 2026-11-05
 note: Vendor-neutral open home automation runtime.
-funding_note: FUTO microgrant Jun 2023 (futo.tech/grants).
+summary: "openHAB is a vendor-neutral home automation platform that connects devices and technologies from many manufacturers through add-ons. It runs locally, so automations keep working without a vendor cloud. You install it on a Raspberry Pi (for example with openHABian), a PC, or a server and manage it through a web interface."
+audience: Enthusiast
+icon:
+  file: "icon.svg"
+  credit: "openHAB Foundation e.V."
+  license: "Trademark (openHAB Trademark Policy)"
+  source: "https://github.com/openhab/openhab-docs/blob/main/.vuepress/public/openhab-logo-square.svg"
+  note: "Official logo from https://www.openhab.org/artwork, used in its original form as allowed by https://www.openhab.org/about/trademark.html"
+funding:
+  - funder: "FUTO"
+    what: "Microgrant"
+    when: "June 2023"
+    source: "https://futo.tech/grants"
 sources:
   - https://www.openhab.org/
   - https://github.com/openhab/openhab-core/blob/main/LICENSE

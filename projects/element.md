@@ -11,6 +11,8 @@ source_url: https://github.com/element-hq/element-web/blob/develop/LICENSE-AGPL-
 checked: 2026-11-05
 note: Matrix client; pair with a self-hosted homeserver for full control.
 corporate_note: Element / New Vector Ltd.; part of the Matrix ecosystem.
+summary: "Element is a messaging and calling client for the Matrix network, available for the web, desktop, and mobile. Conversations can be end-to-end encrypted, and you can talk to people on other Matrix servers. It is an alternative to closed chat platforms for personal or team chat. You use the apps with any Matrix account; for full control you pair them with a homeserver you run yourself, such as Synapse."
+audience: End user
 sources:
   - https://element.io/
   - https://github.com/element-hq/element-web/blob/develop/LICENSE-AGPL-3.0

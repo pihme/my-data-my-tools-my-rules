@@ -10,6 +10,8 @@ repo: https://github.com/mailcow/mailcow-dockerized
 source_url: https://github.com/mailcow/mailcow-dockerized/blob/master/LICENSE
 checked: 2026-11-05
 note: Dockerized mail server stack for self-hosted email.
+summary: "mailcow: dockerized is a complete mail server suite packaged with Docker Compose, including SMTP and IMAP servers, spam filtering, webmail, and an admin web interface. It lets you run email for your own domains instead of using a hosted provider. Running a mail server needs a server with a static IP address, correct DNS records, and ongoing maintenance."
+audience: Expert
 sources:
   - https://mailcow.github.io/mailcow-dockerized-docs/
   - https://github.com/mailcow/mailcow-dockerized/blob/master/LICENSE

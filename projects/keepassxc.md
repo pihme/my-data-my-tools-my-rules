@@ -10,7 +10,13 @@ repo: https://github.com/keepassxreboot/keepassxc
 source_url: https://github.com/keepassxreboot/keepassxc/blob/develop/COPYING
 checked: 2026-11-05
 note: Local password manager; database stays on devices you choose.
-funding_note: FUTO microgrant Jul 2023 (futo.tech/grants).
+summary: "KeePassXC is a password manager for Windows, macOS, and Linux that keeps your passwords in a local encrypted database file in the KeePass (KDBX) format. It is an alternative to cloud password services: you decide where the file lives and how it is synced. It includes a password generator, TOTP codes, and browser integration."
+audience: End user
+funding:
+  - funder: "FUTO"
+    what: "Microgrant"
+    when: "July 2023"
+    source: "https://futo.tech/grants"
 sources:
   - https://keepassxc.org/
   - https://github.com/keepassxreboot/keepassxc/blob/develop/COPYING
