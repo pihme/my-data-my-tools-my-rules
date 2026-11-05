@@ -193,6 +193,9 @@ def load_projects():
         if len(p.get("note", "")) > 120: print(f"warning: projects/{f}: note longer than 120 characters", file=sys.stderr)
         if p.get("summary") and not 120 <= len(p["summary"]) <= 700:
             print(f"warning: projects/{f}: summary should be a paragraph of about 2-4 sentences", file=sys.stderr)
+        if p.get("audience"):
+            norm = {k.lower().replace(" ", "-"): k for k in AUDIENCE}
+            p["audience"] = norm.get(str(p["audience"]).strip().lower().replace(" ", "-"), p["audience"])
         if p.get("audience") and p["audience"] not in AUDIENCE:
             sys.exit(f"projects/{f}: audience must be one of {', '.join(AUDIENCE)}")
         check_media(f, p)
