@@ -2,7 +2,7 @@
 name: Forgejo
 slug: forgejo
 category: Hosting Platform (tentative)
-license: GPL-3.0-only
+license: GPL-3.0-or-later
 open_source: true
 type: Server
 url: https://forgejo.org/
@@ -19,7 +19,7 @@ sources:
   - https://nlnet.nl/project/
 ---
 
-Forgejo is a self-hosted software forge for Git hosting and collaboration. LICENSE on the forgejo branch is GPL version 3.
+Forgejo is a self-hosted software forge for Git hosting and collaboration. The README states GPL version 3.0 or any later version (since v9.0).
 
 ## Why it fits
 

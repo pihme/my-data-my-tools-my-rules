@@ -2,7 +2,7 @@
 name: F-Droid
 slug: f-droid
 category: Mobile/App Stores (tentative)
-license: GPL-3.0-only
+license: GPL-3.0-or-later
 open_source: true
 type: App
 url: https://f-droid.org/
@@ -17,7 +17,7 @@ sources:
   - https://f-droid.org/docs/
 ---
 
-F-Droid is an Android app catalogue and client focused on free and open-source applications. The client LICENSE is GPL version 3. Separate components exist for the server/repo tooling.
+F-Droid is an Android app catalogue and client focused on free and open-source applications. The client README states GPL version 3 or, at your option, any later version. Separate components exist for the server/repo tooling.
 
 ## Why it fits
 

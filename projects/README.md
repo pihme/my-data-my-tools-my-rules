@@ -1,7 +1,7 @@
 # MDMTMR project dossiers
 
 Markdown dossiers for **My Data, My Tools, My Rules** (MDMTMR).
-Maintainer can copy these into `github.com/pihme/my-data-my-tools-my-rules` so a plain Python static builder can generate the site (similar spirit to freigeist).
+These are the source files for the project pages of this site. A plain Python static builder generates the pages from them.
 
 - `projects/<slug>.md` — one file per candidate
 - `TEMPLATE.md` — blank template
@@ -44,4 +44,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-Initial set: 24 candidates from the planning Page (checked 2026-11-05, Europe/Berlin). Taxonomy for `category` is tentative.
+Initial set: 24 candidates from the initial research (checked 2026-11-05, Europe/Berlin). Taxonomy for `category` is tentative.
