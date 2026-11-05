@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0 (unreleased)
+
+### Changed
+- Content update: fixed setup links and Getting started paths for Vaultwarden, YunoHost, Nextcloud (AIO), PeerTube (Docker), Element and Syncthing.
+- Short Watch out notes for known pitfalls in the official guides of Garage, Jellyfin, ONLYOFFICE, CryptPad, Paperless-ngx and openHAB.
+- "(tentative)" removed from remaining category labels in dossiers that the v2.1 package did not re-export.
+
+### Added
+- Optional dossier fields `setup_steps`, `setup_clarity` (1–5) and `setup_tested` (date). When a project was hands-on checked, the Getting started section (and the catalog card) show e.g. "7 steps · clarity 4/5"; untested projects show nothing. No minutes.
+- "Watch out:" lines in dossiers render as styled callouts.
+
 ## 2.0.1 (unreleased)
 
 ### Fixed

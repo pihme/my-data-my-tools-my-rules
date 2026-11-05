@@ -1,7 +1,7 @@
 ---
 name: openHAB
 slug: openhab
-category: Smart Home (tentative)
+category: Smart Home
 license: EPL-2.0
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://www.openhab.org/
 repo: https://github.com/openhab/openhab-core
 source_url: https://github.com/openhab/openhab-core/blob/main/LICENSE
 checked: 2026-11-05
+setup_steps: 5
+setup_clarity: 2
+setup_tested: 2026-11-06
 note: Vendor-neutral open home automation runtime.
 summary: openHAB is a vendor-neutral home automation platform that integrates devices and services from many manufacturers through add-ons called bindings. It runs locally on Java, for example on a Raspberry Pi with the openHABian image or in Docker. Rules, dashboards and automations are configured through a web interface.
 funding_note: FUTO microgrant (June 2023).
@@ -44,6 +47,8 @@ Steps:
 2. Install openHAB with that method (for Docker, follow the Docker page).
 3. Open the web interface on port 8080 and create the admin account.
 4. Install bindings for your devices and add things and items.
+
+Watch out: replace the image tag placeholder `openhab/openhab:<version>-<distribution>` with a concrete tag from Docker Hub (for example `openhab/openhab:latest`). Prefer the `TZ` environment variable over mounting `/etc/localtime`; the current image warns that the localtime mount is obsolete.
 
 Official installation overview: <https://www.openhab.org/docs/installation/>
 

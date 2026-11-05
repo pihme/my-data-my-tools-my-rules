@@ -240,3 +240,9 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .phead h1 .lt.ic{padding:0}
 .lt.ic-dossier img{width:60px;height:60px}
 @media (max-width:600px){.lt.ic-dossier img{width:40px;height:40px}}
+
+/* v2.1: setup steps/clarity + Watch out callouts */
+.setup-meta{margin:0 0 14px;font:500 13.5px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.02em;color:var(--mut)}
+.setup-card{margin:-4px 0 12px;font-size:12.5px}
+.callout-watch{--c:#c47a12;border-left-color:#c47a12}
+.callout-watch p{color:var(--ink)}

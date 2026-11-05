@@ -1,7 +1,7 @@
 ---
 name: Nextcloud
 slug: nextcloud
-category: Cloud/Files (tentative)
+category: Cloud/Files
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://nextcloud.com/
 repo: https://github.com/nextcloud/server
 source_url: https://github.com/nextcloud/server/blob/master/COPYING
 checked: 2026-11-05
+setup_steps: 7
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Self-hosted file sync and collaboration suite.
 summary: Nextcloud is a self-hosted platform for file sync and sharing, with optional apps for calendars, contacts, office documents, chat and video calls. Desktop and mobile clients keep files in sync with your server. The official All-in-One Docker setup bundles the components for new installations. Nextcloud GmbH sells enterprise support; the server is AGPL-licensed.
 corporate_note: Nextcloud GmbH; optional enterprise and hosted offerings exist (info only).
@@ -21,7 +24,6 @@ icon_source: https://github.com/nextcloud/server/blob/master/core/img/favicon-to
 sources:
   - https://nextcloud.com/
   - https://github.com/nextcloud/server/blob/master/COPYING
-  - https://docs.nextcloud.com/server/latest/admin_manual/installation/
   - https://nlnet.nl/project/NextCloudSearch/
   - https://github.com/nextcloud/all-in-one
 ---
@@ -48,8 +50,6 @@ Steps:
 4. Let AIO start all containers, then log in to Nextcloud with the shown admin credentials.
 
 Official All-in-One guide: <https://github.com/nextcloud/all-in-one>
-
-Admin manual: installation: <https://docs.nextcloud.com/server/latest/admin_manual/installation/>
 
 ## Notes
 

@@ -1,7 +1,7 @@
 ---
 name: SearXNG
 slug: searxng
-category: Search (tentative)
+category: Search
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://searxng.org/
 repo: https://github.com/searxng/searxng
 source_url: https://github.com/searxng/searxng/blob/master/LICENSE
 checked: 2026-11-05
+setup_steps: 6
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Self-hosted metasearch engine; results may come from third parties.
 summary: SearXNG is a metasearch engine that sends your query to many search services and merges the results. Your instance does not profile users, and upstream engines see the server rather than your browser. You can run it privately for yourself or for a group. It is a fork of the earlier searx project.
 corporate_note: Metasearch may query third-party engines depending on configuration.

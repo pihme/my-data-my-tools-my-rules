@@ -1,7 +1,7 @@
 ---
 name: Uptime Kuma
 slug: uptime-kuma
-category: Monitoring (tentative)
+category: Monitoring
 license: MIT
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://uptime.kuma.pet/
 repo: https://github.com/louislam/uptime-kuma
 source_url: https://github.com/louislam/uptime-kuma/blob/master/LICENSE
 checked: 2026-11-05
+setup_steps: 4
+setup_clarity: 5
+setup_tested: 2026-11-06
 note: Self-hosted uptime monitoring with notifications and status pages.
 summary: Uptime Kuma is a self-hosted monitoring tool that checks whether websites, servers and services are reachable, for example via HTTP, TCP port, ping or DNS. It sends notifications through many channels such as email, Telegram or Matrix when something goes down, and it can publish status pages. It runs in a single Docker container.
 funding_note: The project README lists Atlas Cloud as a special sponsor (USD 400 per month) besides Open Collective and GitHub Sponsors.

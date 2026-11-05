@@ -1,7 +1,7 @@
 ---
 name: Garage
 slug: garage
-category: Cloud/Files (tentative)
+category: Cloud/Files
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://garagehq.deuxfleurs.fr/
 repo: https://git.deuxfleurs.fr/Deuxfleurs/garage
 source_url: https://github.com/deuxfleurs-org/garage/blob/main-v2/LICENSE
 checked: 2026-11-05
+setup_steps: 4
+setup_clarity: 3
+setup_tested: 2026-11-06
 note: Lightweight S3-compatible object storage for self-hosting.
 summary: Garage is an S3-compatible object storage server designed for self-hosting on modest hardware spread across several locations. It replicates data between nodes so that a cluster survives the loss of a machine or a site. It is written in Rust and developed by the French non-profit Deuxfleurs. Running it well needs S3 and cluster administration knowledge.
 corporate_note: Deuxfleurs association.
@@ -48,6 +51,8 @@ Steps:
 2. Write a garage.toml configuration with data and metadata paths and an RPC secret.
 3. Start the server and use the garage CLI to assign a cluster layout.
 4. Create a bucket and an access key, then connect an S3 client.
+
+Watch out: in the official Docker quick-start snippet, put a line continuation (`\`) after the image name so `/garage server --single-node --default-bucket` runs inside the container; without it those flags run on the host and the node stays without a role.
 
 Official quick start: <https://garagehq.deuxfleurs.fr/documentation/quick-start/>
 

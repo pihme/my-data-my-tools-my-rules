@@ -1,7 +1,7 @@
 ---
 name: YunoHost
 slug: yunohost
-category: Hosting Platform (tentative)
+category: Hosting Platform
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -20,7 +20,7 @@ icon_source: https://github.com/YunoHost/yunohost-artwork/blob/main/logos/svg/yu
 sources:
   - https://yunohost.org/
   - https://github.com/YunoHost/yunohost/blob/dev/LICENSE
-  - https://yunohost.org/en/install
+  - https://doc.yunohost.org/en/install/
   - https://nlnet.nl/project/InternetCube/
   - https://nlnet.nl/project/YunoHost-DeclarativeSettings/
   - https://doc.yunohost.org/en/admin/get_started/install_on/
@@ -46,7 +46,7 @@ Steps:
 3. Run the post-installation: choose a main domain and create the first user.
 4. Install apps from the YunoHost catalog through the web admin.
 
-Official install guide: <https://doc.yunohost.org/en/admin/get_started/install_on/>
+Official install guide: <https://doc.yunohost.org/en/install/>
 
 ## Notes
 

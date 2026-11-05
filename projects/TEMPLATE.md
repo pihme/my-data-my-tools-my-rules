@@ -1,7 +1,7 @@
 ---
 name: Project Name
 slug: project-name
-category: Category (tentative)
+category: Category
 license: SPDX-or-LicenseRef
 open_source: true
 type: App
@@ -12,6 +12,10 @@ url: https://example.org/
 repo: https://github.com/example/project
 source_url: https://github.com/example/project/blob/main/LICENSE
 checked: 2026-11-05
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-06
+# optional; omit all three setup_* fields when the getting-started path was not hands-on checked
 note: Optional card blurb, max about 120 characters.
 summary: Optional card paragraph, 2-4 plain factual sentences (about 250-400 characters), no superlatives.
 corporate_note: Optional org binding (info only).
@@ -46,6 +50,8 @@ Steps:
 
 1. Three to six high-level steps.
 2. ...
+
+Watch out: Optional one-line tip when the official guide has a known pitfall; omit if none.
 
 Official install docs: <https://example.org/docs/install>
 
