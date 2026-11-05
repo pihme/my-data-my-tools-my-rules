@@ -31,4 +31,4 @@ Official admin installation docs: <https://forgejo.org/docs/latest/admin/install
 
 ## Notes
 
-Funding note points at NLnet’s project index generally; specific grant line items were not individually re-audited beyond the planning Page reference.
+Funding note points at NLnet’s general project index; specific grant line items were not individually re-audited.
