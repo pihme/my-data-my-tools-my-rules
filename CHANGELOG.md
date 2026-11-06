@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.7
+
+- Content v2.10: category Cloud/Files renamed to Files (anchor `#files`, still second).
+
 ## 2.3.6
 
 - Content v2.9: Organic Maps (from Utilities) and Grayjay (from Media) move to Mobile; the "Not found" section is removed from the funders page.

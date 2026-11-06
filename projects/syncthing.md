@@ -1,7 +1,7 @@
 ---
 name: Syncthing
 slug: syncthing
-category: Cloud/Files
+category: Files
 license: MPL-2.0
 open_source: true
 type: App
