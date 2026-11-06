@@ -2,7 +2,7 @@
 
 ## 2.3.6
 
-- Content v2.9: Organic Maps moves from Utilities to Mobile; the "Not found" section is removed from the funders page.
+- Content v2.9: Organic Maps (from Utilities) and Grayjay (from Media) move to Mobile; the "Not found" section is removed from the funders page.
 
 ## 2.3.5
 
