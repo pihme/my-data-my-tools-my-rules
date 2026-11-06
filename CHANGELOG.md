@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.1 (unreleased)
+
+### Changed
+- Omakase: new course “Dessert: Mobile” with the Immich app (camera-roll backup to your own server, library on the go); the phone-app mention moved out of the home-server Immich entry.
+
 ## 2.2.0 (unreleased)
 
 ### Changed
