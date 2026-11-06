@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://yunohost.org/
 repo: https://github.com/YunoHost/yunohost
 source_url: https://github.com/YunoHost/yunohost/blob/dev/LICENSE
+demo: https://demo.yunohost.org/
+demo_note: Log in with demo / demo; reset every 30 minutes.
 checked: 2026-11-05
 note: Debian-based server distro that packages self-hosted web apps.
 summary: YunoHost is a Debian-based server system that makes it easier to run your own web services. It provides a web admin panel, single sign-on, a mail server and a catalog of packaged apps that install from the admin interface. It is aimed at people who want to self-host without configuring every service by hand.
@@ -24,6 +26,7 @@ sources:
   - https://nlnet.nl/project/InternetCube/
   - https://nlnet.nl/project/YunoHost-DeclarativeSettings/
   - https://doc.yunohost.org/en/admin/get_started/install_on/
+  - https://doc.yunohost.org/en/admin/what_is_yunohost/demo
 ---
 ## Why it fits
 

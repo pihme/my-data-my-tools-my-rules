@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://immich.app/
 repo: https://github.com/immich-app/immich
 source_url: https://github.com/immich-app/immich/blob/main/LICENSE
+demo: https://demo.immich.app/
+demo_note: Log in with demo@immich.app / demo.
 checked: 2026-11-05
 setup_steps: 7
 setup_clarity: 5

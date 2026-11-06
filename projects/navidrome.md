@@ -9,6 +9,7 @@ audience: enthusiast
 url: https://www.navidrome.org/
 repo: https://github.com/navidrome/navidrome
 source_url: https://github.com/navidrome/navidrome/blob/master/LICENSE
+demo: https://www.navidrome.org/demo/
 checked: 2026-11-05
 setup_steps: 4
 setup_clarity: 4

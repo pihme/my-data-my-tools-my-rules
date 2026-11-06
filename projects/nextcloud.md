@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://nextcloud.com/
 repo: https://github.com/nextcloud/server
 source_url: https://github.com/nextcloud/server/blob/master/COPYING
+demo: https://nextcloud.com/instant-trial/
+demo_note: Instant trial offered by Nextcloud GmbH.
 checked: 2026-11-05
 setup_steps: 7
 setup_clarity: 4

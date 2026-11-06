@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.11
+
+- Content v2.12: optional `demo` / `demo_note` front-matter fields; dossier facts show a "Try the online demo" link (and optional note) for CryptPad, Forgejo, Home Assistant, Immich, Jellyfin, Jitsi Meet, mailcow, Navidrome, Nextcloud, openHAB, Paperless-ngx, Uptime Kuma and YunoHost.
+- Content v2.13: Jitsi Meet icon replaced with the official blue Android app icon (PNG); the pale favicon SVG is removed.
+
 ## 2.3.10
 
 - Home page: packed category rows keep equal card heights (category stretches, cards `height:100%`, footer pinned with `margin-top:auto`). Card footer always shows the hostname on its own line, then audience level left and `repo →` right (no mid-footer wrap).

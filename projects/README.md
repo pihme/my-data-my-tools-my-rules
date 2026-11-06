@@ -24,6 +24,8 @@ Exact field names (YAML):
 | `url` | yes | string | Official website |
 | `repo` | yes | string | Source code repository URL |
 | `source_url` | yes | string | Direct link to the project's LICENSE file (used to check the license) |
+| `demo` | no | string | URL of an official online demo or public instance run by the project, so readers can try it without installing; link from the project's own site or README |
+| `demo_note` | no | string | One short line about the demo: login, reset interval, who runs it |
 | `checked` | yes | date | Verification date (`YYYY-MM-DD`) |
 | `note` | no | string | One short sentence for the project card (~120 characters max) |
 | `summary` | no | string | Opening text on the dossier page (and on cards where space allows): 2-4 plain, factual sentences (~250-400 characters), no marketing superlatives. Shown instead of `note` where the layout has room |

@@ -9,6 +9,7 @@ audience: enthusiast
 url: https://www.openhab.org/
 repo: https://github.com/openhab/openhab-core
 source_url: https://github.com/openhab/openhab-core/blob/main/LICENSE
+demo: https://demo.openhab.org/
 checked: 2026-11-05
 setup_steps: 5
 setup_clarity: 2
