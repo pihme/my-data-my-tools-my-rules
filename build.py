@@ -16,10 +16,48 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.5.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.6.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
+
+# Lucide category icons (ISC); SVG files in theme/cat-icons/, inlined at build time.
+CAT_ICON = {
+    "AI": "sparkles",
+    "Files": "folder",
+    "Media": "clapperboard",
+    "Mobile": "smartphone",
+    "Office": "file-text",
+    "Passwords": "key-round",
+    "Server": "server",
+    "Smart Home": "house",
+    "Utilities": "wrench",
+}
+_CAT_SVG = {}
+
+def _load_cat_svg(name):
+    if name not in _CAT_SVG:
+        path = os.path.join(TH, "cat-icons", name + ".svg")
+        raw = open(path, encoding="utf-8").read()
+        # Keep path/shape markup byte-faithful; only outer width/height/stroke-width vary by use.
+        m = re.search(r"<svg\b[^>]*>(.*)</svg\s*>", raw, re.S)
+        if not m:
+            sys.exit(f"theme/cat-icons/{name}.svg: missing <svg>…</svg>")
+        _CAT_SVG[name] = m.group(1)
+    return _CAT_SVG[name]
+
+def cat_ico(cat_name_s, size, stroke_width):
+    """Inline Lucide icon for a category header (44/2.25) or sidebar (16/2)."""
+    icon = CAT_ICON.get(cat_name_s)
+    if not icon:
+        sys.exit(f"no Lucide icon mapped for category {cat_name_s!r}")
+    inner = _load_cat_svg(icon)
+    return (f'<span class="ico" aria-hidden="true">'
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" '
+            f'viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="{stroke_width}" stroke-linecap="round" stroke-linejoin="round">'
+            f'{inner}</svg></span>')
+
 
 # ---------- front matter (small YAML subset: scalars, [a, b], "- item" lists) ----------
 def scalar(v):
@@ -308,13 +346,13 @@ def nav(cats, root, active=None, index=False):
     items = []
     total = sum(len(c[3]) for c in cats)
     if index:
-        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{total}</span></a></li>')
+        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     else:
-        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span>{total}</span></a></li>')
+        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     for i, (cid, n, col, ps) in enumerate(cats):
         href = f"#{cid}" if index else f"{root}index.html#{cid}"
         on = ' class="on"' if cid == active else ""
-        items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}><b>{i+1:02d}</b>{E(n)}<span>{len(ps)}</span></a></li>')
+        items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}>{cat_ico(n, 16, 2)}{E(n)}<span class="nc">{len(ps)}</span></a></li>')
     return "".join(items)
 
 def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html"):
@@ -391,7 +429,7 @@ def index(ps, cats):
     secs = ""
     for i, (cid, n, col, cps) in enumerate(cats):
         k = min(len(cps), 4)
-        secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
+        secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh">{cat_ico(n, 44, 2.25)}'
                  f'<h2>{E(n)}</h2><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
     main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
@@ -444,7 +482,7 @@ def fireworks_html(p):
             f'<a href="{CF_URL}" target="_blank" rel="noopener">Code Fireworks ↗</a></figcaption></figure>')
 
 def project(p, cats):
-    cid = cat_id(p["category"]); i, col = next((k, c[2]) for k, c in enumerate(cats) if c[0] == cid)
+    cid = cat_id(p["category"]); col = next(c[2] for c in cats if c[0] == cid)
     tlabel = " and ".join(["Self-host (server)" if t == "Server" else "App" for t in types(p)])
     rows = [("License", f'<a href="{E(p["source_url"])}"><code>{E(p["license"])}</code></a><div class="tags">{license_tag(p)}</div>'),
             ("Type", f'{tlabel}<div class="tags">{type_tags(p)}</div>')]
@@ -476,7 +514,8 @@ def project(p, cats):
     summary = p.get("summary") or p.get("note", "")
     fw = fireworks_html(p)
     phead_cls = "phead proj has-cfx" if fw else "phead proj"
-    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
+    cname = cat_name(p["category"])
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
@@ -510,6 +549,7 @@ def about(cats):
 <p>The audience level is an editorial estimate, not a rating of the project.</p>
 <h2 id="logos-and-screenshots">Logos and screenshots</h2>
 <p>Project logos and screenshots are shown only when their license or the project's brand guidelines allow this kind of use. They are shown unmodified, only to identify the project, and do not imply endorsement. Every logo and screenshot is credited on the project page with its author, license and source. Where the terms are unclear, the card shows a letter tile instead.</p>
+<p>Category icons by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
 <h2 id="suggest-a-project">Suggest a project</h2>

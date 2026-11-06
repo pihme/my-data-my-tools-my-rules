@@ -84,6 +84,12 @@ Our own renders (variant B1) shown as the optional tile on dossier pages via `fi
 | fireworks/cf-vaultwarden-b1.png | Vaultwarden | https://github.com/dani-garcia/vaultwarden | 2026-11-05 | assets/icons/vaultwarden.svg (MDMTMR); no usable logo colour (black/white): cream f6f3ec + grey 9a978f | Own Gource render of the public commit history (file tree only; user, file and directory names hidden); site license CC BY-ND 4.0; only colour values taken from the logo, no logo artwork reproduced | ok |
 | fireworks/cf-yunohost-b1.png | YunoHost | https://github.com/YunoHost/yunohost | 2026-11-05 | assets/icons/yunohost.svg (MDMTMR); single-colour logo + cream f6f3ec | Own Gource render of the public commit history (file tree only; user, file and directory names hidden); site license CC BY-ND 4.0; only colour values taken from the logo, no logo artwork reproduced | ok |
 
+## Site UI icons (inline SVG)
+
+| Use | Icons | Source URL | License / terms URL | Terms in short | Credit line | Verdict |
+|---|---|---|---|---|---|---|
+| Category headers, sidebar and dossier breadcrumb (inline in `build.py` output) | sparkles, folder, clapperboard, smartphone, file-text, key-round, server, house, wrench | https://lucide.dev (lucide-static v1.69.0) | https://github.com/lucide-icons/lucide/blob/main/LICENSE | ISC, © Lucide Icons and Contributors; stroke width and colour adjusted, which ISC permits; license text in `LICENSE-lucide.txt` | Category icons by Lucide, ISC | ok |
+
 ## Removed or not delivered (letter tile)
 
 | Project | Asset | Reason | Terms URL checked |

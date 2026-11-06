@@ -69,15 +69,25 @@
       c.hidden = !ok;
       if (ok) shown++;
     });
-    document.querySelectorAll("section.cat").forEach(function (s) {
+    var cats = document.querySelectorAll("section.cat");
+    var visible = 0;
+    cats.forEach(function (s) {
       var n = s.querySelectorAll(".card:not([hidden])").length;
       s.hidden = n === 0;
+      if (n > 0) visible++;
       var k = Math.max(1, Math.min(n, 4));
       s.className = s.className.replace(/\bspan-\d\b/, "span-" + k);
       s.style.setProperty("--n", k);
       var cnt = s.querySelector(".cnt");
       if (cnt) cnt.textContent = n + (n === 1 ? " entry" : " entries");
     });
+    // One category left in the row (e.g. ?q=immich): use the full row so the title is not squeezed.
+    if (visible === 1) {
+      cats.forEach(function (s) {
+        if (s.hidden) return;
+        s.className = s.className.replace(/\bspan-\d\b/, "span-4");
+      });
+    }
     groups.forEach(function (g) {
       bar.querySelectorAll("button[data-" + g + "]").forEach(function (b) {
         var on = b.getAttribute("data-" + g) === state[g];
