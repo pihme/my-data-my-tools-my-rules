@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}
 .nav li a:hover{background:#ffffff12}
 .nav li a b{font:700 12px "JetBrains Mono";color:var(--c);width:22px}
 .nav li a .ico{flex:none;width:22px;color:var(--c);justify-content:center}
-.nav li a span{margin-left:auto;font:12px "JetBrains Mono";color:#8d8a83}
+.nav li a .nc{margin-left:auto;font:12px "JetBrains Mono";color:#8d8a83}
 .nav li a.on{background:#ffffff14;box-shadow:inset 3px 0 0 var(--c,#f6f3ec)}
 .plain li a{padding:6px 10px;color:#cfccc4;font-weight:400}
 .mode{margin-top:auto;font:500 13px "Inter";background:transparent;color:var(--navink);border:1px solid #3a3a3a;border-radius:999px;padding:9px 14px;text-align:left;cursor:pointer}
@@ -26,6 +26,7 @@ main{padding:0 56px 40px;min-width:0}
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:end;padding:56px 0 44px;border-bottom:3px solid var(--ink);margin-bottom:12px}
 .kick{font:600 12px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:0 0 14px}
+.kick a.kcat{display:inline-flex;align-items:center;gap:6px;color:inherit}.kick a.kcat .ico{color:var(--c);flex:none}
 .kick a:hover{color:var(--ink)}
 h1{font:800 104px/.92 "Bricolage Grotesque",sans-serif;letter-spacing:-.035em;margin:0}
 h1 em{font-style:normal;background:linear-gradient(90deg,#ff5c39,#ffc531 50%,#2ec4a6);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -129,7 +130,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
   }
   .cats li a b { width: auto; font-size: 11px; }
   .cats li a .ico { width: auto; }
-  .cats li a span { margin-left: 0; }
+  .cats li a .nc { margin-left: 0; }
   .cats li a.on { box-shadow: inset 0 0 0 1.5px var(--c, #f6f3ec); }
   .plain {
     display: flex;

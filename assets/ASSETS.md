@@ -88,7 +88,7 @@ Our own renders (variant B1) shown as the optional tile on dossier pages via `fi
 
 | Use | Icons | Source URL | License / terms URL | Terms in short | Credit line | Verdict |
 |---|---|---|---|---|---|---|
-| Category headers and sidebar (inline in `build.py` output) | sparkles, folder, clapperboard, smartphone, file-text, key-round, server, house, wrench | https://lucide.dev (lucide-static v1.69.0) | https://github.com/lucide-icons/lucide/blob/main/LICENSE | ISC, © Lucide Icons and Contributors; stroke width and colour adjusted, which ISC permits; license text in `LICENSE-lucide.txt` | Category icons by Lucide, ISC | ok |
+| Category headers, sidebar and dossier breadcrumb (inline in `build.py` output) | sparkles, folder, clapperboard, smartphone, file-text, key-round, server, house, wrench | https://lucide.dev (lucide-static v1.69.0) | https://github.com/lucide-icons/lucide/blob/main/LICENSE | ISC, © Lucide Icons and Contributors; stroke width and colour adjusted, which ISC permits; license text in `LICENSE-lucide.txt` | Category icons by Lucide, ISC | ok |
 
 ## Removed or not delivered (letter tile)
 

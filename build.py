@@ -346,13 +346,13 @@ def nav(cats, root, active=None, index=False):
     items = []
     total = sum(len(c[3]) for c in cats)
     if index:
-        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{total}</span></a></li>')
+        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     else:
-        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span>{total}</span></a></li>')
+        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     for i, (cid, n, col, ps) in enumerate(cats):
         href = f"#{cid}" if index else f"{root}index.html#{cid}"
         on = ' class="on"' if cid == active else ""
-        items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}>{cat_ico(n, 16, 2)}{E(n)}<span>{len(ps)}</span></a></li>')
+        items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}>{cat_ico(n, 16, 2)}{E(n)}<span class="nc">{len(ps)}</span></a></li>')
     return "".join(items)
 
 def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html"):
@@ -482,7 +482,7 @@ def fireworks_html(p):
             f'<a href="{CF_URL}" target="_blank" rel="noopener">Code Fireworks ↗</a></figcaption></figure>')
 
 def project(p, cats):
-    cid = cat_id(p["category"]); i, col = next((k, c[2]) for k, c in enumerate(cats) if c[0] == cid)
+    cid = cat_id(p["category"]); col = next(c[2] for c in cats if c[0] == cid)
     tlabel = " and ".join(["Self-host (server)" if t == "Server" else "App" for t in types(p)])
     rows = [("License", f'<a href="{E(p["source_url"])}"><code>{E(p["license"])}</code></a><div class="tags">{license_tag(p)}</div>'),
             ("Type", f'{tlabel}<div class="tags">{type_tags(p)}</div>')]
@@ -514,7 +514,8 @@ def project(p, cats):
     summary = p.get("summary") or p.get("note", "")
     fw = fireworks_html(p)
     phead_cls = "phead proj has-cfx" if fw else "phead proj"
-    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
+    cname = cat_name(p["category"])
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
