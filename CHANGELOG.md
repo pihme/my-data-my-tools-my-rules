@@ -4,7 +4,8 @@
 
 ### Changed
 - Omakase marker set to variant B: 2px ink frame on marked cards, the お任せ OMAKASE badge sits as a tab on the card's top edge (no longer squeezes long names), extra row gap in grids with marked cards; same badge style under the dossier title.
-- Garage moves from Cloud/Files to Server (Server 7, Cloud/Files 3).
+- Dossier facts box: new row “Omakase” (“In daily use by the curator”, linking to the Omakase page) for marked projects.
+- Content v2.6: Garage moves from Cloud/Files to Server; new category Office with ONLYOFFICE and Paperless-ngx (10 categories: Cloud/Files 2, Collaboration 1, Office 2, Server 7). New anchor `#office`.
 
 ## 2.3.1 (unreleased)
 

@@ -395,6 +395,7 @@ def project(p, cats):
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
              ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
+    if p["slug"] in OMK: rows.append(("Omakase", '<a href="../omakase.html">In daily use by the curator</a>'))
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):
         rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))

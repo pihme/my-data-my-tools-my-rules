@@ -1,7 +1,7 @@
 ---
 name: Paperless-ngx
 slug: paperless-ngx
-category: Cloud/Files
+category: Office
 license: GPL-3.0-only
 open_source: true
 type: Server
