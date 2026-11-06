@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.13
+
+- Dossier pages: optional Code Fireworks tile (variant B1) in the header when `fireworks_image` and `fireworks_date` (YYYY-MM) are set. Dark `#111` tile (~270 px), always the same in light and dark mode; caption "As of …" plus a link to https://x.com/code_fireworks. Hidden below 1280 px so the intro does not shift. Dossiers without the fields are unchanged.
+
 ## 2.3.12
 
 - Content v2.15 (supersedes v2.14): Jitsi Meet getting-started path hands-on checked (docker-jitsi-meet `stable-11248-3`); dossier adds `setup_steps: 6`, `setup_clarity: 3`, `setup_tested: 2026-11-06`, concrete Compose v2 steps, and notes what was and was not verified.
