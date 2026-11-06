@@ -21,6 +21,10 @@
   var bar = document.querySelector(".filterbar");
   if (!cards.length || !bar) return;
   bar.hidden = false;
+  // Search row has its own hidden so it stays gone without JS even if CSS
+  // ever pulls it out of .filterbar (e.g. mobile display:contents quirks).
+  var searchRow = bar.querySelector(".fsearch-row");
+  if (searchRow) searchRow.hidden = false;
   var groups = ["lic", "run", "aud"];
   var state = { lic: "all", run: "all", aud: "all", cat: "all", q: "" };
   var navLinks = document.querySelectorAll(".cats a[data-cat]");
