@@ -8,7 +8,7 @@
 All links are relative, so the output works under any base path
 (GitHub Pages serves it at /my-data-my-tools-my-rules/) and from file://.
 """
-import argparse, datetime, html, os, re, shutil, sys
+import argparse, datetime, html, os, re, shutil, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.3.14"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.4.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -173,6 +173,23 @@ def kinds(p):
     if is_server(p): k.append("self-host")
     if is_app(p): k.append("app")
     return " ".join(k)
+
+def fold(s):
+    """Lowercase, strip diacritics (NFKD), collapse whitespace — for data-search / queries."""
+    s = unicodedata.normalize("NFKD", str(s))
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return re.sub(r"\s+", " ", s.lower()).strip()
+
+def search_blob(p):
+    """Searchable text for a catalog card (front-matter fields only; see SEARCH-SPEC)."""
+    parts = []
+    for k in ("name", "slug", "category", "license", "audience", "note", "summary"):
+        v = p.get(k)
+        if v not in (None, "", []):
+            parts.append(v if isinstance(v, str) else str(v))
+    for t in types(p):
+        parts.append("self-host server" if t == "Server" else t)
+    return fold(" ".join(parts))
 
 AUDIENCE = {"End user": 1, "Enthusiast": 2, "Expert": 3}
 AUD_HELP = {"End user": "Installs like any other app or program",
@@ -366,7 +383,7 @@ def card(p, col, cid):
     omk = p["slug"] in OMK
     note = E(p.get("summary") or p.get("note") or "") or '<span class="nonote">No note.</span>'
     setup = setup_html(p, "setup-meta setup-card")
-    return f'''<article class="card{' omk' if omk else ''}" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div>{omk_badge("") if omk else ""}</div>
+    return f'''<article class="card{' omk' if omk else ''}" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}" data-search="{E(search_blob(p))}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div>{omk_badge("") if omk else ""}</div>
 <div class="tags">{license_tag(p)}{type_tags(p)}</div>
 <p>{note}</p>{setup}<div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
 
@@ -381,10 +398,11 @@ def index(ps, cats):
     main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A curated list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
+<div class="frow fsearch-row" hidden><div class="fgroup fsearch" role="search"><label class="flabel" for="search">Search</label><input id="search" type="search" placeholder="Search projects" aria-label="Search projects" autocomplete="off"></div></div>
 <div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
 <div class="filterbar" hidden><div class="frow"><div class="fgroup" role="group" aria-label="License"><span class="flabel">License</span><div class="pills"><button type="button" data-lic="all" class="on" aria-pressed="true">Any</button><button type="button" data-lic="open-source" aria-pressed="false">Open source</button><button type="button" data-lic="source-available" data-sa aria-pressed="false">Source-available</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="Runs as"><span class="flabel">Runs as</span><div class="pills"><button type="button" data-run="all" class="on" aria-pressed="true">Any</button><button type="button" data-run="app" aria-pressed="false">App</button><button type="button" data-run="self-host" aria-pressed="false">Self-host</button></div></div></div><div class="frow"><div class="fgroup" role="group" aria-label="For"><span class="flabel">For</span><div class="pills"><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false"><span class="dots" aria-hidden="true">●○○</span> End user</button><button type="button" data-aud="enthusiast" aria-pressed="false"><span class="dots" aria-hidden="true">●●○</span> Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false"><span class="dots" aria-hidden="true">●●●</span> Expert</button></div></div><button type="button" class="freset">Reset filters</button></div></div></section>
 <div class="catflow">
-{secs}</div><p class="empty" hidden>No projects match these filters. <button type="button" class="freset">Reset filters</button></p>'''
+{secs}</div><p class="empty" hidden>No projects match your search and filters. <button type="button" class="freset">Reset filters</button></p><p class="sr-only" aria-live="polite" id="filter-status"></p>'''
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
                 "An open catalog of open-source and source-available software that keeps your data under your control.",
                 path="index.html")
@@ -459,7 +477,7 @@ def project(p, cats):
     summary = p.get("summary") or p.get("note", "")
     fw = fireworks_html(p)
     phead_cls = "phead proj has-cfx" if fw else "phead proj"
-    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
