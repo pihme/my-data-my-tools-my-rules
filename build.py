@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.4.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.4.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -393,7 +393,7 @@ def index(ps, cats):
     for i, (cid, n, col, cps) in enumerate(cats):
         k = min(len(cps), 4)
         secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
-                 f'<div><h2>{E(n)}</h2><p><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
+                 f'<h2>{E(n)}</h2><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
     main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
