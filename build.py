@@ -13,7 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-VERSION = "2.3.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.3.2"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -395,6 +395,7 @@ def project(p, cats):
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
              ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
+    if p["slug"] in OMK: rows.append(("Omakase", '<a href="../omakase.html">In daily use by the curator</a>'))
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):
         rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))

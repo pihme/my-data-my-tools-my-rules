@@ -1,7 +1,7 @@
 ---
 name: ONLYOFFICE
 slug: onlyoffice
-category: Collaboration
+category: Office
 license: AGPL-3.0-only
 open_source: true
 type: [App, Server]

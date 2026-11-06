@@ -55,4 +55,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-29 dossiers (23 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Categories: AI, Cloud/Files, Collaboration, Media, Mobile, Passwords, Server, Smart Home, Utilities.
+29 dossiers (23 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Categories: AI, Cloud/Files, Collaboration, Media, Mobile, Office, Passwords, Server, Smart Home, Utilities.
