@@ -1,7 +1,7 @@
 ---
 name: OpenCode
 slug: opencode
-category: AI (tentative)
+category: AI
 license: MIT
 open_source: true
 type: App
@@ -10,6 +10,9 @@ url: https://opencode.ai/
 repo: https://github.com/anomalyco/opencode
 source_url: https://github.com/anomalyco/opencode/blob/dev/LICENSE
 checked: 2026-11-05
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Free, open-source AI coding agent; needs an AI model (some hosted ones are free, local is possible).
 summary: OpenCode is an open-source AI coding agent that runs in the terminal, with a desktop app and web interface as alternatives. The tool itself is free under MIT, but it needs an AI model: you connect a hosted provider or a local model server such as Ollama or LM Studio. OpenCode's own service offers some hosted models free for a limited time; paid plans are optional.
 corporate_note: Developed by Anomaly (copyright notice on opencode.ai; the repository moved from github.com/sst/opencode to github.com/anomalyco/opencode). Anomaly sells optional pay-as-you-go model access (OpenCode Console) and OpenCode Go subscriptions (Go USD 10/month, Go Plus USD 40/month, Go Teams USD 20 per member/month, per the docs).

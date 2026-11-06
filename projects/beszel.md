@@ -1,7 +1,7 @@
 ---
 name: Beszel
 slug: beszel
-category: Monitoring (tentative)
+category: Monitoring
 license: MIT
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://beszel.dev/
 repo: https://github.com/henrygd/beszel
 source_url: https://github.com/henrygd/beszel/blob/main/LICENSE
 checked: 2026-11-05
+setup_steps: 8
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Lightweight server monitoring with a central hub and small agents.
 summary: Beszel is a lightweight server monitoring tool with a central hub and a small agent on each monitored machine. It shows CPU, memory, disk, network and Docker container usage over time and can send alerts through many notification services. The hub runs as a single binary or Docker container with a web interface. It is licensed under MIT.
 icon: assets/icons/beszel.svg

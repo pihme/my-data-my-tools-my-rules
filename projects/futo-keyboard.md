@@ -1,7 +1,7 @@
 ---
 name: FUTO Keyboard
 slug: futo-keyboard
-category: Keyboard (tentative)
+category: Keyboard
 license: LicenseRef-SourceFirst-1.1-kb
 open_source: false
 type: App

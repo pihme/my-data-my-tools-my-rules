@@ -13,7 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-VERSION = "2.0.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.1.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -85,7 +85,12 @@ def markdown(src, shift=0):
     out, para, lst = [], [], None   # lst = [kind, start, [item_html, ...]]
     def flush_para():
         nonlocal para
-        if para: out.append("<p>" + inline(" ".join(para)) + "</p>"); para = []
+        if not para: return
+        text = " ".join(para); para = []
+        if re.match(r"(?i)^Watch out:", text):
+            out.append('<aside class="callout callout-watch"><p>' + inline(text) + "</p></aside>")
+        else:
+            out.append("<p>" + inline(text) + "</p>")
     def flush_list():
         nonlocal lst
         if lst:
@@ -210,6 +215,27 @@ def load_projects():
             try: ok = 1 <= float(p["icon_scale"]) <= 2
             except ValueError: ok = False
             if not ok: sys.exit(f"projects/{f}: icon_scale must be a number between 1 and 2")
+        has_setup = any(k in p for k in ("setup_steps", "setup_clarity", "setup_tested"))
+        if has_setup:
+            for k in ("setup_steps", "setup_clarity", "setup_tested"):
+                if k not in p or p[k] in ("", None, []):
+                    sys.exit(f"projects/{f}: setup_* fields must be set together (missing {k})")
+            try:
+                steps = int(str(p["setup_steps"]))
+                if steps < 1: raise ValueError
+                p["setup_steps"] = steps
+            except ValueError:
+                sys.exit(f"projects/{f}: setup_steps must be a positive integer")
+            try:
+                clarity = int(str(p["setup_clarity"]))
+                if not 1 <= clarity <= 5: raise ValueError
+                p["setup_clarity"] = clarity
+            except ValueError:
+                sys.exit(f"projects/{f}: setup_clarity must be an integer from 1 to 5")
+            try:
+                datetime.date.fromisoformat(str(p["setup_tested"]))
+            except ValueError:
+                sys.exit(f"projects/{f}: setup_tested must be a date YYYY-MM-DD")
         check_media(f, p)
         ps.append(p)
     return sorted(ps, key=lambda p: p["name"].lower())
@@ -237,21 +263,31 @@ def categories(ps):
 
 def nav(cats, root, active=None, index=False):
     items = []
+    total = sum(len(c[3]) for c in cats)
     if index:
-        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{sum(len(c[3]) for c in cats)}</span></a></li>')
+        items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span>{total}</span></a></li>')
+    else:
+        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span>{total}</span></a></li>')
     for i, (cid, n, col, ps) in enumerate(cats):
         href = f"#{cid}" if index else f"{root}index.html#{cid}"
         on = ' class="on"' if cid == active else ""
         items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}><b>{i+1:02d}</b>{E(n)}<span>{len(ps)}</span></a></li>')
     return "".join(items)
 
-def page(title, main, root, navhtml, desc, bodyclass=""):
+def page(title, main, root, navhtml, desc, bodyclass="", about=None):
+    """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
+    on = ' class="on"'
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
            "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass}
     rep["{{VERSION}}"] = VERSION
-    rep["{{OMAKASE}}"] = '<li><a href="{{ROOT}}omakase.html">Omakase</a></li>' if os.path.isfile(OMAKASE) else ""
-    rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>' if os.path.isfile(OMAKASE) else ""
+    if os.path.isfile(OMAKASE):
+        rep["{{OMAKASE}}"] = f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>Omakase</a></li>'
+        rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>'
+    else:
+        rep["{{OMAKASE}}"] = ""; rep["{{OMAKASE_FOOT}}"] = ""
+    rep["{{ABOUT_ON}}"] = on if about == "about" else ""
+    rep["{{FUNDERS_ON}}"] = on if about == "funders" else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
@@ -279,11 +315,18 @@ def aud_html(p, cls="aud"):
 def aud_id(p): return re.sub(r"[^a-z]+", "-", (p.get("audience") or "").lower()).strip("-")
 
 # ---------- pages ----------
+def setup_html(p, cls="setup-meta"):
+    """Shown only when the getting-started path was hands-on checked."""
+    if not p.get("setup_tested"): return ""
+    return (f'<p class="{cls}" title="Hands-on check of the official getting-started path '
+            f'on {E(str(p["setup_tested"]))}">{p["setup_steps"]} steps · clarity {p["setup_clarity"]}/5</p>')
+
 def card(p, col, cid):
     note = E(p.get("summary") or p.get("note") or "") or '<span class="nonote">No note.</span>'
+    setup = setup_html(p, "setup-meta setup-card")
     return f'''<article class="card" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div></div>
 <div class="tags">{license_tag(p)}{type_tags(p)}</div>
-<p>{note}</p><div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
+<p>{note}</p>{setup}<div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
 
 def index(ps, cats):
     nos = sum(p["open_source"] for p in ps); nsh = sum(is_server(p) for p in ps)
@@ -309,10 +352,16 @@ def media_credit(path):
 
 def fid(name): return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
+FUNDER_LABELS = {"futo": "FUTO", "nlnet": "NLnet", "ngi": "NGI"}
+
 def funding_html(p, fs):
-    links = ", ".join(f'<a href="../funders.html#{fid(fs["known"][x])}">{E(fs["known"][x].split(" (")[0].split(",")[0])}</a>' for x in p.get("funders") or [])
+    """Funder names link to stable section ids on funders.html (#futo, #nlnet, #ngi)."""
+    links = ", ".join(
+        f'<a href="../funders.html#{E(x)}">{E(FUNDER_LABELS.get(x, x))}</a>'
+        for x in (p.get("funders") or []) if x in fs["known"]
+    )
     note = f'<div>{inline(p["funding_note"])}</div>' if p.get("funding_note") else ""
-    fl = f'<div class="sub">Funders page: {links}</div>' if links else ""
+    fl = f'<div class="sub">Funders: {links}</div>' if links else ""
     return note + fl
 
 def shots_html(p):
@@ -327,6 +376,9 @@ def project(p, cats):
     rows = [("License", f'<a href="{E(p["source_url"])}"><code>{E(p["license"])}</code></a><div class="tags">{license_tag(p)}</div>'),
             ("Type", f'{tlabel}<div class="tags">{type_tags(p)}</div>')]
     if p.get("audience"): rows.append(("Audience", f'{aud_html(p, "aud aud-l")}<div class="sub">{E(AUD_HELP[p["audience"]])}</div>'))
+    if p.get("setup_tested"):
+        rows.append(("Setup", f'{p["setup_steps"]} steps · clarity {p["setup_clarity"]}/5'
+                     f'<div class="sub">Checked <time datetime="{E(str(p["setup_tested"]))}">{nice_date(p["setup_tested"])}</time></div>'))
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
              ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
              ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
@@ -341,8 +393,11 @@ def project(p, cats):
     if shots:
         k = body.find("</p>")
         body = body[:k + 4] + shots + body[k + 4:] if k >= 0 else shots + body
+    setup = setup_html(p)
+    if setup:
+        body = body.replace("<h2>Getting started</h2>", "<h2>Getting started</h2>\n" + setup, 1)
     summary = p.get("summary") or p.get("note", "")
-    main = f'''<section class="phead" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
+    main = f'''<section class="phead proj" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1></div>
 <p class="intro">{E(summary)}</p></section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
@@ -381,18 +436,32 @@ def about(cats):
 <h2 id="suggest-a-project">Suggest a project</h2>
 {markdown(open(os.path.join(ROOT, "content", "suggest.md"), encoding="utf-8").read())}
 </article></div>'''
-    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.")
+    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.", about="about")
 
 def funders_page(fs, ps, cats):
+    """Render content/funders.md. Section ids for known funders are the dossier slugs
+    (futo, nlnet, ngi); other headings keep a slugified id. Project lists live on the
+    funders' own sites — this page does not generate per-funder project lists."""
     body = re.sub(r"^#\s+.*\n", "", fs["body"].lstrip(), count=1)
     intro, _, rest = body.partition("\n## ")
     html_rest = markdown("## " + rest)
-    html_rest = re.sub(r"<h2>(.*?)</h2>", lambda m: f'<h2 id="{fid(re.sub("<[^>]+>", "", m.group(1)))}">{m.group(1)}</h2>', html_rest)
+    by_head = {h: slug for slug, h in fs["known"].items()}
+    def h2id(m):
+        text = re.sub(r"<[^>]+>", "", m.group(1))
+        slug = by_head.get(text)
+        if not slug:
+            for s, word in FUNDER_IDS.items():
+                if text.startswith(word):
+                    slug = s; break
+        if not slug:
+            slug = fid(text)
+        return f'<h2 id="{E(slug)}">{m.group(1)}</h2>'
+    html_rest = re.sub(r"<h2>(.*?)</h2>", h2id, html_rest)
     main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
-    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.")
+    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.", about="funders")
 
 OMAKASE = os.path.join(ROOT, "content", "omakase.md")
 
@@ -442,7 +511,7 @@ def omakase_page(ps, cats):
     main = f'''<section class="phead omk-head"><div><p class="kick"><a href="index.html">Catalog</a> · Omakase</p>
 <h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
-    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk")
+    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase")
 
 def build(out):
     global FS

@@ -1,7 +1,7 @@
 ---
 name: PeerTube
 slug: peertube
-category: Video/Media (tentative)
+category: Video/Media
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://joinpeertube.org/
 repo: https://github.com/Chocobozzz/PeerTube
 source_url: https://github.com/Chocobozzz/PeerTube/blob/develop/LICENSE
 checked: 2026-11-05
+setup_steps: 11
+setup_clarity: 3
+setup_tested: 2026-11-06
 note: Federated video hosting you can run on your own server.
 summary: PeerTube is software for running your own video platform. Instances can federate with each other via ActivityPub, so viewers can follow channels across servers, and video delivery can use peer-to-peer sharing to reduce server load. It is developed by the French non-profit Framasoft. A public instance needs a domain, TLS, email and ongoing moderation.
 corporate_note: Developed by Framasoft.
@@ -21,7 +24,6 @@ icon_source: https://github.com/Chocobozzz/PeerTube/blob/develop/client/src/asse
 sources:
   - https://joinpeertube.org/
   - https://github.com/Chocobozzz/PeerTube/blob/develop/LICENSE
-  - https://docs.joinpeertube.org/install/any-os
   - https://futo.tech/grants
   - https://nlnet.nl/project/PeerTube/
   - https://docs.joinpeertube.org/install/docker
@@ -51,8 +53,6 @@ Steps:
 5. Read the generated admin password from the logs and log in.
 
 Official Docker guide: <https://docs.joinpeertube.org/install/docker>
-
-Install on any OS: <https://docs.joinpeertube.org/install/any-os>
 
 ## Notes
 

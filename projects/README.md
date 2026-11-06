@@ -16,7 +16,7 @@ Exact field names (YAML):
 | --- | --- | --- | --- |
 | `name` | yes | string | Display name |
 | `slug` | yes | string | Lowercase, no special characters; file is `projects/<slug>.md` |
-| `category` | yes | string | Tentative taxonomy label (not final) |
+| `category` | yes | string | Category label shown on the site |
 | `license` | yes | string | SPDX id; for source-available without SPDX use `LicenseRef-<Name>` (e.g. `LicenseRef-SourceFirst-1.1`) |
 | `open_source` | yes | bool | `true` only for OSI-approved licenses; otherwise `false` |
 | `type` | yes | string or list | `App` or `Server`; list both when applicable (the site labels `Server` as "Self-host") |
@@ -38,6 +38,9 @@ Exact field names (YAML):
 | `screenshot_credit` | no | string | Credit/license line shown with the screenshot |
 | `screenshot_source` | no | string | URL the screenshot was taken from |
 | `sources` | yes | list | URLs used for verification |
+| `setup_steps` | no | integer | Count of human actions in the official getting-started path that was checked |
+| `setup_clarity` | no | integer 1–5 | How clear that path was (1 = unusable, 5 = copy-paste works and is well explained) |
+| `setup_tested` | no | date | Date the path was hands-on checked (`YYYY-MM-DD`); omit all three `setup_*` fields when not checked |
 
 ## Body sections
 
@@ -45,7 +48,7 @@ Free-form Markdown after the front matter. Keep each dossier short. Suggested he
 
 1. Short neutral description (2–4 sentences)
 2. `## Why it fits` — free private self-install
-3. `## Getting started` — short prerequisites list, 3-6 high-level steps, and the official install-doc link
+3. `## Getting started` — short prerequisites list, 3-6 high-level steps, the official install-doc link, and optional short `Watch out:` lines for pitfalls in that official path
 4. `## Notes` — caveats, labels, unverified items
 
 ## Admission rule (context)
@@ -54,4 +57,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-30 dossiers (24 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Taxonomy for `category` is tentative; categories used include Backup, Monitoring and AI.
+30 dossiers (24 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Categories include Backup, Monitoring and AI.

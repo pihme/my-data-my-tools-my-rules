@@ -1,7 +1,7 @@
 ---
 name: Signal
 slug: signal
-category: Messaging (tentative)
+category: Messaging
 license: AGPL-3.0-only
 open_source: true
 type: App

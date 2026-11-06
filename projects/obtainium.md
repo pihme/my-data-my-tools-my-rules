@@ -1,7 +1,7 @@
 ---
 name: Obtainium
 slug: obtainium
-category: Mobile/App Stores (tentative)
+category: Mobile/App Stores
 license: GPL-3.0-only
 open_source: true
 type: App

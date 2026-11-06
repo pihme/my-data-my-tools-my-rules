@@ -1,7 +1,7 @@
 ---
 name: mailcow
 slug: mailcow
-category: Email (tentative)
+category: Email
 license: GPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://mailcow.github.io/mailcow-dockerized-docs/
 repo: https://github.com/mailcow/mailcow-dockerized
 source_url: https://github.com/mailcow/mailcow-dockerized/blob/master/LICENSE
 checked: 2026-11-05
+setup_steps: 9
+setup_clarity: 3
+setup_tested: 2026-11-06
 note: Dockerized mail server stack for self-hosted email.
 summary: mailcow: dockerized is a complete mail server suite in Docker containers. It combines Postfix, Dovecot, SOGo groupware, Rspamd spam filtering and ClamAV behind a web admin interface and handles mail, calendars and contacts for your own domains. Running a mail server means managing DNS records, IP reputation and deliverability, which needs solid ops experience.
 sources:

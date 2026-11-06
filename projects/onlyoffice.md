@@ -1,7 +1,7 @@
 ---
 name: ONLYOFFICE
 slug: onlyoffice
-category: Collaboration (tentative)
+category: Collaboration
 license: AGPL-3.0-only
 open_source: true
 type: [App, Server]
@@ -10,6 +10,9 @@ url: https://www.onlyoffice.com/
 repo: https://github.com/ONLYOFFICE/DocumentServer
 source_url: https://github.com/ONLYOFFICE/DocumentServer/blob/master/LICENSE
 checked: 2026-11-05
+setup_steps: 3
+setup_clarity: 3
+setup_tested: 2026-11-06
 note: Office suite: free Desktop Editors plus self-hostable Docs Community Edition.
 summary: ONLYOFFICE is an office suite for text documents, spreadsheets, presentations and PDFs with strong compatibility with Microsoft Office formats. The free Desktop Editors run offline on Windows, macOS and Linux. Docs Community Edition is a self-hosted server for editing and co-editing in the browser; it needs a host platform such as Nextcloud and is recommended for up to 20 users.
 corporate_note: Developed by Ascensio System SIA (Riga, Latvia), which also sells proprietary Enterprise and Developer editions of Docs.
@@ -51,6 +54,8 @@ Steps:
 2. Server: start the onlyoffice/documentserver container with your own JWT_SECRET, as in the Docker guide.
 3. Add data volumes so documents and logs survive container updates.
 4. Connect Docs to your file platform (for example the ONLYOFFICE app in Nextcloud) using the same JWT secret.
+
+Watch out: set your own `JWT_SECRET` (do not leave the example `my_jwt_secret`). The "store data outside containers" `docker run` example ends after the volume flags and omits the image name and JWT flags; finish it with `-e JWT_SECRET=… onlyoffice/documentserver`.
 
 Official Docker guide (Docs Community Edition): <https://helpcenter.onlyoffice.com/docs/installation/docs-community-install-docker.aspx>
 

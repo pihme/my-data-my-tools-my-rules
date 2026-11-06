@@ -1,7 +1,7 @@
 ---
 name: CryptPad
 slug: cryptpad
-category: Collaboration (tentative)
+category: Collaboration
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://cryptpad.org/
 repo: https://github.com/cryptpad/cryptpad
 source_url: https://github.com/cryptpad/cryptpad/blob/main/LICENSE
 checked: 2026-11-05
+setup_steps: 6
+setup_clarity: 2
+setup_tested: 2026-11-06
 note: End-to-end encrypted collaborative documents you can self-host.
 summary: CryptPad is a collaborative office suite with rich text documents, spreadsheets, presentations, forms, kanban boards, whiteboards and a calendar. Content is encrypted in the browser before it reaches the server, so the server operator cannot read it. You can use a public instance or run your own; self-hosting needs two domains and a reverse proxy.
 funding_note: FUTO microgrant (November 2024); NLnet funded CryptPad through the NGI0 PET Fund (EU Next Generation Internet).
@@ -47,6 +50,8 @@ Steps:
 3. Copy the example configuration and set both domains.
 4. Configure the reverse proxy with TLS for both domains.
 5. Start CryptPad and open the one-time setup link to create the first administrator.
+
+Watch out: if you use Docker Compose, create and chown the `config` directory (UID/GID 4001) before `compose up`; the documented mkdir list omits it, Docker then creates it as root, and the container fails writing `config.js`. Use the environment variable names from the compose file you run (the docs and compose disagree on the OnlyOffice install flag name).
 
 Official admin installation guide: <https://docs.cryptpad.org/en/admin_guide/installation.html>
 

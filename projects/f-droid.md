@@ -1,7 +1,7 @@
 ---
 name: F-Droid
 slug: f-droid
-category: Mobile/App Stores (tentative)
+category: Mobile/App Stores
 license: GPL-3.0-or-later
 open_source: true
 type: App

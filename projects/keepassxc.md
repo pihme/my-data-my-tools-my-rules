@@ -1,7 +1,7 @@
 ---
 name: KeePassXC
 slug: keepassxc
-category: Passwords (tentative)
+category: Passwords
 license: GPL-2.0-only OR GPL-3.0-only
 open_source: true
 type: App

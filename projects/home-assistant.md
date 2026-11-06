@@ -1,7 +1,7 @@
 ---
 name: Home Assistant
 slug: home-assistant
-category: Smart Home (tentative)
+category: Smart Home
 license: Apache-2.0
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://www.home-assistant.io/
 repo: https://github.com/home-assistant/core
 source_url: https://github.com/home-assistant/core/blob/dev/LICENSE.md
 checked: 2026-11-05
+setup_steps: 5
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Local-first home automation platform for self-hosting.
 summary: Home Assistant is a home automation platform that connects smart devices from many vendors and runs automations locally on your own hardware. It is controlled through a web interface and mobile apps and has a large library of integrations. The recommended setup is Home Assistant OS on dedicated hardware; Nabu Casa's cloud service is optional.
 corporate_note: Open Home Foundation; Nabu Casa is an optional paid service (info only).

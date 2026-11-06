@@ -1,7 +1,7 @@
 ---
 name: Accrescent
 slug: accrescent
-category: Mobile/App Stores (tentative)
+category: Mobile/App Stores
 license: Apache-2.0
 open_source: true
 type: App

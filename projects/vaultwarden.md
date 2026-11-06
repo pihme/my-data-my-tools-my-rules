@@ -1,7 +1,7 @@
 ---
 name: Vaultwarden
 slug: vaultwarden
-category: Passwords (tentative)
+category: Passwords
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://github.com/dani-garcia/vaultwarden
 repo: https://github.com/dani-garcia/vaultwarden
 source_url: https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt
 checked: 2026-11-05
+setup_steps: 3
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Bitwarden-compatible password vault server for self-hosting.
 summary: Vaultwarden is a lightweight, unofficial implementation of the Bitwarden server API, written in Rust. It lets you use the official Bitwarden apps and browser extensions with a password vault on your own server, and it needs few resources, which makes it popular for home setups. It is not affiliated with Bitwarden, Inc.
 corporate_note: Community server compatible with Bitwarden clients; not Bitwarden Inc.
@@ -45,6 +48,8 @@ Steps:
 4. Open the web vault, create your account, then point the Bitwarden clients to your server URL.
 
 Official wiki: Using Docker Compose: <https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose>
+
+Starting a container (docker run): <https://github.com/dani-garcia/vaultwarden/wiki/Starting-a-Container>
 
 ## Notes
 

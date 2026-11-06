@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ROOT}}assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ROOT}}assets/favicon-16.png">
 <link rel="apple-touch-icon" href="{{ROOT}}assets/logo-mark.png">
-<link rel="stylesheet" href="{{ROOT}}theme/fonts.css">
+<link rel="stylesheet" href="{{ROOT}}theme/fonts.css?v={{VERSION}}">
 <link rel="stylesheet" href="{{ROOT}}theme/style.css?v={{VERSION}}">
 <script>try{var m=localStorage.getItem("mdmtmr-mode");if(m==="dark"||m==="light")document.documentElement.classList.add(m)}catch(e){}</script>
 </head>
@@ -20,11 +20,11 @@
 <p class="lbl">About</p>
 <ul class="plain">
 {{OMAKASE}}
-<li><a href="{{ROOT}}about.html">About this site</a></li>
+<li><a href="{{ROOT}}about.html"{{ABOUT_ON}}>About this site</a></li>
 <li><a href="{{ROOT}}about.html#what-belongs-here">What belongs here</a></li>
 <li><a href="{{ROOT}}about.html#selection-criteria">How projects are selected</a></li>
 <li><a href="{{ROOT}}about.html#license-labels">License labels</a></li>
-<li><a href="{{ROOT}}funders.html">Funders</a></li>
+<li><a href="{{ROOT}}funders.html"{{FUNDERS_ON}}>Funders</a></li>
 <li><a href="{{REPO}}/issues">Suggest a project ↗</a></li>
 <li><a href="{{REPO}}">GitHub ↗</a></li>
 </ul>

@@ -1,7 +1,7 @@
 ---
 name: Immich
 slug: immich
-category: Photos (tentative)
+category: Photos
 license: AGPL-3.0-only
 open_source: true
 type: [Server, App]
@@ -10,6 +10,9 @@ url: https://immich.app/
 repo: https://github.com/immich-app/immich
 source_url: https://github.com/immich-app/immich/blob/main/LICENSE
 checked: 2026-11-05
+setup_steps: 7
+setup_clarity: 5
+setup_tested: 2026-11-06
 note: Self-hosted photo and video backup with mobile apps.
 summary: Immich is a self-hosted photo and video library with mobile apps that back up your camera roll automatically. It offers a timeline, albums, sharing, a map view and machine-learning features such as face recognition and smart search that run on your own server. It is deployed with Docker Compose and licensed under AGPL-3.0.
 corporate_note: Team/brand associated with FUTO; project remains AGPL-3.0.

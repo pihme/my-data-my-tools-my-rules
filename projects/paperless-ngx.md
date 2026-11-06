@@ -1,7 +1,7 @@
 ---
 name: Paperless-ngx
 slug: paperless-ngx
-category: Cloud/Files (tentative)
+category: Cloud/Files
 license: GPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://docs.paperless-ngx.com/
 repo: https://github.com/paperless-ngx/paperless-ngx
 source_url: https://github.com/paperless-ngx/paperless-ngx/blob/dev/LICENSE
 checked: 2026-11-05
+setup_steps: 8
+setup_clarity: 2
+setup_tested: 2026-11-06
 note: Self-hosted document archive with OCR, tagging and full-text search.
 summary: Paperless-ngx is a document management system that turns scanned paper and PDFs into a searchable archive. It runs OCR on incoming documents, assigns tags, correspondents and document types, and keeps the originals on your server. It is the community-maintained successor of Paperless and Paperless-ng and is usually installed with Docker Compose.
 funding_note: The project README credits Fyra Stack with hosting the public demo.
@@ -47,6 +50,8 @@ Steps:
 2. Adjust the paths for the consume, media and data folders and the settings in docker-compose.env.
 3. Pull the images and start the stack with docker compose up -d.
 4. Open the web interface, log in with the admin account and drop a first PDF into the consume folder.
+
+Watch out: before `compose up` on the Compose route, replace `PAPERLESS_SECRET_KEY=change-me` in `docker-compose.env` with a real secret (for example `openssl rand -hex 32`); the webserver will not start while the default value remains.
 
 Official setup guide: <https://docs.paperless-ngx.com/setup/>
 

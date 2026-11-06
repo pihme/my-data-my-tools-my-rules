@@ -1,7 +1,7 @@
 ---
 name: Navidrome
 slug: navidrome
-category: Video/Media (tentative)
+category: Video/Media
 license: GPL-3.0-only
 open_source: true
 type: Server
@@ -10,6 +10,9 @@ url: https://www.navidrome.org/
 repo: https://github.com/navidrome/navidrome
 source_url: https://github.com/navidrome/navidrome/blob/master/LICENSE
 checked: 2026-11-05
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-06
 note: Self-hosted music server compatible with Subsonic clients.
 summary: Navidrome is a music server that streams your own music collection to its web player and to any Subsonic-compatible app. It is a single lightweight program that also runs well on small hardware such as a Raspberry Pi. It supports multiple users, playlists, lyrics and on-the-fly transcoding.
 funding_note: FUTO microgrant (May 2025).
