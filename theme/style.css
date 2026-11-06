@@ -215,7 +215,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .empty{display:flex;gap:10px;align-items:baseline}
 .empty .freset{padding:0;align-self:auto;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:600px){
-  .frow{display:contents}
+  .filterbar > .frow{display:contents}
   .filterbar{gap:14px}
   .fdiv{display:none}
   .pills{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-right:-16px;padding-right:0}
@@ -268,4 +268,40 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 @media (max-width:1279px){
   .phead.has-cfx{grid-template-columns:1fr;column-gap:22px}
   .phead.has-cfx .cfx{display:none}
+}
+
+
+/* v2.4.0: catalog search field + dossier magnifier */
+/* DOM order in .hside: intro → search → stats → filterbar.
+   Mobile (≤1279): keep that order (search under intro, above stats).
+   Desktop (≥1280): reorder so search sits above the filter pills (after stats). */
+.hside{display:flex;flex-direction:column}
+.hside > .intro{order:1}
+.hside > .fsearch-row{order:2}
+.hside > .stats{order:3}
+.hside > .filterbar{order:4}
+@media (min-width:1280px){
+  .hside > .stats{order:2}
+  .hside > .fsearch-row{order:3}
+  .hside > .filterbar{order:4}
+}
+.fsearch-row{align-items:stretch;width:100%;margin:0 0 18px}
+.fsearch{flex:1 1 100%;max-width:420px;width:100%}
+.fsearch .flabel{display:block;margin-bottom:8px}
+.fsearch input[type="search"]{
+  display:block;width:100%;box-sizing:border-box;
+  font:500 15px/1.3 "Inter",system-ui,sans-serif;color:var(--ink);
+  background:var(--card);border:1.5px solid var(--ink);border-radius:10px;
+  padding:10px 14px;outline:none;
+}
+.fsearch input[type="search"]::placeholder{color:var(--mut);opacity:1}
+.fsearch input[type="search"]:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--ink) 18%,transparent)}
+.fsearch input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.psearch{display:inline-flex;align-items:center;justify-content:center;margin-left:10px;vertical-align:middle;color:var(--ink);padding:0;line-height:0}
+.psearch:hover{opacity:.72}
+.psearch svg{display:block;width:14px;height:14px}
+@media (max-width:1279px){
+  .fsearch{max-width:none}
+  .fsearch-row{margin:0 0 16px}
 }
