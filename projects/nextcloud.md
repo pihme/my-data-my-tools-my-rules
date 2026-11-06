@@ -23,6 +23,8 @@ funders: [nlnet, ngi]
 icon: assets/icons/nextcloud.svg
 icon_credit: Nextcloud and the Nextcloud logo are registered trademarks of Nextcloud GmbH; used online as a link to nextcloud.com per its trademark guidelines
 icon_source: https://github.com/nextcloud/server/blob/master/core/img/favicon-touch.svg
+fireworks_image: assets/fireworks/cf-nextcloud-b1.png
+fireworks_date: 2026-11
 sources:
   - https://nextcloud.com/
   - https://github.com/nextcloud/server/blob/master/COPYING
