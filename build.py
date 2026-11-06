@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.4.2"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.5.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -388,7 +388,6 @@ def card(p, col, cid):
 <p>{note}</p>{setup}<div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
 
 def index(ps, cats):
-    nos = sum(p["open_source"] for p in ps); nsh = sum(is_server(p) for p in ps)
     secs = ""
     for i, (cid, n, col, cps) in enumerate(cats):
         k = min(len(cps), 4)
@@ -399,8 +398,8 @@ def index(ps, cats):
 <h1>My data.<br>My tools.<br><em>My rules.</em></h1></div>
 <div class="hside"><p class="intro">A curated list of open-source and source-available software that keeps your data under your control, sorted by what you want to do and labeled by how you can run it.</p>
 <div class="frow fsearch-row" hidden><div class="fgroup fsearch" role="search"><label class="flabel" for="search">Search</label><input id="search" type="search" placeholder="Search projects" aria-label="Search projects" autocomplete="off"></div></div>
-<div class="stats"><div><b>{len(ps)}</b><span>entries</span></div><div><b>{len(cats)}</b><span>categories</span></div><div><b>{nos}</b><span>open source</span></div><div><b>{nsh}</b><span>self-host</span></div></div>
-<div class="filterbar" hidden><div class="frow"><div class="fgroup" role="group" aria-label="License"><span class="flabel">License</span><div class="pills"><button type="button" data-lic="all" class="on" aria-pressed="true">Any</button><button type="button" data-lic="open-source" aria-pressed="false">Open source</button><button type="button" data-lic="source-available" data-sa aria-pressed="false">Source-available</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="Runs as"><span class="flabel">Runs as</span><div class="pills"><button type="button" data-run="all" class="on" aria-pressed="true">Any</button><button type="button" data-run="app" aria-pressed="false">App</button><button type="button" data-run="self-host" aria-pressed="false">Self-host</button></div></div></div><div class="frow"><div class="fgroup" role="group" aria-label="For"><span class="flabel">For</span><div class="pills"><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false"><span class="dots" aria-hidden="true">●○○</span> End user</button><button type="button" data-aud="enthusiast" aria-pressed="false"><span class="dots" aria-hidden="true">●●○</span> Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false"><span class="dots" aria-hidden="true">●●●</span> Expert</button></div></div><button type="button" class="freset">Reset filters</button></div></div></section>
+</div></section>
+<div class="filterbar" hidden><div class="frow"><div class="fgroup" role="group" aria-label="License"><span class="flabel">License</span><div class="pills"><button type="button" data-lic="all" class="on" aria-pressed="true">Any</button><button type="button" data-lic="open-source" aria-pressed="false">Open source</button><button type="button" data-lic="source-available" data-sa aria-pressed="false">Source-available</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="Runs as"><span class="flabel">Runs as</span><div class="pills"><button type="button" data-run="all" class="on" aria-pressed="true">Any</button><button type="button" data-run="app" aria-pressed="false">App</button><button type="button" data-run="self-host" aria-pressed="false">Self-host</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="For"><span class="flabel">For</span><div class="pills"><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false"><span class="dots" aria-hidden="true">●○○</span> End user</button><button type="button" data-aud="enthusiast" aria-pressed="false"><span class="dots" aria-hidden="true">●●○</span> Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false"><span class="dots" aria-hidden="true">●●●</span> Expert</button></div></div><button type="button" class="freset">Reset filters</button></div></div>
 <div class="catflow">
 {secs}</div><p class="empty" hidden>No projects match your search and filters. <button type="button" class="freset">Reset filters</button></p><p class="sr-only" aria-live="polite" id="filter-status"></p>'''
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),

@@ -29,9 +29,6 @@ main{padding:0 56px 40px;min-width:0}
 h1{font:800 104px/.92 "Bricolage Grotesque",sans-serif;letter-spacing:-.035em;margin:0}
 h1 em{font-style:normal;background:linear-gradient(90deg,#ff5c39,#ffc531 50%,#2ec4a6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .intro{font-size:21px;line-height:1.45;margin:0 0 28px;max-width:40ch}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:22px}
-.stats div{padding:14px 0 12px}.stats div+div{padding-left:20px;border-left:1px solid var(--line)}
-.stats b{display:block;font:800 38px/1 "Bricolage Grotesque"}.stats span{font-size:13px;color:var(--mut)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.filters span{font:600 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.1em;color:var(--mut);margin-right:6px}
 .filters button{font:500 13px "Inter";border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:7px 15px;cursor:pointer}
 .filters button.on{background:var(--ink);color:var(--bg)}
@@ -98,7 +95,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 @media (max-width:1700px){:root{--nav-w:264px}.nav{padding:28px 20px}main{padding:0 40px 40px}h1{font-size:84px}.phead h1{font-size:76px}.hero,.body-wrap{gap:44px}.intro{font-size:19px}.phead .intro{font-size:22px}.omk-head{gap:44px}.grid{gap:14px}.card{padding:16px 16px 14px}}
 @media (max-width:1280px){.catflow{display:block}.cat .grid,.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero,.phead,.body-wrap{grid-template-columns:1fr}}
 @media (max-width:960px){body{display:block;background:var(--bg)}.nav{position:static;height:auto}.mode{margin-top:20px}.cat .grid,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:0 22px 30px}h1,.phead h1{font-size:60px}.foot{flex-direction:column}}
-@media (max-width:600px){.cat .grid,.grid{grid-template-columns:minmax(0,1fr)}h1,.phead h1{font-size:46px}.stats{grid-template-columns:repeat(2,1fr)}.stats div+div{padding-left:0;border-left:0}.stats div:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}.stats div:nth-child(n+3){border-top:1px solid var(--line)}.facts dl{grid-template-columns:1fr}.facts dt{border-bottom:0;padding-bottom:0}}
+@media (max-width:600px){.cat .grid,.grid{grid-template-columns:minmax(0,1fr)}h1,.phead h1{font-size:46px}.facts dl{grid-template-columns:1fr}.facts dt{border-bottom:0;padding-bottom:0}}
 
 /* mobile: compact horizontally scrolling category chips; desktop V3 unchanged */
 @media (max-width: 640px) {
@@ -272,19 +269,8 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 
 
 /* v2.4.0: catalog search field + dossier magnifier */
-/* DOM order in .hside: intro → search → stats → filterbar.
-   Mobile (≤1279): keep that order (search under intro, above stats).
-   Desktop (≥1280): reorder so search sits above the filter pills (after stats). */
+/* .hside holds intro + search; filterbar sits below the hero rule. */
 .hside{display:flex;flex-direction:column}
-.hside > .intro{order:1}
-.hside > .fsearch-row{order:2}
-.hside > .stats{order:3}
-.hside > .filterbar{order:4}
-@media (min-width:1280px){
-  .hside > .stats{order:2}
-  .hside > .fsearch-row{order:3}
-  .hside > .filterbar{order:4}
-}
 .fsearch-row{align-items:stretch;width:100%;margin:0 0 18px}
 .fsearch{flex:1 1 100%;max-width:420px;width:100%}
 .fsearch .flabel{display:block;margin-bottom:8px}
@@ -303,5 +289,19 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .psearch svg{display:block;width:14px;height:14px}
 @media (max-width:1279px){
   .fsearch{max-width:none}
+  .fsearch-row{margin:0 0 16px}
+}
+
+/* v2.5.0: compact homepage header. Stats removed; filter pills on one row below the hero rule. */
+.hero{padding:48px 0 36px;margin-bottom:0}
+.hside{justify-content:flex-end}
+.hside>.intro{margin-bottom:22px}
+.hside>.fsearch-row{margin:0}
+.filterbar{flex-direction:row;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;padding:18px 0 4px;margin-bottom:6px}
+.filterbar>.frow{display:contents}
+.filterbar .pills{gap:6px}
+.filterbar .pills button{padding:6px 11px;font-size:12.5px}
+.filterbar .freset{flex:1 0 100%;margin-left:auto;padding:6px 0;font-size:12.5px;text-align:right;align-self:flex-end}
+@media (max-width:1279px){
   .fsearch-row{margin:0 0 16px}
 }
