@@ -1,7 +1,7 @@
 ---
 name: Grayjay
 slug: grayjay
-category: Media
+category: Mobile
 license: LicenseRef-SourceFirst-1.1
 open_source: false
 type: App

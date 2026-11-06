@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.6
+
+- Content v2.9: Organic Maps (from Utilities) and Grayjay (from Media) move to Mobile; the "Not found" section is removed from the funders page.
+
 ## 2.3.5
 
 - Content v2.8: Omakase page reordered (Paperless-ngx, Immich and Navidrome open the second course), Mobile text clarified (uploads only on the home network, app offline otherwise), Syncthing text corrected (a public discovery server helps peers find each other). Syncthing dossier names the discovery and relay servers.
