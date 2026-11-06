@@ -49,7 +49,7 @@ All screenshots were resized to at most 1600 px wide and converted to WebP; that
 
 ## Code Fireworks renders
 
-Our own renders (variant B1) shown as the optional tile on dossier pages via `fireworks_image` / `fireworks_date`. Dark `#111111` background, 500×500 WebP (PNG 560×560 kept as source), rendered with Gource from each project's public repository, snapshot 2026-11-05 23:59, caption "As of Nov 2026". File nodes are coloured by extension with colours taken from the project's logo; single-colour logos get cream `#f6f3ec` as second colour, logos without usable colour get cream plus grey `#9a978f`. Using a logo's colour values does not reproduce the logo, so this also applies to projects whose logo we do not show (letter tile).
+Our own renders (variant B1) shown as the optional tile on dossier pages via `fireworks_image` / `fireworks_date`. Dark `#111111` background, 500×500 WebP as served; each row also covers the same-named 560×560 PNG next to it, kept as the source and not served, rendered with Gource from each project's public repository, snapshot 2026-11-05 23:59, caption "As of Nov 2026". File nodes are coloured by extension with colours taken from the project's logo; single-colour logos get cream `#f6f3ec` as second colour, logos without usable colour get cream plus grey `#9a978f`. Using a logo's colour values does not reproduce the logo, so this also applies to projects whose logo we do not show (letter tile).
 
 | File | Project | Repository rendered | Snapshot | Colour source | Terms in short | Verdict |
 |---|---|---|---|---|---|---|
