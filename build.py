@@ -13,7 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-VERSION = "2.3.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.3.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape

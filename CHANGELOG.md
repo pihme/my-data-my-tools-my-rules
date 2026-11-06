@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.1 (unreleased)
+
+### Changed
+- Content v2.4: Signal moves to Mobile; the Messaging category is gone (29 projects, 9 categories). Anchor `#messaging` removed; Signal is now under `#mobile`.
+
+### Removed
+- Element dossier and icon.
+
 ## 2.3.0 (unreleased)
 
 ### Added
