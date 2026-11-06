@@ -22,6 +22,8 @@ funders: [nlnet, ngi]
 icon: assets/icons/forgejo.svg
 icon_credit: Forgejo logo by Caesar Schinas, CC BY-SA 4.0
 icon_source: https://codeberg.org/forgejo/forgejo/src/branch/forgejo/assets/logo.svg
+fireworks_image: assets/fireworks/cf-forgejo-b1.png
+fireworks_date: 2026-11
 sources:
   - https://forgejo.org/
   - https://codeberg.org/forgejo/forgejo/src/branch/forgejo/LICENSE

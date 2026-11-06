@@ -21,6 +21,8 @@ funders: [futo, nlnet, ngi]
 icon: assets/icons/garage.svg
 icon_credit: Garage logo from the Garage repository (AGPL-3.0); used to identify the project
 icon_source: https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main-v2/doc/logo/garage-notext.svg
+fireworks_image: assets/fireworks/cf-garage-b1.png
+fireworks_date: 2026-11
 sources:
   - https://garagehq.deuxfleurs.fr/
   - https://git.deuxfleurs.fr/Deuxfleurs/garage

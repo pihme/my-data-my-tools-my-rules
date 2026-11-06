@@ -24,6 +24,8 @@ icon_source: https://github.com/jellyfin/jellyfin-ux/blob/master/logos/SVG/jelly
 screenshot: assets/screenshots/jellyfin.webp
 screenshot_credit: Screenshot from jellyfin-ux (Android store assets), CC BY-SA 4.0
 screenshot_source: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/android/mobile/fastlane/phoneScreenshots/screenshot_phone_1.png
+fireworks_image: assets/fireworks/cf-jellyfin-b1.png
+fireworks_date: 2026-11
 sources:
   - https://jellyfin.org/
   - https://github.com/jellyfin/jellyfin/blob/master/LICENSE

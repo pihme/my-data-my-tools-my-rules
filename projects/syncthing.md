@@ -18,6 +18,8 @@ summary: Syncthing continuously synchronizes folders between your own devices ov
 icon: assets/icons/syncthing.svg
 icon_credit: Syncthing logo, MPL-2.0 (same license as the source); used unmodified to identify the project
 icon_source: https://github.com/syncthing/syncthing/blob/main/assets/logo-only.svg
+fireworks_image: assets/fireworks/cf-syncthing-b1.png
+fireworks_date: 2026-11
 sources:
   - https://syncthing.net/
   - https://github.com/syncthing/syncthing/blob/main/LICENSE

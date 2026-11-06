@@ -38,6 +38,8 @@ Exact field names (YAML):
 | `screenshot` | no | string | Path to an official screenshot, `assets/screenshots/<slug>.webp` (max 1600 px wide); only with a documented reuse license |
 | `screenshot_credit` | no | string | Credit/license line shown with the screenshot |
 | `screenshot_source` | no | string | URL the screenshot was taken from |
+| `fireworks_image` | no | string | Path to the project's Code Fireworks render, `assets/fireworks/cf-<slug>-b1.png` (560×560 PNG, our own Gource render of the public repository); set together with `fireworks_date`; listed in ASSETS.md |
+| `fireworks_date` | no | string | Snapshot month of the render (`YYYY-MM`); shown as "As of Nov 2026"; a fixed date, so the image never needs re-rendering |
 | `sources` | yes | list | URLs used for verification |
 | `setup_steps` | no | integer | Count of human actions in the official getting-started path that was checked |
 | `setup_clarity` | no | integer 1–5 | How clear that path was (1 = unusable, 5 = copy-paste works and is well explained) |

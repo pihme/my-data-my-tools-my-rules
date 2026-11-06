@@ -19,6 +19,8 @@ corporate_note: Community server compatible with Bitwarden clients; not Bitwarde
 icon: assets/icons/vaultwarden.svg
 icon_credit: Vaultwarden icon by Mathijs van Veluw (based on the Rust logo), from the AGPL-3.0 repository; used to identify the project
 icon_source: https://github.com/dani-garcia/vaultwarden/blob/main/resources/vaultwarden-icon.svg
+fireworks_image: assets/fireworks/cf-vaultwarden-b1.png
+fireworks_date: 2026-11
 sources:
   - https://github.com/dani-garcia/vaultwarden
   - https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt
