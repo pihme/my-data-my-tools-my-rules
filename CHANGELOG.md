@@ -1,12 +1,17 @@
 # Changelog
 
-## 2.2.2 (unreleased)
+## 2.3.1 (unreleased)
 
 ### Changed
 - Content v2.4: Signal moves to Mobile; the Messaging category is gone (29 projects, 9 categories). Anchor `#messaging` removed; Signal is now under `#mobile`.
 
 ### Removed
 - Element dossier and icon.
+
+## 2.3.0 (unreleased)
+
+### Added
+- Omakase marker: catalog cards of projects on the Omakase page get a black frame and an “お任せ Omakase” badge; their dossiers show the same badge under the title. The badge links to the Omakase page. The set is derived from `content/omakase.md`.
 
 ## 2.2.1 (unreleased)
 
