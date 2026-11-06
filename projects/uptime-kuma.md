@@ -1,7 +1,7 @@
 ---
 name: Uptime Kuma
 slug: uptime-kuma
-category: Monitoring
+category: Server
 license: MIT
 open_source: true
 type: Server
@@ -25,12 +25,9 @@ sources:
   - https://github.com/louislam/uptime-kuma/blob/master/README.md
   - https://github.com/louislam/uptime-kuma/wiki/%F0%9F%94%A7-How-to-Install
 ---
-
-Uptime Kuma watches your websites and services and alerts you when they stop responding. The repository LICENSE is the MIT License.
-
 ## Why it fits
 
-Free to self-host for monitoring your own services.
+It is licensed under the MIT License. Free to self-host for monitoring your own services.
 
 ## Getting started
 

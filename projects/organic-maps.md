@@ -1,7 +1,7 @@
 ---
 name: Organic Maps
 slug: organic-maps
-category: Maps
+category: Utilities
 license: Apache-2.0
 open_source: true
 type: App
@@ -28,12 +28,9 @@ sources:
   - https://futo.tech/grants
   - https://nlnet.nl/project/OrganicMaps/
 ---
-
-Organic Maps is a mobile maps application using OpenStreetMap data with offline map downloads. It is licensed under Apache-2.0.
-
 ## Why it fits
 
-The app can be installed for private navigation without a paid license.
+It is licensed under Apache-2.0. The app can be installed for private navigation without a paid license.
 
 ## Getting started
 

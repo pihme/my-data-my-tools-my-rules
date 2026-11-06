@@ -1,7 +1,7 @@
 ---
 name: Beszel
 slug: beszel
-category: Monitoring
+category: Server
 license: MIT
 open_source: true
 type: Server
@@ -24,9 +24,6 @@ sources:
   - https://github.com/henrygd/beszel/blob/main/readme.md
   - https://beszel.dev/guide/getting-started
 ---
-
-Beszel monitors your own servers: a hub collects metrics from agents and shows history and alerts in a web interface. The repository LICENSE is the MIT License.
-
 ## Why it fits
 
 Free to self-host for monitoring your own machines; no external monitoring service is needed.
@@ -41,10 +38,14 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Create a docker-compose.yml for the hub (and optionally a local agent) from the getting-started guide.
-2. Set APP_URL and start it with docker compose up -d.
-3. Open http://<server>:8090 and create the admin account.
-4. Click Add System, copy the shown key and token into the agent configuration and start the agent.
+1. Create a directory for the hub and agent Compose files.
+2. Write a docker-compose.yml for the hub (and optionally a local agent) from the getting-started guide.
+3. Set APP_URL to the URL you will use for the hub.
+4. Start the stack with docker compose up -d.
+5. Open http://<server>:8090 and create the admin account.
+6. Click Add System and copy the shown agent key and token.
+7. Put the key and token into the agent environment in the compose file.
+8. Restart the agent so it connects to the hub.
 
 Official getting started guide: <https://beszel.dev/guide/getting-started>
 

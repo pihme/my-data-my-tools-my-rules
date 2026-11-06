@@ -1,7 +1,7 @@
 ---
 name: Accrescent
 slug: accrescent
-category: Mobile/App Stores
+category: Mobile
 license: Apache-2.0
 open_source: true
 type: App
@@ -23,12 +23,9 @@ sources:
   - https://futo.tech/grants
   - https://github.com/accrescent/accrescent/blob/main/README.md
 ---
-
-Accrescent is an Android app store client. Repository LICENSE is Apache License 2.0.
-
 ## Why it fits
 
-The client can be installed for private use without a paid store license.
+The repository is licensed under Apache License 2.0. The client can be installed for private use without a paid store license.
 
 ## Getting started
 

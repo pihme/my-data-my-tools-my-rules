@@ -1,7 +1,7 @@
 ---
 name: Forgejo
 slug: forgejo
-category: Hosting Platform
+category: Server
 license: GPL-3.0-or-later
 open_source: true
 type: Server
@@ -28,12 +28,9 @@ sources:
   - https://nlnet.nl/project/Forgejo/
   - https://forgejo.org/docs/latest/admin/installation/docker/
 ---
-
-Forgejo is a self-hosted software forge for Git hosting and collaboration. The README states GPL version 3.0 or any later version (since v9.0).
-
 ## Why it fits
 
-You can run a private Git service without relying on a commercial SaaS.
+Since v9.0 it is licensed under GPL version 3.0 or later. You can run a private Git service without relying on a commercial SaaS.
 
 ## Getting started
 
@@ -46,10 +43,12 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Create a directory with the Docker Compose file from the official Docker guide.
-2. Choose the database and set the data volume.
-3. Start the stack with docker compose up -d.
-4. Open the web interface and complete the initial configuration, including the admin account.
+1. Create a directory for Forgejo data and the Compose file.
+2. Write the docker-compose.yml from the official Docker guide.
+3. Chown the data directory to the UID/GID the guide requires.
+4. Start the stack with docker compose up -d.
+5. Open http://<server>:3000.
+6. Submit the initial configuration form (SQLite is fine for small setups) and create the admin account.
 
 Official Docker installation guide: <https://forgejo.org/docs/latest/admin/installation/docker/>
 

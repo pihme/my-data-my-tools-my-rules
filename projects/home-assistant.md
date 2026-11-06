@@ -24,12 +24,9 @@ sources:
   - https://github.com/home-assistant/core/blob/dev/LICENSE.md
   - https://www.home-assistant.io/installation/
 ---
-
-Home Assistant is an open home-automation platform intended to run on local hardware. Core LICENSE.md is Apache License 2.0.
-
 ## Why it fits
 
-You can install Home Assistant on your own device without a mandatory subscription for core local control.
+The core is licensed under Apache License 2.0. You can install Home Assistant on your own device without a mandatory subscription for core local control.
 
 ## Getting started
 
@@ -41,10 +38,11 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Pick an installation method on the official installation page.
-2. Flash Home Assistant OS to your device, or start the official container.
-3. Open http://homeassistant.local:8123 (or the host's IP on port 8123).
-4. Complete onboarding and add your first integrations.
+1. Create a config directory on the host.
+2. Start the official container with your timezone and config path (see the Container install guide).
+3. Open http://<server>:8123 (or http://homeassistant.local:8123).
+4. Create your account in onboarding.
+5. Finish onboarding (location, analytics and first integrations).
 
 Official installation overview: <https://www.home-assistant.io/installation/>
 

@@ -17,7 +17,7 @@ setup_clarity: 4
 setup_tested: 2026-11-06
 # optional; omit all three setup_* fields when the getting-started path was not hands-on checked
 note: Optional card blurb, max about 120 characters.
-summary: Optional card paragraph, 2-4 plain factual sentences (about 250-400 characters), no superlatives.
+summary: Opening text shown as the dossier lead (and on cards where space allows): 2-4 plain factual sentences (about 250-400 characters), no superlatives.
 corporate_note: Optional org binding (info only).
 funding_note: Optional one-sentence funding note (source URL in sources).
 funders: [futo]
@@ -33,8 +33,7 @@ sources:
   - https://example.org/
   - https://github.com/example/project/blob/main/LICENSE
 ---
-
-Short neutral description (2–4 sentences). No marketing language.
+<!-- The `summary` front-matter field is the opening text on the page; do not add a duplicate intro paragraph here. -->
 
 ## Why it fits
 

@@ -1,7 +1,7 @@
 ---
 name: F-Droid
 slug: f-droid
-category: Mobile/App Stores
+category: Mobile
 license: GPL-3.0-or-later
 open_source: true
 type: App
@@ -28,12 +28,9 @@ sources:
   - https://nlnet.nl/project/F-Droid-App/
   - https://nlnet.nl/project/Reproducible-F-Droid/
 ---
-
-F-Droid is an Android app catalog and client focused on free and open-source applications. The client README states GPL version 3 or, at your option, any later version. Separate components exist for the server/repo tooling.
-
 ## Why it fits
 
-The client installs without Google Play. You can also host your own package repositories with F-Droid server tools (separate docs).
+The client is licensed under GPL version 3 or later. The client installs without Google Play. You can also host your own package repositories with F-Droid server tools (separate docs).
 
 ## Getting started
 

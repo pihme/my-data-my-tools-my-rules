@@ -1,7 +1,7 @@
 ---
 name: Immich
 slug: immich
-category: Photos
+category: Media
 license: AGPL-3.0-only
 open_source: true
 type: [Server, App]
@@ -28,12 +28,9 @@ sources:
   - https://immich.app/blog/immich-joins-futo
   - https://docs.immich.app/overview/quick-start/
 ---
-
-Immich is a self-hosted photo and video backup stack with server, web UI, and mobile clients. It stores media on hardware you control. The server repository LICENSE file is GNU AGPL version 3 (no “or later” clause observed in the LICENSE header).
-
 ## Why it fits
 
-You can install the server and apps yourself at no charge for private use. Source is public under an OSI-approved license.
+The server LICENSE is GNU AGPL version 3 with no "or later" clause. You can install the server and apps yourself at no charge for private use. Source is public under an OSI-approved license.
 
 ## Getting started
 
@@ -46,11 +43,13 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Create a directory and download docker-compose.yml and example.env from the latest release, as shown in the quick start.
-2. Rename example.env to .env and set UPLOAD_LOCATION and a database password.
-3. Start the stack with docker compose up -d.
-4. Open http://<server>:2283 and create the admin account.
-5. Install the mobile app, log in to your server and enable backup.
+1. Create a directory for Immich and change into it.
+2. Download docker-compose.yml from the latest release, as shown in the quick start.
+3. Download the example.env file from the same release.
+4. Rename example.env to .env and set UPLOAD_LOCATION and a database password.
+5. Start the stack with docker compose up -d.
+6. Open http://<server>:2283.
+7. Register the admin account.
 
 Official quick start: <https://docs.immich.app/overview/quick-start/>
 

@@ -33,9 +33,6 @@ sources:
   - https://opencode.ai/docs/providers/
   - https://opencode.ai/brand
 ---
-
-OpenCode is an AI coding agent: it reads your code, runs tools and edits files in your project, driven by a large language model you choose. The repository LICENSE is the MIT License.
-
 ## Why it fits
 
 The agent is free and open source and runs on your own machine. Whether your use is entirely free and self-run depends on the model: local models keep everything on your hardware, free hosted models cost nothing but send code to a provider, and paid providers are optional.

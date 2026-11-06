@@ -27,9 +27,6 @@ sources:
   - https://nlnet.nl/project/NextCloudSearch/
   - https://github.com/nextcloud/all-in-one
 ---
-
-Nextcloud is a self-hosted platform for file sync, sharing, and related collaboration apps. The server COPYING file is GNU AGPL version 3. Optional paid enterprise features and hosted plans are separate from self-hosting the open-source server.
-
 ## Why it fits
 
 Self-hosting the community/server code for private use does not require a paid license.
@@ -45,9 +42,12 @@ Prerequisites (from the official docs):
 Steps:
 
 1. Start the AIO master container with the docker run command from the AIO README.
-2. Open the AIO interface on port 8080 and note the generated passphrase.
-3. Enter your domain and choose optional components such as Office or Talk.
-4. Let AIO start all containers, then log in to Nextcloud with the shown admin credentials.
+2. Open the AIO interface on port 8080 over HTTPS.
+3. Note the generated passphrase shown in the interface.
+4. Enter your domain name.
+5. Start the Nextcloud containers from the AIO interface.
+6. Wait until AIO reports that all containers are running.
+7. Log in to Nextcloud with the admin credentials shown in AIO.
 
 Official All-in-One guide: <https://github.com/nextcloud/all-in-one>
 
