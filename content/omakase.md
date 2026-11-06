@@ -9,6 +9,7 @@ The tools I actually run myself, from the catalog and beyond. One line per pick;
 ## First course: Desktop
 
 - **[ONLYOFFICE](projects/onlyoffice.html)**: opens and edits Word, Excel and PowerPoint files offline, with strong compatibility with Microsoft Office formats.
+- **[Syncthing](projects/syncthing.html)**: keeps folders in sync between my devices directly, peer to peer, without a cloud in between.
 
 ## Second course: Home server
 
