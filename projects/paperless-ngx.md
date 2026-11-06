@@ -24,6 +24,8 @@ icon_source: https://github.com/paperless-ngx/paperless-ngx/blob/dev/docs/assets
 screenshot: assets/screenshots/paperless-ngx.webp
 screenshot_credit: Screenshot from the Paperless-ngx documentation, GPL-3.0 repository
 screenshot_source: https://github.com/paperless-ngx/paperless-ngx/blob/dev/docs/assets/screenshots/documents-smallcards.png
+fireworks_image: assets/fireworks/cf-paperless-ngx-b1.png
+fireworks_date: 2026-11
 sources:
   - https://docs.paperless-ngx.com/
   - https://github.com/paperless-ngx/paperless-ngx/blob/dev/LICENSE

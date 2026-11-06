@@ -22,6 +22,8 @@ icon_source: https://static-site.onlyoffice.com/public/images/templates/press-do
 screenshot: assets/screenshots/onlyoffice.webp
 screenshot_credit: Screenshot from the ONLYOFFICE DocumentServer repository; non-code elements CC BY-SA 4.0 per the LICENSE additional terms; ONLYOFFICE is a trademark of Ascensio System SIA
 screenshot_source: https://github.com/ONLYOFFICE/DocumentServer/blob/master/screenshots/ONLYOFFICE%20Docs.png
+fireworks_image: assets/fireworks/cf-onlyoffice-b1.png
+fireworks_date: 2026-11
 sources:
   - https://www.onlyoffice.com/
   - https://github.com/ONLYOFFICE/DocumentServer/blob/master/LICENSE

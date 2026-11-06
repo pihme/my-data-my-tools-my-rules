@@ -18,6 +18,8 @@ summary: Beszel is a lightweight server monitoring tool with a central hub and a
 icon: assets/icons/beszel.svg
 icon_credit: Beszel icon from the MIT-licensed repository; used to identify the project
 icon_source: https://github.com/henrygd/beszel/blob/main/internal/site/public/static/icon.svg
+fireworks_image: assets/fireworks/cf-beszel-b1.png
+fireworks_date: 2026-11
 sources:
   - https://beszel.dev/
   - https://github.com/henrygd/beszel/blob/main/LICENSE

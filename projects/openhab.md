@@ -21,6 +21,8 @@ funders: [futo]
 icon: assets/icons/openhab.svg
 icon_credit: openHAB logo, a mark of the openHAB Foundation e.V.; used to refer to the openHAB project as permitted by its trademark policy
 icon_source: https://github.com/openhab/openhab-docs/blob/main/.vuepress/public/openhab-logo-square.svg
+fireworks_image: assets/fireworks/cf-openhab-b1.png
+fireworks_date: 2026-11
 sources:
   - https://www.openhab.org/
   - https://github.com/openhab/openhab-core/blob/main/LICENSE

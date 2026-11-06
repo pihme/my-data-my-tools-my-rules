@@ -19,6 +19,8 @@ funders: [nlnet, ngi]
 icon: assets/icons/yunohost.svg
 icon_credit: YunoHost logo by ToZz, CC BY-SA 4.0
 icon_source: https://github.com/YunoHost/yunohost-artwork/blob/main/logos/svg/yunohost-logo_roundcorners.svg
+fireworks_image: assets/fireworks/cf-yunohost-b1.png
+fireworks_date: 2026-11
 sources:
   - https://yunohost.org/
   - https://github.com/YunoHost/yunohost/blob/dev/LICENSE

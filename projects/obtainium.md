@@ -20,6 +20,8 @@ icon_source: https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/ico
 screenshot: assets/screenshots/obtainium.webp
 screenshot_credit: Screenshot from the Obtainium repository, GPL-3.0
 screenshot_source: https://github.com/ImranR98/Obtainium/blob/main/assets/screenshots/1.apps.png
+fireworks_image: assets/fireworks/cf-obtainium-b1.png
+fireworks_date: 2026-11
 sources:
   - https://obtainium.imranr.dev/
   - https://github.com/ImranR98/Obtainium/blob/main/LICENSE.txt

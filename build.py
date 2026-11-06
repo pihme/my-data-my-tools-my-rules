@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.3.12"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.3.13"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -147,6 +147,17 @@ def nice_date(d):
     try: return datetime.date.fromisoformat(str(d)).strftime("%-d %B %Y")
     except ValueError: return str(d)
 
+MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+def fireworks_as_of(d):
+    """YYYY-MM -> 'As of Nov 2026' (English month abbreviation)."""
+    m = re.fullmatch(r"(\d{4})-(\d{2})", str(d).strip())
+    if not m: return None
+    y, mo = int(m.group(1)), int(m.group(2))
+    if not 1 <= mo <= 12: return None
+    return f"As of {MONTH_ABBR[mo - 1]} {y}"
+
 def license_tag(p):
     if p["open_source"]: return '<span class="tag t-os" title="OSI-approved license">Open source</span>'
     return '<span class="tag t-sa" title="Source is public, license is not OSI-approved">Source-available</span>'
@@ -239,6 +250,18 @@ def load_projects():
                 datetime.date.fromisoformat(str(p["setup_tested"]))
             except ValueError:
                 sys.exit(f"projects/{f}: setup_tested must be a date YYYY-MM-DD")
+        has_fw = any(k in p for k in ("fireworks_image", "fireworks_date"))
+        if has_fw:
+            for k in ("fireworks_image", "fireworks_date"):
+                if k not in p or p[k] in ("", None, []):
+                    sys.exit(f"projects/{f}: fireworks_* fields must be set together (missing {k})")
+            fw = p["fireworks_image"]
+            if not isinstance(fw, str):
+                sys.exit(f"projects/{f}: fireworks_image must be a path like assets/fireworks/cf-<slug>-b1.png")
+            if not os.path.isfile(os.path.join(ROOT, fw)):
+                sys.exit(f"projects/{f}: file not found: {fw}")
+            if fireworks_as_of(p["fireworks_date"]) is None:
+                sys.exit(f"projects/{f}: fireworks_date must be YYYY-MM")
         check_media(f, p)
         ps.append(p)
     return sorted(ps, key=lambda p: p["name"].lower())
@@ -390,6 +413,19 @@ def shots_html(p):
     return (f'<figure class="shot"><img src="../{E(s)}" alt="Screenshot of {E(p["name"])}" '
             f'loading="lazy" decoding="async"><figcaption><span class="cr">Screenshot: {media_credit(s)}</span></figcaption></figure>')
 
+CF_URL = "https://x.com/code_fireworks"
+
+def fireworks_html(p):
+    """Optional Code Fireworks tile in the dossier header (top-right, hidden below 1280 px)."""
+    img, date = p.get("fireworks_image"), p.get("fireworks_date")
+    if not img or not date: return ""
+    as_of = fireworks_as_of(date)
+    alt = f"Code Fireworks render of the {p['name']} repository, as of {as_of[len('As of '):]}"
+    return (f'<figure class="cfx"><img src="../{E(img)}" alt="{E(alt)}" width="250" height="250" '
+            f'loading="lazy" decoding="async">'
+            f'<figcaption><span>{E(as_of)}</span>'
+            f'<a href="{CF_URL}" target="_blank" rel="noopener">Code Fireworks ↗</a></figcaption></figure>')
+
 def project(p, cats):
     cid = cat_id(p["category"]); i, col = next((k, c[2]) for k, c in enumerate(cats) if c[0] == cid)
     tlabel = " and ".join(["Self-host (server)" if t == "Server" else "App" for t in types(p)])
@@ -421,9 +457,11 @@ def project(p, cats):
     if setup:
         body = body.replace("<h2>Getting started</h2>", "<h2>Getting started</h2>\n" + setup, 1)
     summary = p.get("summary") or p.get("note", "")
-    main = f'''<section class="phead proj" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
+    fw = fireworks_html(p)
+    phead_cls = "phead proj has-cfx" if fw else "phead proj"
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
-<p class="intro">{E(summary)}</p></section>
+<p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
 <a class="back" href="../index.html#{cid}">← Back to the catalog</a></article>
