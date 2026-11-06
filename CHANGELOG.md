@@ -2,9 +2,9 @@
 
 ## 2.4.0
 
-- Catalog search: client-side text search as the first row of the filter bar (`data-search` on each card). Combines with License / Runs as / For; mirrors the query to `?q=` via `replaceState`; Reset and Esc clear it; `/` focuses the field. Empty state: "No projects match your search and filters."
-- Dossier pages: small magnifier in the header links to `index.html#search` and focuses the field on load.
-- Search row carries its own `hidden` (cleared by JS) so it never appears without JS, even if layout moves it outside `.filterbar`.
+- Catalog search: client-side text search (`data-search` on each card). Combines with License / Runs as / For; mirrors the query to `?q=` via `replaceState`; Reset and Esc clear it; `/` focuses the field. Empty state: "No projects match your search and filters."
+- Search field sits between the hero intro and the stat tiles in the DOM (own `hidden`, cleared by JS). On viewports ≤1279 px it stays there; from 1280 px CSS order places it above the filter pills.
+- Dossier pages: ~14 px magnifier in ink (`var(--ink)`) links to `index.html#search` (`aria-label="Search the catalog"`) and focuses the field on load.
 
 ## 2.3.14
 
