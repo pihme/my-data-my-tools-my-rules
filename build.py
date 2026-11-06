@@ -6,7 +6,8 @@
     python3 build.py --serve       # build, then serve on http://localhost:8000
 
 All links are relative, so the output works under any base path
-(GitHub Pages serves it at /my-data-my-tools-my-rules/) and from file://.
+(GitHub Pages serves it at /my-data-my-tools-my-rules/). Catalog links use
+`./` / `../` (A10); open the build through a local HTTP server, not file://.
 """
 import argparse, datetime, html, json, os, re, shutil, sys, unicodedata
 
@@ -312,7 +313,7 @@ def load_projects():
                     sys.exit(f"projects/{f}: fireworks_* fields must be set together (missing {k})")
             fw = p["fireworks_image"]
             if not isinstance(fw, str):
-                sys.exit(f"projects/{f}: fireworks_image must be a path like assets/fireworks/cf-<slug>-b1.png")
+                sys.exit(f"projects/{f}: fireworks_image must be a path like assets/fireworks/cf-<slug>-b1.webp")
             if not os.path.isfile(os.path.join(ROOT, fw)):
                 sys.exit(f"projects/{f}: file not found: {fw}")
             if fireworks_as_of(p["fireworks_date"]) is None:
@@ -734,7 +735,9 @@ def build(out):
     # Serve WOFF2 + OFL only; keep variable TTFs in the repo as sources.
     shutil.copytree(TH, os.path.join(out, "theme"),
                     ignore=shutil.ignore_patterns("base.html", "*.ttf"))
-    shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"))
+    # Fireworks PNGs stay in the repo as sources; only WebP is served (A9).
+    shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"),
+                    ignore=shutil.ignore_patterns("cf-*-b1.png"))
     print(f"built {len(ps)} projects in {len(cats)} categories, {len(fs['known'])} funders into {out}")
 
 if __name__ == "__main__":
