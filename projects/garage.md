@@ -1,7 +1,7 @@
 ---
 name: Garage
 slug: garage
-category: Cloud/Files
+category: Server
 license: AGPL-3.0-only
 open_source: true
 type: Server

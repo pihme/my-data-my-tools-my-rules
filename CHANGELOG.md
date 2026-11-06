@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.2 (unreleased)
+
+### Changed
+- Omakase marker set to variant B: 2px ink frame on marked cards, the お任せ OMAKASE badge sits as a tab on the card's top edge (no longer squeezes long names), extra row gap in grids with marked cards; same badge style under the dossier title.
+- Garage moves from Cloud/Files to Server (Server 7, Cloud/Files 3).
+
 ## 2.3.1 (unreleased)
 
 ### Changed

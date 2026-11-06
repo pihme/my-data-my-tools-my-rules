@@ -246,10 +246,12 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .callout-watch{--c:#c47a12;border-left-color:#c47a12}
 .callout-watch p{color:var(--ink)}
 
-/* Omakase marker: catalog cards and dossier heads of projects on the Omakase page */
-.card.omk{box-shadow:0 0 0 2px var(--ink)}
-.omk-badge{display:inline-flex;align-items:center;gap:6px;font:600 11.5px/1 "Inter";letter-spacing:.02em;color:var(--bg);background:var(--ink);border-radius:999px;padding:5px 10px 5px 9px;white-space:nowrap;text-decoration:none}
-.omk-badge span{font-weight:500;letter-spacing:.06em}
+/* Omakase marker, variant B: ink frame + tab on the card's top edge */
+.card.omk{position:relative;box-shadow:none;border:2px solid var(--ink);border-top:5px solid var(--c);padding:17px 19px 15px}
+.grid:has(.card.omk){row-gap:32px}
+.omk-badge{display:inline-flex;align-items:center;gap:6px;font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);background:var(--ink);border-radius:4px 4px 0 0;padding:5px 8px 4px;white-space:nowrap;text-decoration:none}
+.omk-badge span{font:700 1.05em/1 "Noto Serif CJK JP",serif;letter-spacing:0;text-transform:none}
 .omk-badge:hover{background:color-mix(in srgb,var(--ink) 82%,transparent)}
-.card .omk-badge{margin-left:auto;align-self:flex-start}
-.phead .omk-badge{margin-top:16px;font-size:13px;padding:7px 13px 7px 11px}
+.card .omk-badge{position:absolute;top:-5px;right:14px;transform:translateY(-100%);margin:0}
+.phead .omk-badge{margin-top:16px;font-size:11.5px;padding:6px 10px 5px;border-radius:4px}
+@media (max-width:1700px){.card.omk{padding:15px 15px 13px}}
