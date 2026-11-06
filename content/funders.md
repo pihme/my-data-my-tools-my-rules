@@ -27,7 +27,3 @@ NLnet lists every funded project on its own site ([nlnet.nl/project](https://nln
 <https://ngi.eu/>
 
 NGI is a European Commission initiative that "aims to shape the development and evolution of the Internet into an Internet of Trust", one that meets people's needs for trust, security and inclusion and reflects European values and norms. The Commission says it invested more than EUR 250 million in NGI research and innovation in 2018-2020 and has renewed funding under Horizon Europe. For projects in this catalog, NGI money was passed on through NLnet's NGI Zero funds. ([About NGI](https://ngi.eu/about/))
-
-## Not found
-
-For Prototype Fund and the Sovereign Tech Agency (formerly Sovereign Tech Fund), no support for a project in this catalog was found in the sources checked (2026-11-05).

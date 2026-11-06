@@ -1,7 +1,7 @@
 ---
 name: Organic Maps
 slug: organic-maps
-category: Utilities
+category: Mobile
 license: Apache-2.0
 open_source: true
 type: App
