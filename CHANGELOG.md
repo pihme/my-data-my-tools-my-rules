@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.5
+
+- Content v2.8: Omakase page reordered (Paperless-ngx, Immich and Navidrome open the second course), Mobile text clarified (uploads only on the home network, app offline otherwise), Syncthing text corrected (a public discovery server helps peers find each other). Syncthing dossier names the discovery and relay servers.
+
 ## 2.3.4
 
 - Content v2.7: CryptPad moves from Collaboration to Office (Office 3); the empty Collaboration category is dropped (9 categories). PeerTube is removed from the catalog (dossier, icon and ASSETS.md row deleted); 29 dossiers.
