@@ -14,9 +14,13 @@ The tools I actually run myself, from the catalog and beyond. One line per pick;
 
 - **[NixOS](https://nixos.org/)**: the whole system is declared in one configuration file, so a setup can be rebuilt, rolled back or moved to a new machine.
 - **[restic](projects/restic.html)**: encrypted, deduplicated backups to a local disk, an SFTP server or S3-compatible storage.
-- **[Immich](projects/immich.html)**: your own photo and video library, with phone apps that back up the camera roll automatically.
+- **[Immich](projects/immich.html)**: your own photo and video library, with search, albums and sharing, kept on your own server.
 - **[Paperless-ngx](projects/paperless-ngx.html)**: scans become a searchable archive with OCR and tags, kept on your own server.
   *Still looking for something lighter: it is a bit too professional for my needs.*
 - **[Uptime Kuma](projects/uptime-kuma.html)**: checks that websites and services are reachable and sends a notification when something goes down.
 - **[Beszel](projects/beszel.html)**: lightweight dashboard for CPU, memory, disk and Docker usage across your servers, with alerts.
 - **[Navidrome](projects/navidrome.html)**: streams your own music collection to the browser and to Subsonic-compatible apps from a single lightweight service.
+
+## Dessert: Mobile
+
+- **[Immich app](projects/immich.html)**: the Android and iOS app backs up the camera roll to my own Immich server automatically and lets me browse the whole library on the go.
