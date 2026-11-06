@@ -1,7 +1,7 @@
 ---
 name: Navidrome
 slug: navidrome
-category: Video/Media
+category: Media
 license: GPL-3.0-only
 open_source: true
 type: Server
@@ -27,12 +27,9 @@ sources:
   - https://futo.tech/grants
   - https://www.navidrome.org/docs/installation/docker/
 ---
-
-Navidrome is a self-hosted music server with a web UI and Subsonic-compatible API for third-party players. LICENSE is GPL version 3.
-
 ## Why it fits
 
-You can install it on your own machine for private libraries at no license cost.
+It is licensed under GPL version 3. You can install it on your own machine for private libraries at no license cost.
 
 ## Getting started
 

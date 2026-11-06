@@ -29,12 +29,9 @@ sources:
   - https://futo.tech/grants
   - https://nlnet.nl/project/Garage/
 ---
-
-Garage is a distributed object-storage system with an S3-compatible API, aimed at self-hosted and geo-distributed setups. Canonical repository is on git.deuxfleurs.fr; a GitHub mirror exists under deuxfleurs-org/garage. It is licensed under the GNU AGPL version 3.
-
 ## Why it fits
 
-You can run your own object store without a paid software license for private use.
+The canonical repository is on git.deuxfleurs.fr, with a GitHub mirror under deuxfleurs-org/garage, and the software is licensed under GNU AGPL version 3. You can run your own object store without a paid software license for private use.
 
 ## Getting started
 

@@ -1,7 +1,7 @@
 ---
 name: restic
 slug: restic
-category: Backup
+category: Server
 license: BSD-2-Clause
 open_source: true
 type: App
@@ -23,12 +23,9 @@ sources:
   - https://restic.readthedocs.io/en/stable/020_installation.html
   - https://restic.readthedocs.io/en/stable/040_backup.html
 ---
-
-restic is a backup program that runs on your own computer and writes encrypted, deduplicated snapshots to a repository you choose. The repository LICENSE is the BSD 2-Clause License.
-
 ## Why it fits
 
-Free to install and run for private backups; the storage target can be your own disk or server, so no third-party service is required.
+It is licensed under the BSD 2-Clause License. Free to install and run for private backups; the storage target can be your own disk or server, so no third-party service is required.
 
 ## Getting started
 

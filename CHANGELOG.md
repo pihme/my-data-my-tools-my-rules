@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0 (unreleased)
+
+### Changed
+- Content v2.2: categories merged to 10 — AI, Cloud/Files, Collaboration, Media, Messaging, Mobile, Passwords, Server, Smart Home, Utilities.
+- Category anchors: `#photos` and `#video-media` → `#media`; `#keyboard` and `#mobile-app-stores` → `#mobile`; `#backup`, `#email`, `#monitoring` and `#hosting-platform` → `#server`; `#maps` and `#search` → `#utilities`.
+- Dossier abstracts: summary is again the short v2.1 lead; the duplicate first body paragraph is gone. Unique facts from that paragraph now open “Why it fits”.
+- Getting started step lists aligned with `setup_steps` for all 21 tested projects.
+
 ## 2.1.0 (unreleased)
 
 ### Changed

@@ -1,7 +1,7 @@
 ---
 name: SearXNG
 slug: searxng
-category: Search
+category: Utilities
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -25,9 +25,6 @@ sources:
   - https://docs.searxng.org/admin/installation.html
   - https://docs.searxng.org/admin/installation-docker.html
 ---
-
-SearXNG is a metasearch engine you can run yourself. It aggregates results from configured upstream engines. LICENSE is GNU AGPL version 3.
-
 ## Why it fits
 
 Self-hosting an instance for private use is free under AGPL.
@@ -42,9 +39,11 @@ Prerequisites (from the official docs):
 Steps:
 
 1. Create a directory for SearXNG and its configuration.
-2. Download the compose template from the official container guide.
-3. Set a secret key and your base URL in the settings.
-4. Start the container and open the web interface; optionally set it as your browser's search engine.
+2. Download the two Compose template files from the official container guide.
+3. Copy the example .env into place.
+4. Edit .env (secret key and base URL).
+5. Start the stack with docker compose up -d.
+6. Open the web interface; optionally set it as your browser search engine.
 
 Official container guide: <https://docs.searxng.org/admin/installation-docker.html>
 

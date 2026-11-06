@@ -27,9 +27,6 @@ sources:
   - https://futo.tech/grants
   - https://www.openhab.org/docs/installation/docker.html
 ---
-
-openHAB is a home-automation platform with a modular binding model. openhab-core LICENSE is Eclipse Public License 2.0.
-
 ## Why it fits
 
 Self-installation for private home control is free under EPL-2.0.
@@ -43,10 +40,11 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Choose a method on the installation page: openHABian on a Raspberry Pi, Docker, or a package install.
-2. Install openHAB with that method (for Docker, follow the Docker page).
-3. Open the web interface on port 8080 and create the admin account.
-4. Install bindings for your devices and add things and items.
+1. Create an openhab user on the host (or note the UID/GID you will run as).
+2. Create the three host directories the Docker guide mounts.
+3. Start the openhab/openhab container with a concrete image tag and your UID/GID.
+4. Open http://<server>:8080.
+5. Create the admin account and install bindings for your devices.
 
 Watch out: replace the image tag placeholder `openhab/openhab:<version>-<distribution>` with a concrete tag from Docker Hub (for example `openhab/openhab:latest`). Prefer the `TZ` environment variable over mounting `/etc/localtime`; the current image warns that the localtime mount is obsolete.
 

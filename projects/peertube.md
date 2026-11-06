@@ -1,7 +1,7 @@
 ---
 name: PeerTube
 slug: peertube
-category: Video/Media
+category: Media
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -28,12 +28,9 @@ sources:
   - https://nlnet.nl/project/PeerTube/
   - https://docs.joinpeertube.org/install/docker
 ---
-
-PeerTube is free software for hosting video with ActivityPub federation. You run an instance on your own hardware or VPS. LICENSE is GNU AGPL version 3.
-
 ## Why it fits
 
-Self-installation of a private or small public instance is free of charge. OSI-approved license.
+It is licensed under GNU AGPL version 3. Self-installation of a private or small public instance is free of charge. OSI-approved license.
 
 ## Getting started
 
@@ -46,11 +43,17 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Download the official production docker-compose file and .env template.
-2. Set your domain, database credentials and email settings in .env.
-3. Adjust the Nginx template and obtain the first TLS certificate with certbot as described.
-4. Start the stack with docker compose up -d.
-5. Read the generated admin password from the logs and log in.
+1. Download the official production docker-compose.yml.
+2. Download the .env template.
+3. Edit the compose file if your host needs local adjustments.
+4. Set your domain in .env (it cannot change after the first start).
+5. Set the database credentials in .env.
+6. Set email/SMTP settings and other secrets in .env.
+7. Create the webserver directory and download the Nginx template.
+8. Obtain the first TLS certificate with certbot standalone as documented.
+9. Start the stack with docker compose up -d.
+10. Read the generated root password from the PeerTube logs.
+11. Add the DKIM TXT record (and related DNS) as shown after startup.
 
 Official Docker guide: <https://docs.joinpeertube.org/install/docker>
 

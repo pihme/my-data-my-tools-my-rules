@@ -1,7 +1,7 @@
 ---
 name: Jellyfin
 slug: jellyfin
-category: Video/Media
+category: Media
 license: GPL-2.0-only
 open_source: true
 type: [Server, App]
@@ -30,12 +30,9 @@ sources:
   - https://github.com/jellyfin/jellyfin/blob/master/README.md
   - https://jellyfin.org/docs/general/installation/container/
 ---
-
-Jellyfin is a media system that lets you stream your own video and audio libraries from a server you operate. Clients exist for several platforms. Server LICENSE is GPL version 2.
-
 ## Why it fits
 
-Server and clients can be installed without a paid product license for private use.
+The server is licensed under GPL version 2. Server and clients can be installed without a paid product license for private use.
 
 ## Getting started
 

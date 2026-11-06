@@ -23,12 +23,9 @@ sources:
   - https://github.com/syncthing/syncthing/blob/main/LICENSE
   - https://docs.syncthing.net/intro/getting-started.html
 ---
-
-Syncthing synchronizes folders directly between devices you control, without a mandatory central cloud. LICENSE is Mozilla Public License 2.0.
-
 ## Why it fits
 
-Binaries and source are free to install for private use on your own machines.
+It is licensed under Mozilla Public License 2.0. Binaries and source are free to install for private use on your own machines.
 
 ## Getting started
 

@@ -24,12 +24,9 @@ sources:
   - https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt
   - https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose
 ---
-
-Vaultwarden is an alternative implementation of the Bitwarden server API written for lightweight self-hosting. LICENSE.txt is GNU AGPL version 3. Official project presence is primarily the GitHub repository (no separate marketing site required).
-
 ## Why it fits
 
-You can run your own vault backend without paying for hosted Bitwarden for private use.
+It is licensed under GNU AGPL version 3; the official project presence is primarily the GitHub repository. You can run your own vault backend without paying for hosted Bitwarden for private use.
 
 ## Getting started
 
@@ -42,10 +39,9 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Create a docker-compose.yml based on the wiki page, using the vaultwarden/server image and a data volume.
-2. Add a reverse proxy with TLS, as shown in the same guide, if you expose it.
-3. Start it with docker compose up -d.
-4. Open the web vault, create your account, then point the Bitwarden clients to your server URL.
+1. Create a data directory and start vaultwarden/server with DOMAIN set (docker run or Compose), as in the README Usage section.
+2. Open the web vault in a browser (HTTPS is required except on localhost).
+3. Create your account, then point the Bitwarden clients at your server URL.
 
 Official wiki: Using Docker Compose: <https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose>
 

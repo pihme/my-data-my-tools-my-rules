@@ -1,7 +1,7 @@
 ---
 name: Grayjay
 slug: grayjay
-category: Video/Media
+category: Media
 license: LicenseRef-SourceFirst-1.1
 open_source: false
 type: App
@@ -20,12 +20,9 @@ sources:
   - https://gitlab.futo.org/videostreaming/grayjay/-/blob/master/LICENSE.md
   - https://futo.tech/projects
 ---
-
-Grayjay is a desktop and mobile client for following and playing video from multiple platforms. It is a client application, not a media server. The LICENSE.md text is Source First License 1.1 (not OSI-approved).
-
 ## Why it fits
 
-Personal/non-commercial use is permitted under Source First 1.1. The app can be installed by an individual without a paid subscription for private use (per license limitations for non-commercial purposes).
+Grayjay is a client application, not a media server. Personal/non-commercial use is permitted under Source First 1.1. The app can be installed by an individual without a paid subscription for private use (per license limitations for non-commercial purposes).
 
 ## Getting started
 

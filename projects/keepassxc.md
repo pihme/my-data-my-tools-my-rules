@@ -26,12 +26,9 @@ sources:
   - https://keepassxc.org/download/
   - https://futo.tech/grants
 ---
-
-KeePassXC is a cross-platform password manager that stores credentials in a local encrypted database. COPYING states GPL version 2 or, at your option, version 3.
-
 ## Why it fits
 
-Desktop installs are free for private use; sync is optional and under your control.
+It is licensed under GPL version 2 or, at your option, version 3. Desktop installs are free for private use; sync is optional and under your control.
 
 ## Getting started
 

@@ -27,9 +27,6 @@ sources:
   - https://futo.tech/grants
   - https://nlnet.nl/project/Cryptpad/
 ---
-
-CryptPad is a collaborative office suite designed around client-side encryption. You may use a public instance or self-host. LICENSE is GNU AGPL version 3.
-
 ## Why it fits
 
 Self-hosting for private groups is free of charge under the AGPL.
@@ -45,11 +42,12 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Clone the CryptPad repository and check out the release tag named in the admin guide.
-2. Install the dependencies (or follow the Docker section of the same guide).
-3. Copy the example configuration and set both domains.
-4. Configure the reverse proxy with TLS for both domains.
-5. Start CryptPad and open the one-time setup link to create the first administrator.
+1. Get the official Docker Compose file from the admin installation guide.
+2. Edit the two domain settings (main domain and sandbox domain).
+3. Create the data directories, including config, and chown them to UID/GID 4001.
+4. Start the stack with docker compose up -d.
+5. Read the one-time admin install URL from the container logs.
+6. Open that URL and create the first administrator.
 
 Watch out: if you use Docker Compose, create and chown the `config` directory (UID/GID 4001) before `compose up`; the documented mkdir list omits it, Docker then creates it as root, and the container fails writing `config.js`. Use the environment variable names from the compose file you run (the docs and compose disagree on the OnlyOffice install flag name).
 

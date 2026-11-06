@@ -24,12 +24,9 @@ sources:
   - https://signal.org/download/
   - https://futo.tech/grants
 ---
-
-Signal provides end-to-end encrypted messaging clients. The Android client is licensed under the GNU AGPL version 3; the iOS, Desktop and server components are published in their own repositories.
-
 ## Why it fits
 
-Clients can be installed free of charge for private communication. Admission here is client self-install, not running a private Signal network.
+The Android, iOS, Desktop and server components are published in separate repositories. Clients can be installed free of charge for private communication. Admission here is client self-install, not running a private Signal network.
 
 ## Getting started
 

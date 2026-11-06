@@ -26,12 +26,9 @@ sources:
   - https://github.com/element-hq/element-web/blob/develop/docs/install.md
   - https://github.com/element-hq/element-web
 ---
-
-Element is a Matrix client (web and other apps). element-web carries LICENSE-AGPL-3.0 (GNU AGPL version 3). Full self-hosted messaging typically also needs a Matrix homeserver such as Synapse (separate project/license).
-
 ## Why it fits
 
-Clients are free to install; combined with a self-hosted homeserver, private messaging stays under your control.
+Full self-hosted messaging typically also needs a Matrix homeserver such as Synapse (a separate project and license). Clients are free to install; combined with a self-hosted homeserver, private messaging stays under your control.
 
 ## Getting started
 
@@ -41,17 +38,11 @@ Prerequisites (from the official docs):
 - A Matrix account on a homeserver; for fully self-hosted chat you also need a homeserver such as Synapse (separate project, not covered here)
 - For hosting Element Web yourself: Docker or a web server, plus HTTPS for real use
 
-Steps (apps):
+Steps:
 
-1. Download Element for your platform or open the web app.
-2. Sign in with an existing Matrix account or create one on a homeserver of your choice.
-3. Set up secure backup for your encryption keys when Element prompts you.
-
-Steps (self-host Element Web):
-
-1. Follow the Element Web install docs (Docker one-liner or tarball/Debian package).
-2. Point config.json at your homeserver; the default image talks to matrix.org until you change that.
-3. Serve it over HTTPS if clients connect from outside localhost.
+1. Start Element Web with the documented docker run command (or download the app for your platform).
+2. Open the UI in a browser (or launch the app) and sign in with a Matrix account on a homeserver of your choice.
+3. Optionally mount your own config.json so the client points at your homeserver instead of the default.
 
 Official downloads: <https://element.io/download>
 

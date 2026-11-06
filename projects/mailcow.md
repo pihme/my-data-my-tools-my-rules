@@ -1,7 +1,7 @@
 ---
 name: mailcow
 slug: mailcow
-category: Email
+category: Server
 license: GPL-3.0-only
 open_source: true
 type: Server
@@ -23,12 +23,9 @@ sources:
   - https://docs.mailcow.email/getstarted/prerequisite-system/
   - https://github.com/mailcow/mailcow-dockerized/blob/master/README.md
 ---
-
-mailcow (mailcow: dockerized) is a mail server suite packaged with Docker Compose (MTA, MDA, web UI, and related services). LICENSE is GPL version 3.
-
 ## Why it fits
 
-You can deploy it on your own VPS or hardware for private mail without a proprietary mail-suite license.
+It is licensed under GPL version 3. You can deploy it on your own VPS or hardware for private mail without a proprietary mail-suite license.
 
 ## Getting started
 
@@ -41,11 +38,15 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Prepare DNS and the server as described on the two prerequisite pages.
-2. Clone the mailcow-dockerized repository.
-3. Run generate_config.sh and enter your mail hostname.
-4. Start the stack with docker compose up -d.
-5. Log in to the web UI, change the default admin password and add your domain and mailboxes.
+1. Install the required packages on a supported dedicated server or VPS.
+2. Install Docker and the Compose plugin as described in the system prerequisites.
+3. Clone the mailcow-dockerized repository.
+4. Run generate_config.sh and enter your mail hostname.
+5. Review and edit mailcow.conf if needed.
+6. Pull the images with docker compose pull.
+7. Start the stack with docker compose up -d.
+8. Create the DNS records (A/AAAA, MX, PTR, SPF, DKIM and DMARC) as documented.
+9. Log in to the web UI, change the default admin password and add your domain and mailboxes.
 
 Official install guide: <https://docs.mailcow.email/getstarted/install/>
 

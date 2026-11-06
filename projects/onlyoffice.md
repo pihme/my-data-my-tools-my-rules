@@ -19,7 +19,6 @@ corporate_note: Developed by Ascensio System SIA (Riga, Latvia), which also sell
 icon: assets/icons/onlyoffice.svg
 icon_credit: ONLYOFFICE is a trademark of Ascensio System SIA. Official logo symbol from the ONLYOFFICE press kit, unmodified
 icon_source: https://static-site.onlyoffice.com/public/images/templates/press-downloads/logo/logos/logo_symbol_color.svg
-icon_scale: 2
 screenshot: assets/screenshots/onlyoffice.webp
 screenshot_credit: Screenshot from the ONLYOFFICE DocumentServer repository; non-code elements CC BY-SA 4.0 per the LICENSE additional terms; ONLYOFFICE is a trademark of Ascensio System SIA
 screenshot_source: https://github.com/ONLYOFFICE/DocumentServer/blob/master/screenshots/ONLYOFFICE%20Docs.png
@@ -32,12 +31,9 @@ sources:
   - https://helpcenter.onlyoffice.com/docs/installation/docs-community-install-docker.aspx
   - https://www.onlyoffice.com/download-desktop
 ---
-
-ONLYOFFICE has two parts covered here: the Desktop Editors (an app for your computer) and Docs Community Edition (the Document Server you host yourself). Both repositories carry the GNU AGPL version 3 in LICENSE, with additional terms appended by Ascensio System SIA.
-
 ## Why it fits
 
-The Desktop Editors are free to install, and Docs Community Edition is free to self-host for private use under the AGPL.
+Both Desktop Editors and Docs Community Edition carry GNU AGPL version 3 with additional terms appended by Ascensio System SIA. The Desktop Editors are free to install, and Docs Community Edition is free to self-host for private use under the AGPL.
 
 ## Getting started
 
@@ -50,10 +46,9 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Desktop: download and install ONLYOFFICE Desktop Editors from the official download page.
-2. Server: start the onlyoffice/documentserver container with your own JWT_SECRET, as in the Docker guide.
-3. Add data volumes so documents and logs survive container updates.
-4. Connect Docs to your file platform (for example the ONLYOFFICE app in Nextcloud) using the same JWT secret.
+1. Generate a JWT secret of your own (do not leave the example value).
+2. Start the onlyoffice/documentserver container with that JWT_SECRET, as in the Docker guide.
+3. Open http://<server>/welcome to confirm Docs is running, then connect it to a host app such as Nextcloud with the same secret.
 
 Watch out: set your own `JWT_SECRET` (do not leave the example `my_jwt_secret`). The "store data outside containers" `docker run` example ends after the volume flags and omits the image name and JWT flags; finish it with `-e JWT_SECRET=… onlyoffice/documentserver`.
 

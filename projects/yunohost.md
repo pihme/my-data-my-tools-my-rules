@@ -1,7 +1,7 @@
 ---
 name: YunoHost
 slug: yunohost
-category: Hosting Platform
+category: Server
 license: AGPL-3.0-only
 open_source: true
 type: Server
@@ -25,12 +25,9 @@ sources:
   - https://nlnet.nl/project/YunoHost-DeclarativeSettings/
   - https://doc.yunohost.org/en/admin/get_started/install_on/
 ---
-
-YunoHost is a server operating system / administration layer that helps install and manage self-hosted web applications. LICENSE is GNU AGPL version 3.
-
 ## Why it fits
 
-You can install it on your own hardware or VPS for private services without a proprietary panel license.
+It is licensed under GNU AGPL version 3. You can install it on your own hardware or VPS for private services without a proprietary panel license.
 
 ## Getting started
 

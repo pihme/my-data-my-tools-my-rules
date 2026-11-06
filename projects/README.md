@@ -26,14 +26,13 @@ Exact field names (YAML):
 | `source_url` | yes | string | Direct link to the project's LICENSE file (used to check the license) |
 | `checked` | yes | date | Verification date (`YYYY-MM-DD`) |
 | `note` | no | string | One short sentence for the project card (~120 characters max) |
-| `summary` | no | string | Short card paragraph: 2-4 plain, factual sentences (~250-400 characters), no marketing superlatives. Shown instead of `note` where the layout has room |
+| `summary` | no | string | Opening text on the dossier page (and on cards where space allows): 2-4 plain, factual sentences (~250-400 characters), no marketing superlatives. Shown instead of `note` where the layout has room |
 | `corporate_note` | no | string | Optional corporate / org binding (info only, never exclusion) |
 | `funding_note` | no | string | Optional one-sentence funding note; the source URL goes into `sources`; funding is not decisive and not proof of a license |
 | `funders` | no | list | Funder slugs linking to the Funders page, e.g. `[futo, nlnet, ngi]` |
 | `icon` | no | string | Path to the official logo, `assets/icons/<slug>.svg` or `.png`; only when its license/terms are documented in ASSETS.md |
 | `icon_credit` | no | string | Credit/trademark line shown with the icon |
 | `icon_source` | no | string | URL the icon file was taken from |
-| `icon_scale` | no | number | Optical scale (1-2) for logos with built-in whitespace, e.g. `1.4`; the file itself is never changed |
 | `screenshot` | no | string | Path to an official screenshot, `assets/screenshots/<slug>.webp` (max 1600 px wide); only with a documented reuse license |
 | `screenshot_credit` | no | string | Credit/license line shown with the screenshot |
 | `screenshot_source` | no | string | URL the screenshot was taken from |
@@ -44,12 +43,11 @@ Exact field names (YAML):
 
 ## Body sections
 
-Free-form Markdown after the front matter. Keep each dossier short. Suggested headings:
+Free-form Markdown after the front matter. Keep each dossier short. The `summary` field is the opening text; do not repeat it as a body paragraph. Suggested headings:
 
-1. Short neutral description (2–4 sentences)
-2. `## Why it fits` — free private self-install
-3. `## Getting started` — short prerequisites list, 3-6 high-level steps, the official install-doc link, and optional short `Watch out:` lines for pitfalls in that official path
-4. `## Notes` — caveats, labels, unverified items
+1. `## Why it fits` — free private self-install
+2. `## Getting started` — short prerequisites list, 3-6 high-level steps, the official install-doc link, and optional short `Watch out:` lines for pitfalls in that official path
+3. `## Notes` — caveats, labels, unverified items
 
 ## Admission rule (context)
 
@@ -57,4 +55,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-30 dossiers (24 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Categories include Backup, Monitoring and AI.
+30 dossiers (24 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE and OpenCode; checked 2026-11-05/06, Europe/Berlin). Categories: AI, Cloud/Files, Collaboration, Media, Messaging, Mobile, Passwords, Server, Smart Home, Utilities.

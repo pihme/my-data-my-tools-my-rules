@@ -29,12 +29,9 @@ sources:
   - https://docs.paperless-ngx.com/setup/
   - https://github.com/jonaswinkler/paperless-ng
 ---
-
-Paperless-ngx indexes scanned documents and PDFs, runs OCR and makes them searchable in a web interface. The repository LICENSE is the GNU GPL version 3 (no "or later" statement found, hence `GPL-3.0-only`).
-
 ## Why it fits
 
-Free to self-host for a private household archive; documents stay on your own server.
+The repository LICENSE is GNU GPL version 3 with no "or later" statement (GPL-3.0-only). Free to self-host for a private household archive; documents stay on your own server.
 
 ## Getting started
 
@@ -46,10 +43,14 @@ Prerequisites (from the official docs):
 
 Steps:
 
-1. Run the interactive install script from the setup guide, or download a Docker Compose template for your database.
-2. Adjust the paths for the consume, media and data folders and the settings in docker-compose.env.
-3. Pull the images and start the stack with docker compose up -d.
-4. Open the web interface, log in with the admin account and drop a first PDF into the consume folder.
+1. Download the three Docker Compose template files from the setup guide for your database.
+2. Edit the compose file for your paths and database choice.
+3. Edit docker-compose.env (consume/media/data paths and UID/GID).
+4. Replace PAPERLESS_SECRET_KEY=change-me with a real secret (for example openssl rand -hex 32).
+5. Pull the images with docker compose pull.
+6. Start the stack with docker compose up -d.
+7. Open http://<server>:8000.
+8. Create the Django superuser and drop a first PDF into the consume folder.
 
 Watch out: before `compose up` on the Compose route, replace `PAPERLESS_SECRET_KEY=change-me` in `docker-compose.env` with a real secret (for example `openssl rand -hex 32`); the webserver will not start while the default value remains.
 
