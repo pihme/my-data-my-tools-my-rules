@@ -351,7 +351,8 @@ def index(ps, cats):
     nos = sum(p["open_source"] for p in ps); nsh = sum(is_server(p) for p in ps)
     secs = ""
     for i, (cid, n, col, cps) in enumerate(cats):
-        secs += (f'<section class="cat" id="{cid}" style="--c:{col}"><header class="sh"><span class="num">{i+1:02d}</span>'
+        k = min(len(cps), 4)
+        secs += (f'<section class="cat span-{k}" id="{cid}" style="--c:{col};--n:{k}"><header class="sh"><span class="num">{i+1:02d}</span>'
                  f'<div><h2>{E(n)}</h2><p><span class="cnt">{len(cps)} {"entry" if len(cps) == 1 else "entries"}</span></p></div></header>\n'
                  f'<div class="grid">{"".join(card(p, col, cid) for p in cps)}</div></section>\n')
     main = f'''<section class="hero" id="top"><div class="h1w"><p class="kick">An open catalog</p>
