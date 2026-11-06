@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.0
+
+- Compact homepage header: stat tiles removed; hero right column is intro + search only; filter pills sit on one row below the thick divider (thin separators between License / Runs as / For), with Reset filters on its own right-aligned line.
+
 ## 2.4.2
 
 - Content v2.18: ONLYOFFICE Code Fireworks tile re-rendered from the combined history of `sdkjs`, `web-apps` and `server` (DocumentServer is a submodule shell); ASSETS.md source updated.
