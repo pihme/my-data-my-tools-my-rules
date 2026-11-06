@@ -15,7 +15,7 @@ summary: Grayjay is a video app for Android and desktop that follows creators ac
 corporate_note: FUTO Holdings product.
 funding_note: Developed by FUTO; listed among FUTO's own projects (not a grant).
 funders: [futo]
-fireworks_image: assets/fireworks/cf-grayjay-b1.png
+fireworks_image: assets/fireworks/cf-grayjay-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://grayjay.app/

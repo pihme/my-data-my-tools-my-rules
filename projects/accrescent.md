@@ -17,7 +17,7 @@ funders: [futo]
 screenshot: assets/screenshots/accrescent.webp
 screenshot_credit: Screenshot © 2021-2023 Logan Magee, ISC license (per .screenshots/home.jpeg.license)
 screenshot_source: https://github.com/accrescent/accrescent/blob/main/.screenshots/home.jpeg
-fireworks_image: assets/fireworks/cf-accrescent-b1.png
+fireworks_image: assets/fireworks/cf-accrescent-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://accrescent.app/

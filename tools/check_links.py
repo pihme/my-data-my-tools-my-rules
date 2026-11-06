@@ -42,7 +42,25 @@ def main(site):
                 bad.append((p, ref, "missing anchor"))
     for p, u in css_refs:
         if not os.path.exists(os.path.join(os.path.dirname(p), u)): bad.append((p, u, "missing file (css)"))
-    for p, ref, why in bad: print(f"BROKEN {os.path.relpath(p, site)}: {ref} ({why})")
+    # sitemap.xml: every <loc> must resolve to a built file under this site
+    sm = os.path.join(site, "sitemap.xml")
+    if not os.path.isfile(sm):
+        bad.append((sm, "sitemap.xml", "missing sitemap"))
+    else:
+        import re
+        # SITE prefix as used in build.py
+        site_url = "https://pihme.github.io/my-data-my-tools-my-rules"
+        for loc in re.findall(r"<loc>(.*?)</loc>", open(sm, encoding="utf-8").read()):
+            if not loc.startswith(site_url):
+                bad.append((sm, loc, "sitemap loc outside site URL")); continue
+            rel = loc[len(site_url):].lstrip("/")
+            if rel == "" or rel.endswith("/"):
+                target = os.path.join(site, "index.html")
+            else:
+                target = os.path.join(site, urllib.parse.unquote(rel))
+            if not os.path.isfile(target):
+                bad.append((sm, loc, "sitemap loc missing file"))
+    for p, ref, why in bad: print(f"BROKEN {os.path.relpath(p, site) if os.path.exists(os.path.dirname(p)) else p}: {ref} ({why})")
     print(f"{len(pages)} pages checked, {len(bad)} broken internal links, {len(ext)} distinct external links (not fetched)")
     return 1 if bad else 0
 

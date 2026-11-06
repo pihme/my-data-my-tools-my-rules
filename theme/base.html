@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{OG_URL}}">
+{{ROBOTS}}
+{{JSON_LD}}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{TITLE}}">
 <meta property="og:description" content="{{DESCRIPTION}}">
@@ -17,13 +20,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ROOT}}assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ROOT}}assets/favicon-16.png">
 <link rel="apple-touch-icon" href="{{ROOT}}assets/logo-mark.png">
-<link rel="stylesheet" href="{{ROOT}}theme/fonts.css?v={{VERSION}}">
+{{FONT_PRELOADS}}<link rel="stylesheet" href="{{ROOT}}theme/fonts.css?v={{VERSION}}">
 <link rel="stylesheet" href="{{ROOT}}theme/style.css?v={{VERSION}}">
 <script>try{var m=localStorage.getItem("mdmtmr-mode");if(m==="dark"||m==="light")document.documentElement.classList.add(m)}catch(e){}</script>
 </head>
 <body class="{{BODYCLASS}}">
 <aside class="nav">
-<a class="brand" href="{{ROOT}}index.html"><img src="{{ROOT}}assets/logo-lockup-dark-transparent.svg" alt="My Data, My Tools, My Rules" width="189" height="72"></a>
+<a class="brand" href="{{HOME}}"><img src="{{ROOT}}assets/logo-lockup-dark-transparent.svg" alt="My Data, My Tools, My Rules" width="189" height="72"></a>
 <p class="lbl">Categories</p>
 <ul class="cats">{{NAV}}</ul>
 <p class="lbl">About</p>

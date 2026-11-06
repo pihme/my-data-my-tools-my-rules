@@ -15,7 +15,7 @@ summary: Pangolin is a self-hosted reverse proxy and VPN that makes services in 
 corporate_note: "Developed by Fossorial, Inc., which also sells Pangolin Cloud and Enterprise Edition licenses. A self-hosted server keeps the control plane and traffic on your own infrastructure."
 funding_note: FUTO microgrant (May 2025), listed on FUTO's grants page.
 funders: [futo]
-fireworks_image: assets/fireworks/cf-pangolin-b1.png
+fireworks_image: assets/fireworks/cf-pangolin-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://pangolin.net/

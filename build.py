@@ -8,7 +8,7 @@
 All links are relative, so the output works under any base path
 (GitHub Pages serves it at /my-data-my-tools-my-rules/) and from file://.
 """
-import argparse, datetime, html, os, re, shutil, sys, unicodedata
+import argparse, datetime, html, json, os, re, shutil, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.6.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.7.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -348,23 +348,52 @@ def nav(cats, root, active=None, index=False):
     if index:
         items.append(f'<li><a href="#top" data-cat="all" class="on"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     else:
-        items.append(f'<li><a href="{root}index.html" data-cat="all"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
+        items.append(f'<li><a href="{home_href(root)}" data-cat="all"><b>··</b>Catalog<span class="nc">{total}</span></a></li>')
     for i, (cid, n, col, ps) in enumerate(cats):
-        href = f"#{cid}" if index else f"{root}index.html#{cid}"
+        href = f"#{cid}" if index else f"{home_href(root)}#{cid}"
         on = ' class="on"' if cid == active else ""
         items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}>{cat_ico(n, 16, 2)}{E(n)}<span class="nc">{len(ps)}</span></a></li>')
     return "".join(items)
 
-def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html"):
+
+def img_size(path):
+    """Return (width, height) for a repo-relative image; no runtime web dependency."""
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(ROOT, path)) as im:
+            return im.size
+    except Exception:
+        return None
+
+def home_href(root):
+    """Catalog/brand target: ./ on site root pages, ../ from projects/, absolute on 404."""
+    if root.startswith("http://") or root.startswith("https://"):
+        return root if root.endswith("/") else root + "/"
+    return "../" if root.startswith("..") else "./"
+
+def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html", json_ld=None, noindex=False):
     """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None.
     path: site-relative page path used for the absolute og:url (e.g. index.html, projects/foo.html)."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
     on = ' class="on"'
     og_url = SITE + "/" if path in ("", "index.html") else SITE + "/" + path
+    home = home_href(root)
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
            "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass,
-           "{{OG_URL}}": E(og_url), "{{OG_IMAGE}}": E(OG_IMAGE), "{{OG_IMAGE_ALT}}": E(OG_IMAGE_ALT)}
+           "{{OG_URL}}": E(og_url), "{{OG_IMAGE}}": E(OG_IMAGE), "{{OG_IMAGE_ALT}}": E(OG_IMAGE_ALT),
+           "{{HOME}}": home}
     rep["{{VERSION}}"] = VERSION
+    rep["{{ROBOTS}}"] = '<meta name="robots" content="noindex">' if noindex else ""
+    if json_ld is None:
+        rep["{{JSON_LD}}"] = ""
+    else:
+        payload = json.dumps(json_ld, ensure_ascii=False, separators=(",", ":"))
+        rep["{{JSON_LD}}"] = f'<script type="application/ld+json">{payload}</script>'
+    # Above-the-fold fonts: Inter (body), Bricolage (H1), JetBrains Mono (kick/labels).
+    pre = []
+    for fn in ("Inter-Variable.woff2", "BricolageGrotesque-Variable.woff2", "JetBrainsMono-Variable.woff2"):
+        pre.append(f'<link rel="preload" href="{root}theme/fonts/{fn}" as="font" type="font/woff2" crossorigin>')
+    rep["{{FONT_PRELOADS}}"] = "".join(pre) + "\n"
     if os.path.isfile(OMAKASE):
         rep["{{OMAKASE}}"] = f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>Omakase</a></li>'
         rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>'
@@ -440,9 +469,16 @@ def index(ps, cats):
 <div class="filterbar" hidden><div class="frow"><div class="fgroup" role="group" aria-label="License"><span class="flabel">License</span><div class="pills"><button type="button" data-lic="all" class="on" aria-pressed="true">Any</button><button type="button" data-lic="open-source" aria-pressed="false">Open source</button><button type="button" data-lic="source-available" data-sa aria-pressed="false">Source-available</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="Runs as"><span class="flabel">Runs as</span><div class="pills"><button type="button" data-run="all" class="on" aria-pressed="true">Any</button><button type="button" data-run="app" aria-pressed="false">App</button><button type="button" data-run="self-host" aria-pressed="false">Self-host</button></div></div><span class="fdiv" aria-hidden="true"></span><div class="fgroup" role="group" aria-label="For"><span class="flabel">For</span><div class="pills"><button type="button" data-aud="all" class="on" aria-pressed="true">Everyone</button><button type="button" data-aud="end-user" aria-pressed="false"><span class="dots" aria-hidden="true">●○○</span> End user</button><button type="button" data-aud="enthusiast" aria-pressed="false"><span class="dots" aria-hidden="true">●●○</span> Enthusiast</button><button type="button" data-aud="expert" aria-pressed="false"><span class="dots" aria-hidden="true">●●●</span> Expert</button></div></div><button type="button" class="freset">Reset filters</button></div></div>
 <div class="catflow">
 {secs}</div><p class="empty" hidden>No projects match your search and filters. <button type="button" class="freset">Reset filters</button></p><p class="sr-only" aria-live="polite" id="filter-status"></p>'''
+    item_list = [{"@type": "ListItem", "position": i + 1, "url": f'{SITE}/projects/{p["slug"]}.html', "name": p["name"]}
+                 for i, p in enumerate(ps)]
+    ld = [
+        {"@context": "https://schema.org", "@type": "WebSite", "name": "My Data, My Tools, My Rules",
+         "url": SITE + "/", "inLanguage": "en"},
+        {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": item_list},
+    ]
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
                 "An open catalog of open-source and source-available software that keeps your data under your control.",
-                path="index.html")
+                path="index.html", json_ld=ld)
 
 def media_credit(path):
     m = MEDIA[path]
@@ -465,7 +501,9 @@ def funding_html(p, fs):
 def shots_html(p):
     s = p.get("screenshot")
     if not s: return ""
-    return (f'<figure class="shot"><img src="../{E(s)}" alt="Screenshot of {E(p["name"])}" '
+    wh = img_size(s)
+    dims = f' width="{wh[0]}" height="{wh[1]}"' if wh else ""
+    return (f'<figure class="shot"><img src="../{E(s)}" alt="Screenshot of {E(p["name"])}"{dims} '
             f'loading="lazy" decoding="async"><figcaption><span class="cr">Screenshot: {media_credit(s)}</span></figcaption></figure>')
 
 CF_URL = "https://x.com/code_fireworks"
@@ -495,7 +533,7 @@ def project(p, cats):
     if p.get("demo"):
         note = f'<div class="sub">{E(p["demo_note"])}</div>' if p.get("demo_note") else ""
         rows.append(("Demo", f'<a href="{E(p["demo"])}" target="_blank" rel="noopener">Try the online demo</a>{note}'))
-    rows.append(("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>'))
+    rows.append(("Category", f'<a href="../#{cid}">{E(cat_name(p["category"]))}</a>'))
     if p["slug"] in OMK: rows.append(("Omakase", '<a href="../omakase.html">In daily use by the curator</a>'))
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):
@@ -515,15 +553,31 @@ def project(p, cats):
     fw = fireworks_html(p)
     phead_cls = "phead proj has-cfx" if fw else "phead proj"
     cname = cat_name(p["category"])
-    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../index.html#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
+    siblings = [x for x in next(c[3] for c in cats if c[0] == cid) if x["slug"] != p["slug"]]
+    more = ""
+    if siblings:
+        links = "".join(f'<li><a href="{E(x["slug"])}.html">{E(x["name"])}</a></li>' for x in siblings)
+        more = f'<section class="more-cat"><h2>More in {E(cname)}</h2><ul>{links}</ul></section>'
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../">Catalog</a> · <a href="../#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
-<a class="back" href="../index.html#{cid}">← Back to the catalog</a></article>
+{more}<a class="back" href="../#{cid}">← Back to the catalog</a></article>
 <aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside></div>'''
+    ld = [
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Catalog", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": cname, "item": f"{SITE}/#{cid}"},
+            {"@type": "ListItem", "position": 3, "name": p["name"], "item": f'{SITE}/projects/{p["slug"]}.html'},
+        ]},
+        {"@context": "https://schema.org", "@type": "SoftwareApplication",
+         "name": p["name"], "url": p["url"], "applicationCategory": cname,
+         "license": p["source_url"], "sameAs": p["repo"],
+         "description": p.get("note") or p.get("summary") or p["name"]},
+    ]
     return page(f'{p["name"]} · My Data, My Tools, My Rules', main, "../", nav(cats, "../", active=cid),
-                p.get("note") or p["name"], path=f'projects/{p["slug"]}.html')
+                p.get("note") or p["name"], path=f'projects/{p["slug"]}.html', json_ld=ld)
 
 def about(cats):
     readme = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
@@ -532,7 +586,7 @@ def about(cats):
     crit = open(os.path.join(ROOT, "content", "selection-criteria.md"), encoding="utf-8").read()
     crit = re.sub(r"^## How projects are selected", '## How projects are selected {#selection-criteria}', crit, flags=re.M)
     crit_html = markdown(crit).replace("<h2>How projects are selected {#selection-criteria}</h2>", '<h2 id="selection-criteria">How projects are selected</h2>')
-    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · About</p><h1>About this site</h1></div>
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · About</p><h1>About this site</h1></div>
 <p class="intro">What goes in, how projects are selected and what the labels mean.</p></section>
 <div class="body-wrap"><article class="prose">
 <h2 id="what-belongs-here">What belongs here</h2>
@@ -576,7 +630,7 @@ def funders_page(fs, ps, cats):
             slug = fid(text)
         return f'<h2 id="{E(slug)}">{m.group(1)}</h2>'
     html_rest = re.sub(r"<h2>(.*?)</h2>", h2id, html_rest)
-    main = f'''<section class="phead"><div><p class="kick"><a href="index.html">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
@@ -626,10 +680,44 @@ def omakase_page(ps, cats):
         secs += f'<section class="course"><h2><span class="cn">{n:02d}</span>{kick}{E(nm.strip())}</h2><ul class="menu">{items}</ul></section>'
     intro = f'<p class="intro">{inline(" ".join(intro))}</p>' if intro else ""
     title = h1 or o.get("title") or "Omakase"
-    main = f'''<section class="phead omk-head"><div><p class="kick"><a href="index.html">Catalog</a> · Omakase</p>
+    main = f'''<section class="phead omk-head"><div><p class="kick"><a href="./">Catalog</a> · Omakase</p>
 <h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
     return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase", path="omakase.html")
+
+def sitemap_xml(ps, built):
+    """Absolute <loc> URLs; <lastmod> from project dates or build day."""
+    urls = [("index.html", built), ("about.html", built), ("funders.html", built)]
+    if os.path.isfile(OMAKASE):
+        urls.append(("omakase.html", built))
+    for p in ps:
+        dates = [p.get("checked"), p.get("setup_tested")]
+        dates = [str(d) for d in dates if d]
+        last = max(dates) if dates else built
+        urls.append((f'projects/{p["slug"]}.html', last[:10] if len(last) >= 10 else last))
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for path, last in urls:
+        loc = SITE + "/" if path == "index.html" else SITE + "/" + path
+        lines.append("  <url>")
+        lines.append(f"    <loc>{E(loc)}</loc>")
+        lines.append(f"    <lastmod>{E(last)}</lastmod>")
+        lines.append("  </url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+def not_found_page(cats):
+    """Custom 404 with absolute SITE URLs (served at any depth under the project)."""
+    root = SITE + "/"
+    sep = "\u00b7"  # middle dot
+    main = (
+        f'<section class="phead"><div><p class="kick"><a href="{E(root)}">Catalog</a> {sep} Not found</p>'
+        f'<h1>Page not found</h1></div>'
+        f'<p class="intro">That URL is not in this catalog. Go back to the <a href="{E(root)}">catalog</a>'
+        f' or <a href="{E(root)}#search">search</a>.</p></section>'
+    )
+    return page("Page not found \u00b7 My Data, My Tools, My Rules", main, root, nav(cats, root),
+                "This page is not in the catalog.", path="404.html", noindex=True)
 
 def build(out):
     global FS, OMK
@@ -641,7 +729,11 @@ def build(out):
     w("index.html", index(ps, cats)); w("about.html", about(cats)); w("funders.html", funders_page(fs, ps, cats))
     if os.path.isfile(OMAKASE): w("omakase.html", omakase_page(ps, cats))
     for p in ps: w(f"projects/{p['slug']}.html", project(p, cats))
-    shutil.copytree(TH, os.path.join(out, "theme"), ignore=shutil.ignore_patterns("base.html"))
+    w("404.html", not_found_page(cats))
+    w("sitemap.xml", sitemap_xml(ps, datetime.date.today().isoformat()))
+    # Serve WOFF2 + OFL only; keep variable TTFs in the repo as sources.
+    shutil.copytree(TH, os.path.join(out, "theme"),
+                    ignore=shutil.ignore_patterns("base.html", "*.ttf"))
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"))
     print(f"built {len(ps)} projects in {len(cats)} categories, {len(fs['known'])} funders into {out}")
 

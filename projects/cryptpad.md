@@ -22,7 +22,7 @@ funders: [futo, nlnet, ngi]
 icon: assets/icons/cryptpad.svg
 icon_credit: Logo © 2023 XWiki CryptPad Team and contributors, AGPL-3.0-or-later; used to identify the project
 icon_source: https://github.com/cryptpad/cryptpad/blob/main/customize.dist/CryptPad_logo.svg
-fireworks_image: assets/fireworks/cf-cryptpad-b1.png
+fireworks_image: assets/fireworks/cf-cryptpad-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://cryptpad.org/

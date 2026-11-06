@@ -23,7 +23,7 @@ funders: [futo]
 screenshot: assets/screenshots/immich.webp
 screenshot_credit: Screenshot from the Immich documentation, AGPL-3.0 repository
 screenshot_source: https://github.com/immich-app/immich/blob/main/docs/static/img/screenshot-light.webp
-fireworks_image: assets/fireworks/cf-immich-b1.png
+fireworks_image: assets/fireworks/cf-immich-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://immich.app/

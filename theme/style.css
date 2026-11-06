@@ -308,3 +308,10 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 @media (max-width:1279px){
   .fsearch-row{margin:0 0 16px}
 }
+
+/* A10: more projects in the same category (dossier) */
+.more-cat{margin:28px 0 8px;padding-top:20px;border-top:1px solid var(--line)}
+.more-cat h2{font:700 18px/1.3 "Inter Tight","Inter";margin:0 0 10px}
+.more-cat ul{margin:0;padding-left:18px}
+.more-cat li{margin:4px 0}
+.more-cat a:hover{text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
