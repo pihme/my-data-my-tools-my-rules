@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.4
+
+- Content v2.7: CryptPad moves from Collaboration to Office (Office 3); the empty Collaboration category is dropped (9 categories). PeerTube is removed from the catalog (dossier, icon and ASSETS.md row deleted); 29 dossiers.
+
 ## 2.3.3
 
 - Content v2.5: new dossier Pangolin (Server, AGPL-3.0 Community Edition; FUTO microgrant noted as funding). 30 dossiers, Server 8. No icon (Fossorial trademark terms), letter tile; ASSETS.md lists the reason.

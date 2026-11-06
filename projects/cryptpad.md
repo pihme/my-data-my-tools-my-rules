@@ -1,7 +1,7 @@
 ---
 name: CryptPad
 slug: cryptpad
-category: Collaboration
+category: Office
 license: AGPL-3.0-only
 open_source: true
 type: Server
