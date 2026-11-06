@@ -9,6 +9,7 @@ audience: expert
 url: https://mailcow.github.io/mailcow-dockerized-docs/
 repo: https://github.com/mailcow/mailcow-dockerized
 source_url: https://github.com/mailcow/mailcow-dockerized/blob/master/LICENSE
+demo: https://demo.mailcow.email/
 checked: 2026-11-05
 setup_steps: 9
 setup_clarity: 3
@@ -22,6 +23,7 @@ sources:
   - https://docs.mailcow.email/getstarted/prerequisite-dns/
   - https://docs.mailcow.email/getstarted/prerequisite-system/
   - https://github.com/mailcow/mailcow-dockerized/blob/master/README.md
+  - https://mailcow.email/
 ---
 ## Why it fits
 

@@ -16,7 +16,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.3.9"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.3.11"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -400,8 +400,11 @@ def project(p, cats):
         rows.append(("Setup", f'{p["setup_steps"]} steps · clarity {p["setup_clarity"]}/5'
                      f'<div class="sub">Checked <time datetime="{E(str(p["setup_tested"]))}">{nice_date(p["setup_tested"])}</time></div>'))
     rows += [("Website", f'<a href="{E(p["url"])}">{E(host(p["url"]))}</a>'),
-             ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>'),
-             ("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>')]
+             ("Source code", f'<a href="{E(p["repo"])}">{E(host(p["repo"]))}</a>')]
+    if p.get("demo"):
+        note = f'<div class="sub">{E(p["demo_note"])}</div>' if p.get("demo_note") else ""
+        rows.append(("Demo", f'<a href="{E(p["demo"])}" target="_blank" rel="noopener">Try the online demo</a>{note}'))
+    rows.append(("Category", f'<a href="../index.html#{cid}">{E(cat_name(p["category"]))}</a>'))
     if p["slug"] in OMK: rows.append(("Omakase", '<a href="../omakase.html">In daily use by the curator</a>'))
     if p.get("corporate_note"): rows.append(("Organization", inline(p["corporate_note"])))
     if p.get("funding_note") or p.get("funders"):

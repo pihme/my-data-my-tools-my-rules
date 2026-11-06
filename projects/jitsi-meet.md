@@ -9,13 +9,15 @@ audience: enthusiast
 url: https://jitsi.org/jitsi-meet/
 repo: https://github.com/jitsi/jitsi-meet
 source_url: https://github.com/jitsi/jitsi-meet/blob/master/LICENSE
+demo: https://meet.jit.si/
+demo_note: Public service run by 8x8; starting a meeting needs a Google, Facebook or GitHub account.
 checked: 2026-11-06
 note: Browser-based video meetings you can run on your own server.
 summary: Jitsi Meet is a video conferencing platform that runs in the browser, with mobile apps for Android (including F-Droid) and iOS. It offers screen sharing, chat, polls, reactions and virtual backgrounds. You can use the public meet.jit.si service or run your own instance from Debian packages or the official Docker setup.
 corporate_note: Since 2018 the Jitsi team and technology belong to 8x8, a cloud communications company that also sells Jitsi as a Service; the code remains Apache-2.0.
-icon: assets/icons/jitsi-meet.svg
-icon_credit: Jitsi icon from the jitsi-meet repository, Apache-2.0 repository license; used to identify the project
-icon_source: https://github.com/jitsi/jitsi-meet/blob/master/images/favicon.svg
+icon: assets/icons/jitsi-meet.png
+icon_credit: Jitsi Meet app icon from the jitsi-meet repository, Apache-2.0 repository license; used to identify the project
+icon_source: https://github.com/jitsi/jitsi-meet/blob/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
 sources:
   - https://jitsi.org/jitsi-meet/
   - https://github.com/jitsi/jitsi-meet

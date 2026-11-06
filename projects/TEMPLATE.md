@@ -11,6 +11,9 @@ audience: enthusiast
 url: https://example.org/
 repo: https://github.com/example/project
 source_url: https://github.com/example/project/blob/main/LICENSE
+demo: https://demo.example.org/
+demo_note: Optional; login, reset interval, who runs it.
+# demo fields are optional; only official demos linked from the project's site or README
 checked: 2026-11-05
 setup_steps: 4
 setup_clarity: 4

@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://docs.paperless-ngx.com/
 repo: https://github.com/paperless-ngx/paperless-ngx
 source_url: https://github.com/paperless-ngx/paperless-ngx/blob/dev/LICENSE
+demo: https://demo.paperless-ngx.com/
+demo_note: Log in with demo / demo; content is reset frequently, do not upload private files.
 checked: 2026-11-05
 setup_steps: 8
 setup_clarity: 2

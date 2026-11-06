@@ -9,6 +9,7 @@ audience: enthusiast
 url: https://forgejo.org/
 repo: https://codeberg.org/forgejo/forgejo
 source_url: https://codeberg.org/forgejo/forgejo/src/branch/forgejo/LICENSE
+demo: https://try.next.forgejo.org/
 checked: 2026-11-05
 setup_steps: 6
 setup_clarity: 4

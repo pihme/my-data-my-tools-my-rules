@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://cryptpad.org/
 repo: https://github.com/cryptpad/cryptpad
 source_url: https://github.com/cryptpad/cryptpad/blob/main/LICENSE
+demo: https://cryptpad.fr/
+demo_note: Public instance run by the CryptPad team; no account needed to try it.
 checked: 2026-11-05
 setup_steps: 6
 setup_clarity: 2

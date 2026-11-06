@@ -9,6 +9,7 @@ audience: enthusiast
 url: https://jellyfin.org/
 repo: https://github.com/jellyfin/jellyfin
 source_url: https://github.com/jellyfin/jellyfin/blob/master/LICENSE
+demo: https://demo.jellyfin.org/stable
 checked: 2026-11-05
 setup_steps: 5
 setup_clarity: 3

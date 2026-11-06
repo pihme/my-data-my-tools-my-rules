@@ -9,6 +9,8 @@ audience: enthusiast
 url: https://uptime.kuma.pet/
 repo: https://github.com/louislam/uptime-kuma
 source_url: https://github.com/louislam/uptime-kuma/blob/master/LICENSE
+demo: https://demo.kuma.pet/start-demo
+demo_note: Temporary demo; data is deleted after 10 minutes.
 checked: 2026-11-05
 setup_steps: 4
 setup_clarity: 5

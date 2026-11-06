@@ -9,6 +9,7 @@ audience: enthusiast
 url: https://www.home-assistant.io/
 repo: https://github.com/home-assistant/core
 source_url: https://github.com/home-assistant/core/blob/dev/LICENSE.md
+demo: https://demo.home-assistant.io/
 checked: 2026-11-05
 setup_steps: 5
 setup_clarity: 4
