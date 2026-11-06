@@ -1,8 +1,12 @@
 # Changelog
 
-## 2.3.9
+## 2.3.10
 
 - Home page: packed category rows keep equal card heights (category stretches, cards `height:100%`, footer pinned with `margin-top:auto`). Card footer always shows the hostname on its own line, then audience level left and `repo →` right (no mid-footer wrap).
+
+## 2.3.9
+
+- Content v2.11: new dossier Jitsi Meet under Office (Apache-2.0; self-hostable; meet.jit.si login note); 30 dossiers.
 
 ## 2.3.8
 
