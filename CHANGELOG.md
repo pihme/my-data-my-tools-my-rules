@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.9
+
+- Content v2.11: new dossier Jitsi Meet under Office (Apache-2.0; self-hostable; meet.jit.si login note); 30 dossiers.
+
 ## 2.3.8
 
 - Open Graph / Twitter Card meta tags on every page (`og:image` points at `assets/social-preview.png`, 1280×640).
