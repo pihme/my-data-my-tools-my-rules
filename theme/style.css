@@ -36,16 +36,16 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#ff5c39,#ffc531 50%,#2e
 .filters button{font:500 13px "Inter";border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:7px 15px;cursor:pointer}
 .filters button.on{background:var(--ink);color:var(--bg)}
 .empty{padding:40px 0;color:var(--mut)}
-/* category sections + cards */
-.catflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:18px}
-section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
+/* category sections + cards — packed catflow; cards fill the row height */
+.catflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:18px;align-items:stretch}
+section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;flex-direction:column}
 .cat.span-1{grid-column:span 1}.cat.span-2{grid-column:span 2}.cat.span-3{grid-column:span 3}.cat.span-4{grid-column:span 4}
-.cat .grid{grid-template-columns:repeat(var(--n,4),minmax(0,1fr))}
+.cat .grid{grid-template-columns:repeat(var(--n,4),minmax(0,1fr));flex:1;align-content:stretch;grid-auto-rows:1fr}
 .sh{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:end;margin-bottom:18px}
 .num{font:800 64px/.8 "Bricolage Grotesque";color:var(--c)}
 .sh h2{font:800 34px/1 "Bricolage Grotesque";letter-spacing:-.02em;margin:0 0 6px;overflow-wrap:anywhere}.sh p{margin:0;color:var(--mut)}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:18px 20px 16px;display:flex;flex-direction:column;min-height:196px}
+.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:18px 20px 16px;display:flex;flex-direction:column;min-height:196px;height:100%;box-sizing:border-box}
 .ct{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .lt{flex:none;width:34px;height:34px;border-radius:9px;background:var(--c);color:#111;display:grid;place-items:center;font:800 17px "Bricolage Grotesque"}
 .card h3{font:700 18px/1.2 "Inter Tight","Inter";margin:0}
@@ -57,13 +57,15 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .tag.t-sa{border:1.5px dashed currentColor;padding:3.5px 8px}
 .tag.t-sh{background:color-mix(in srgb,var(--c) 22%,transparent)}
 .tag.t-app{border:1.5px solid var(--line);padding:3.5px 8px}
-.card p{margin:0 0 14px;color:var(--mut);font-size:14px;line-height:1.5;flex:1}
+.card p{margin:0 0 14px;color:var(--mut);font-size:14px;line-height:1.5}
 .nonote{opacity:.6;font-style:italic}
-.lnk{font:500 12.5px "JetBrains Mono";border-top:1px solid var(--line);padding-top:12px;display:flex;gap:14px;align-items:baseline}
+.lnk{font:500 12.5px "JetBrains Mono";border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:auto}
 .lnk a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lnk a:hover{color:var(--c);filter:brightness(.8)}
-.lnk .web{min-width:0}.lnk .repo{margin-left:auto;flex:none;color:var(--mut)}
-.lnk .more{flex:none;color:var(--c)}
+/* hostname always on its own line; level left, repo→ right on the line below */
+.lnk .web{flex:1 1 100%;min-width:0;overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere}
+.lnk .repo{margin-left:auto;flex:none;color:var(--mut);white-space:nowrap}
+.lnk .more{flex:none;color:var(--c);white-space:nowrap}
 /* project + about pages */
 .phead{display:grid;grid-template-columns:1fr;gap:22px;align-items:start;padding:56px 0 36px;border-bottom:3px solid var(--ink)}
 .phead h1{font-size:96px;display:flex;align-items:center;gap:26px}
@@ -149,9 +151,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 :root.dark .lt.ic{--icbg:#f1efe9}
 .phead h1 .lt.ic{padding:12px}
 .card p{font-size:14px;line-height:1.55}
-.lnk .aud{flex:none;color:var(--mut);white-space:nowrap;font:500 11.5px "JetBrains Mono"}
-.lnk .web{flex:1 1 auto}
-.lnk .repo{margin-left:0}
+.lnk .aud{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--mut);font:500 11.5px "JetBrains Mono"}
 .aud-l{font:500 13px "JetBrains Mono";color:var(--mut)}
 .facts .sub{font-size:12.5px;color:var(--mut);margin-top:4px;overflow-wrap:normal}
 .facts .fund{margin:0;padding-left:18px}
@@ -175,7 +175,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .funder h3{font:700 17px "Inter Tight","Inter";margin:22px 0 8px}
 .fsrc{margin:14px 0 4px!important;font-size:13px;color:var(--mut)}
 .flist{font:13px/1.7 "JetBrains Mono";padding-left:22px!important}
-@media (max-width:640px){.lnk{flex-wrap:wrap;row-gap:6px}.lnk .web{flex-basis:100%}.lnk .aud{order:2}.lnk .repo{order:3;margin-left:auto}.lnk .more{order:4}.phead .intro{font-size:19px}.phead.proj .intro{padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
+@media (max-width:640px){.lnk .aud{order:2}.lnk .repo{order:3}.lnk .more{order:4}.phead .intro{font-size:19px}.phead.proj .intro{padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
 /* omakase: menu card */
 .omk-head h1 .jp{font:400 .32em/1 "Inter",sans-serif;letter-spacing:.08em;color:var(--mut);vertical-align:.9em;margin-left:.2em}
 .omakase{max-width:860px;margin:0 auto;padding:30px 0 10px}
