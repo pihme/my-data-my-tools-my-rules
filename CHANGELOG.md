@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.12
+
+- Content v2.14: Jitsi Meet getting-started path hands-on checked (docker-jitsi-meet `stable-11248-3`); dossier adds `setup_steps: 7`, `setup_clarity: 3`, `setup_tested: 2026-11-06`, concrete Compose v2 steps, and notes what was and was not verified.
+
 ## 2.3.11
 
 - Content v2.12: optional `demo` / `demo_note` front-matter fields; dossier facts show a "Try the online demo" link (and optional note) for CryptPad, Forgejo, Home Assistant, Immich, Jellyfin, Jitsi Meet, mailcow, Navidrome, Nextcloud, openHAB, Paperless-ngx, Uptime Kuma and YunoHost.
