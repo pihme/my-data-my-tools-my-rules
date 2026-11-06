@@ -68,7 +68,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .phead{display:grid;grid-template-columns:1fr;gap:22px;align-items:start;padding:56px 0 36px;border-bottom:3px solid var(--ink)}
 .phead h1{font-size:96px;display:flex;align-items:center;gap:26px}
 .phead h1 .lt{width:84px;height:84px;border-radius:20px;font-size:46px;letter-spacing:0}
-.phead .intro{font:500 24px/1.42 "Inter";max-width:58ch;margin:0;color:var(--ink);padding-left:20px;border-left:5px solid var(--c)}
+.phead .intro{font:500 24px/1.42 "Inter";max-width:58ch;margin:0;color:var(--ink);padding-left:0;border-left:0}.phead.proj .intro{padding-left:20px;border-left:5px solid var(--c)}
 .body-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;padding-top:36px}
 .prose{font-size:17px;line-height:1.65;max-width:72ch}
 .prose h2{font:800 26px/1.1 "Bricolage Grotesque";letter-spacing:-.01em;margin:34px 0 10px}
@@ -175,7 +175,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0}
 .funder h3{font:700 17px "Inter Tight","Inter";margin:22px 0 8px}
 .fsrc{margin:14px 0 4px!important;font-size:13px;color:var(--mut)}
 .flist{font:13px/1.7 "JetBrains Mono";padding-left:22px!important}
-@media (max-width:640px){.lnk{flex-wrap:wrap;row-gap:6px}.lnk .web{flex-basis:100%}.lnk .aud{order:2}.lnk .repo{order:3;margin-left:auto}.lnk .more{order:4}.phead .intro{font-size:19px;padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
+@media (max-width:640px){.lnk{flex-wrap:wrap;row-gap:6px}.lnk .web{flex-basis:100%}.lnk .aud{order:2}.lnk .repo{order:3;margin-left:auto}.lnk .more{order:4}.phead .intro{font-size:19px}.phead.proj .intro{padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
 /* omakase: menu card */
 .omk-head h1 .jp{font:400 .32em/1 "Inter",sans-serif;letter-spacing:.08em;color:var(--mut);vertical-align:.9em;margin-left:.2em}
 .omakase{max-width:860px;margin:0 auto;padding:30px 0 10px}

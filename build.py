@@ -397,7 +397,7 @@ def project(p, cats):
     if setup:
         body = body.replace("<h2>Getting started</h2>", "<h2>Getting started</h2>\n" + setup, 1)
     summary = p.get("summary") or p.get("note", "")
-    main = f'''<section class="phead" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
+    main = f'''<section class="phead proj" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1></div>
 <p class="intro">{E(summary)}</p></section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
