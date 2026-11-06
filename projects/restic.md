@@ -16,7 +16,7 @@ setup_tested: 2026-11-06
 note: Encrypted, deduplicated command-line backups to disks, SFTP or cloud storage.
 summary: restic is a command-line backup program for Linux, macOS, Windows and BSD. It stores encrypted, deduplicated snapshots in a repository on a local disk, an SFTP server, or S3-compatible and other cloud storage. You can restore single files or whole snapshots. restic has no built-in scheduler, so regular backups are set up with cron, systemd timers or Task Scheduler.
 funding_note: The project README states that AppsCode sponsors the backend integration tests for Google Cloud Storage and Azure Blob Storage.
-fireworks_image: assets/fireworks/cf-restic-b1.png
+fireworks_image: assets/fireworks/cf-restic-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://restic.net/

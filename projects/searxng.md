@@ -19,7 +19,7 @@ corporate_note: Metasearch may query third-party engines depending on configurat
 icon: assets/icons/searxng.svg
 icon_credit: SearXNG logo, AGPL-3.0-or-later (SearXNG repository); used to identify the project
 icon_source: https://github.com/searxng/searxng/blob/master/client/simple/src/brand/searxng-wordmark.svg
-fireworks_image: assets/fireworks/cf-searxng-b1.png
+fireworks_image: assets/fireworks/cf-searxng-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://searxng.org/

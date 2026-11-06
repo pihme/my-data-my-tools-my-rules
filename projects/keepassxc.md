@@ -20,7 +20,7 @@ icon_source: https://github.com/keepassxreboot/keepassxc/blob/develop/share/icon
 screenshot: assets/screenshots/keepassxc.webp
 screenshot_credit: Screenshot from the KeePassXC documentation, GPL-2.0 or GPL-3.0
 screenshot_source: https://github.com/keepassxreboot/keepassxc/blob/develop/docs/images/database_view.png
-fireworks_image: assets/fireworks/cf-keepassxc-b1.png
+fireworks_image: assets/fireworks/cf-keepassxc-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://keepassxc.org/

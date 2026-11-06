@@ -21,7 +21,7 @@ funding_note: The project README lists Atlas Cloud as a special sponsor (USD 400
 icon: assets/icons/uptime-kuma.svg
 icon_credit: Uptime Kuma icon from the MIT-licensed repository; used to identify the project
 icon_source: https://github.com/louislam/uptime-kuma/blob/master/public/icon.svg
-fireworks_image: assets/fireworks/cf-uptime-kuma-b1.png
+fireworks_image: assets/fireworks/cf-uptime-kuma-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://uptime.kuma.pet/

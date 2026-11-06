@@ -21,7 +21,7 @@ icon_source: https://github.com/f-droid/fdroidclient/blob/master/logo-icon.svg
 screenshot: assets/screenshots/f-droid.webp
 screenshot_credit: Screenshot from the F-Droid client repository, GPL-3.0-or-later
 screenshot_source: https://github.com/f-droid/fdroidclient/blob/master/src/full/fastlane/metadata/android/en-US/images/phoneScreenshots/01-latest.png
-fireworks_image: assets/fireworks/cf-f-droid-b1.png
+fireworks_image: assets/fireworks/cf-f-droid-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://f-droid.org/

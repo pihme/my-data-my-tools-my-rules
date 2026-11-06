@@ -22,7 +22,7 @@ icon_source: https://github.com/anomalyco/opencode/blob/dev/packages/console/app
 screenshot: assets/screenshots/opencode.webp
 screenshot_credit: Screenshot from the OpenCode repository, MIT
 screenshot_source: https://github.com/anomalyco/opencode/blob/dev/packages/web/src/assets/lander/screenshot.png
-fireworks_image: assets/fireworks/cf-opencode-b1.png
+fireworks_image: assets/fireworks/cf-opencode-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://opencode.ai/

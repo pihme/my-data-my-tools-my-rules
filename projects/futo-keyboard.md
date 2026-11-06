@@ -15,7 +15,7 @@ summary: FUTO Keyboard is an Android keyboard with swipe typing, text prediction
 corporate_note: FUTO Holdings; positioned as offline alternative to Google keyboard.
 funding_note: Developed by FUTO; listed among FUTO's own projects (not a grant).
 funders: [futo]
-fireworks_image: assets/fireworks/cf-futo-keyboard-b1.png
+fireworks_image: assets/fireworks/cf-futo-keyboard-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://keyboard.futo.org/

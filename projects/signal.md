@@ -18,7 +18,7 @@ funders: [futo]
 icon: assets/icons/signal.svg
 icon_credit: Signal, the Signal logo, and all related names, designs, and slogans are registered trademarks of Signal Technology Foundation; official logo from signal.org/brand, unmodified
 icon_source: https://signal.org/brand/bundles/Signal%20Logo.zip
-fireworks_image: assets/fireworks/cf-signal-b1.png
+fireworks_image: assets/fireworks/cf-signal-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://signal.org/

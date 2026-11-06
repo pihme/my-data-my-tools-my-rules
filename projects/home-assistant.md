@@ -20,7 +20,7 @@ corporate_note: Open Home Foundation; Nabu Casa is an optional paid service (inf
 icon: assets/icons/home-assistant.png
 icon_credit: Home Assistant logo, a trademark of the Open Home Foundation; used non-commercially to identify the project
 icon_source: https://github.com/home-assistant/brands/blob/master/core_integrations/_homeassistant/icon@2x.png
-fireworks_image: assets/fireworks/cf-home-assistant-b1.png
+fireworks_image: assets/fireworks/cf-home-assistant-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://www.home-assistant.io/

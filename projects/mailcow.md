@@ -16,7 +16,7 @@ setup_clarity: 3
 setup_tested: 2026-11-06
 note: Dockerized mail server stack for self-hosted email.
 summary: mailcow: dockerized is a complete mail server suite in Docker containers. It combines Postfix, Dovecot, SOGo groupware, Rspamd spam filtering and ClamAV behind a web admin interface and handles mail, calendars and contacts for your own domains. Running a mail server means managing DNS records, IP reputation and deliverability, which needs solid ops experience.
-fireworks_image: assets/fireworks/cf-mailcow-b1.png
+fireworks_image: assets/fireworks/cf-mailcow-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://mailcow.github.io/mailcow-dockerized-docs/

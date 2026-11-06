@@ -21,7 +21,7 @@ icon_source: https://github.com/organicmaps/organicmaps/blob/master/iphone/Maps/
 screenshot: assets/screenshots/organic-maps.webp
 screenshot_credit: Screenshot from the Organic Maps repository, Apache-2.0; credit: Organic Maps Project (https://organicmaps.app)
 screenshot_source: https://github.com/organicmaps/organicmaps/blob/master/android/app/src/fdroid/play/listings/en-US/graphics/phone-screenshots/1.jpg
-fireworks_image: assets/fireworks/cf-organic-maps-b1.png
+fireworks_image: assets/fireworks/cf-organic-maps-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://organicmaps.app/

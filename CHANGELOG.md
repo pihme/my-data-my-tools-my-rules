@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.0
+
+- SEO groundwork: canonical link, `sitemap.xml`, custom `404.html` (absolute URLs, noindex), JSON-LD (`WebSite`/`ItemList` on home; `BreadcrumbList`/`SoftwareApplication` on dossiers).
+- Screenshot `<img>` tags get width/height from the file at build time (no layout shift).
+- Fonts: variable TTFs subset to WOFF2 (Latin + Latin-1 + · – — … ‘’“” ● ○ ◐ ← → ↗); TTFs kept as sources, not copied to the site output; preload Inter, Bricolage Grotesque and JetBrains Mono. OFL.txt kept. Japanese お任せ still uses the system fallback. JetBrains Mono includes the card `→`/`←` arrows so they do not fall back.
+- Code Fireworks tiles: 500×500 WebP (q=90, Lanczos from 560 PNG); PNGs kept as sources. Logo SVGs untouched.
+- Internal links: brand/Catalog point to `./` or `../`; dossiers add "More in <Category>" when the category has other projects.
+
 ## 2.6.0
 
 - Category headers and sidebar: Lucide icons (ISC) replace the category numbers. Mapping: AI sparkles, Files folder, Media clapperboard, Mobile smartphone, Office file-text, Passwords key-round, Server server, Smart Home house, Utilities wrench. Credit on the About page; license text in `LICENSE-lucide.txt`.

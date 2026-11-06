@@ -21,7 +21,7 @@ corporate_note: Since 2018 the Jitsi team and technology belong to 8x8, a cloud 
 icon: assets/icons/jitsi-meet.png
 icon_credit: Jitsi Meet app icon from the jitsi-meet repository, Apache-2.0 repository license; used to identify the project
 icon_source: https://github.com/jitsi/jitsi-meet/blob/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
-fireworks_image: assets/fireworks/cf-jitsi-meet-b1.png
+fireworks_image: assets/fireworks/cf-jitsi-meet-b1.webp
 fireworks_date: 2026-11
 sources:
   - https://jitsi.org/jitsi-meet/

@@ -32,7 +32,7 @@ screenshot: assets/screenshots/project-name.webp
 screenshot_credit: Screenshot from the project repository, license
 screenshot_source: https://github.com/example/project/blob/main/docs/screenshot.png
 # icon/screenshot fields are optional; use only assets cleared in ASSETS.md
-fireworks_image: assets/fireworks/cf-project-name-b1.png
+fireworks_image: assets/fireworks/cf-project-name-b1.webp
 fireworks_date: 2026-11
 # optional; both together; our own Code Fireworks render, listed in ASSETS.md
 sources:
