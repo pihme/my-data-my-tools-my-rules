@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2
+
+- Content v2.18: ONLYOFFICE Code Fireworks tile re-rendered from the combined history of `sdkjs`, `web-apps` and `server` (DocumentServer is a submodule shell); ASSETS.md source updated.
+
 ## 2.4.1
 
 - Category headers: number, title and entry count share one baseline; the count is right-aligned on the title row.
