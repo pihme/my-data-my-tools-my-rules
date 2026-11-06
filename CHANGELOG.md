@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.0
+
+- Catalog search: client-side text search as the first row of the filter bar (`data-search` on each card). Combines with License / Runs as / For; mirrors the query to `?q=` via `replaceState`; Reset and Esc clear it; `/` focuses the field. Empty state: "No projects match your search and filters."
+- Dossier pages: small magnifier in the header links to `index.html#search` and focuses the field on load.
+
 ## 2.3.14
 
 - Content v2.17: Code Fireworks renders for Nextcloud and Organic Maps (all 30 dossiers).
