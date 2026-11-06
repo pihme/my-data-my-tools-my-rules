@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1
+
+- Category headers: number, title and entry count share one baseline; the count is right-aligned on the title row.
+
 ## 2.3.14
 
 - Content v2.17: Code Fireworks renders for Nextcloud and Organic Maps (all 30 dossiers).
