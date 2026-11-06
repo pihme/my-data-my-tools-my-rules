@@ -57,6 +57,7 @@ All screenshots were resized to at most 1600 px wide and converted to WebP; that
 | Signal | screenshot (deleted `screenshots/signal.webp`) | From signal.org/brand; the brand terms cover marks, and media use requires permission; no reuse license for app screens is stated | https://signal.org/brand/ |
 | Accrescent | icon | Accrescent's README forbids use of its logo without permission | https://github.com/accrescent/accrescent/blob/main/README.md |
 | restic | icon | Gopher-style artwork with no license or credit stated in the repository | https://github.com/restic/restic |
+| Pangolin | icon | The Fossorial terms of service (section 4.2 Trademarks) say "The Fossorial name and logos are trademarks and service marks of Fossorial" and grant no right to use them without prior written permission; the repository LICENSE states no separate terms for the logo files | https://pangolin.net/terms-of-service.html |
 | Beszel, Uptime Kuma, and the other projects without a screenshot | screenshot | No official screenshot under a stated reuse license (images hosted on websites/CDNs outside the licensed repository) | – |
 
-Letter tile (no icon): accrescent, futo-keyboard, grayjay, mailcow, restic.
+Letter tile (no icon): accrescent, futo-keyboard, grayjay, mailcow, pangolin, restic.
