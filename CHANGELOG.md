@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.9
+
+- Home page: each category on its own full-width row; catalog cards share one min-height and push the link row to the bottom. Omakase tab clearance kept via grid padding/row-gap only where a tab is present.
+
 ## 2.3.8
 
 - Open Graph / Twitter Card meta tags on every page (`og:image` points at `assets/social-preview.png`, 1280×640).
