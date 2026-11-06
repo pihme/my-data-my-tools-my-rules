@@ -12,7 +12,7 @@ source_url: https://github.com/jitsi/jitsi-meet/blob/master/LICENSE
 demo: https://meet.jit.si/
 demo_note: Public service run by 8x8; starting a meeting needs a Google, Facebook or GitHub account.
 checked: 2026-11-06
-setup_steps: 7
+setup_steps: 6
 setup_clarity: 3
 setup_tested: 2026-11-06
 note: Browser-based video meetings you can run on your own server.

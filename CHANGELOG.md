@@ -2,7 +2,7 @@
 
 ## 2.3.12
 
-- Content v2.14: Jitsi Meet getting-started path hands-on checked (docker-jitsi-meet `stable-11248-3`); dossier adds `setup_steps: 7`, `setup_clarity: 3`, `setup_tested: 2026-11-06`, concrete Compose v2 steps, and notes what was and was not verified.
+- Content v2.15 (supersedes v2.14): Jitsi Meet getting-started path hands-on checked (docker-jitsi-meet `stable-11248-3`); dossier adds `setup_steps: 6`, `setup_clarity: 3`, `setup_tested: 2026-11-06`, concrete Compose v2 steps, and notes what was and was not verified.
 
 ## 2.3.11
 
