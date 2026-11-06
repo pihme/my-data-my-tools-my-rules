@@ -2,7 +2,7 @@
 
 ## 2.3.9
 
-- Home page: packed category rows keep equal card heights (category stretches, cards `height:100%`, footer pinned with `margin-top:auto`). Card website hostnames no longer truncate to an ellipsis.
+- Home page: packed category rows keep equal card heights (category stretches, cards `height:100%`, footer pinned with `margin-top:auto`). Card footer always shows the hostname on its own line, then audience level left and `repo →` right (no mid-footer wrap).
 
 ## 2.3.8
 

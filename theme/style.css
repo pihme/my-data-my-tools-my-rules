@@ -59,12 +59,13 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .tag.t-app{border:1.5px solid var(--line);padding:3.5px 8px}
 .card p{margin:0 0 14px;color:var(--mut);font-size:14px;line-height:1.5}
 .nonote{opacity:.6;font-style:italic}
-.lnk{font:500 12.5px "JetBrains Mono";border-top:1px solid var(--line);padding-top:12px;display:flex;gap:14px;align-items:baseline;margin-top:auto;flex-wrap:wrap;row-gap:6px}
+.lnk{font:500 12.5px "JetBrains Mono";border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:auto}
 .lnk a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lnk a:hover{color:var(--c);filter:brightness(.8)}
-.lnk .web{min-width:0;flex:1 1 auto;overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere}
-.lnk .repo{margin-left:auto;flex:none;color:var(--mut)}
-.lnk .more{flex:none;color:var(--c)}
+/* hostname always on its own line; level left, repo→ right on the line below */
+.lnk .web{flex:1 1 100%;min-width:0;overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere}
+.lnk .repo{margin-left:auto;flex:none;color:var(--mut);white-space:nowrap}
+.lnk .more{flex:none;color:var(--c);white-space:nowrap}
 /* project + about pages */
 .phead{display:grid;grid-template-columns:1fr;gap:22px;align-items:start;padding:56px 0 36px;border-bottom:3px solid var(--ink)}
 .phead h1{font-size:96px;display:flex;align-items:center;gap:26px}
@@ -150,9 +151,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 :root.dark .lt.ic{--icbg:#f1efe9}
 .phead h1 .lt.ic{padding:12px}
 .card p{font-size:14px;line-height:1.55}
-.lnk .aud{flex:none;color:var(--mut);white-space:nowrap;font:500 11.5px "JetBrains Mono"}
-.lnk .web{flex:1 1 auto}
-.lnk .repo{margin-left:0}
+.lnk .aud{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--mut);font:500 11.5px "JetBrains Mono"}
 .aud-l{font:500 13px "JetBrains Mono";color:var(--mut)}
 .facts .sub{font-size:12.5px;color:var(--mut);margin-top:4px;overflow-wrap:normal}
 .facts .fund{margin:0;padding-left:18px}
@@ -176,7 +175,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .funder h3{font:700 17px "Inter Tight","Inter";margin:22px 0 8px}
 .fsrc{margin:14px 0 4px!important;font-size:13px;color:var(--mut)}
 .flist{font:13px/1.7 "JetBrains Mono";padding-left:22px!important}
-@media (max-width:640px){.lnk{flex-wrap:wrap;row-gap:6px}.lnk .web{flex-basis:100%}.lnk .aud{order:2}.lnk .repo{order:3;margin-left:auto}.lnk .more{order:4}.phead .intro{font-size:19px}.phead.proj .intro{padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
+@media (max-width:640px){.lnk .aud{order:2}.lnk .repo{order:3}.lnk .more{order:4}.phead .intro{font-size:19px}.phead.proj .intro{padding-left:14px;border-left-width:4px}.phead h1 .lt{width:64px;height:64px}.phead h1{gap:16px}}
 /* omakase: menu card */
 .omk-head h1 .jp{font:400 .32em/1 "Inter",sans-serif;letter-spacing:.08em;color:var(--mut);vertical-align:.9em;margin-left:.2em}
 .omakase{max-width:860px;margin:0 auto;padding:30px 0 10px}
