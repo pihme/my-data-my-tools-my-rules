@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.0
+
+- Category headers and sidebar: Lucide icons (ISC) replace the category numbers. Mapping: AI sparkles, Files folder, Media clapperboard, Mobile smartphone, Office file-text, Passwords key-round, Server server, Smart Home house, Utilities wrench. Credit on the About page; license text in `LICENSE-lucide.txt`.
+- Category header titles no longer shrink or wrap when a filtered category is alone in its row (e.g. `?q=immich`): `white-space: nowrap` on the title, and a sole visible category expands to the full row.
+
 ## 2.5.0
 
 - Compact homepage header: stat tiles removed; hero right column is intro + search only; filter pills sit on one row below the thick divider (thin separators between License / Runs as / For), with Reset filters on its own right-aligned line.
