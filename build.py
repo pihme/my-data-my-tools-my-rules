@@ -13,7 +13,10 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-VERSION = "2.3.7"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
+OG_IMAGE = SITE + "/assets/social-preview.png"
+OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
+VERSION = "2.3.8"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -274,12 +277,15 @@ def nav(cats, root, active=None, index=False):
         items.append(f'<li><a href="{href}" data-cat="{cid}" style="--c:{col}"{on}><b>{i+1:02d}</b>{E(n)}<span>{len(ps)}</span></a></li>')
     return "".join(items)
 
-def page(title, main, root, navhtml, desc, bodyclass="", about=None):
-    """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None."""
+def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html"):
+    """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None.
+    path: site-relative page path used for the absolute og:url (e.g. index.html, projects/foo.html)."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
     on = ' class="on"'
+    og_url = SITE + "/" if path in ("", "index.html") else SITE + "/" + path
     rep = {"{{TITLE}}": E(title), "{{DESCRIPTION}}": E(desc), "{{NAV}}": navhtml, "{{MAIN}}": main,
-           "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass}
+           "{{REPO}}": REPO, "{{BUILT}}": datetime.date.today().isoformat(), "{{BODYCLASS}}": bodyclass,
+           "{{OG_URL}}": E(og_url), "{{OG_IMAGE}}": E(OG_IMAGE), "{{OG_IMAGE_ALT}}": E(OG_IMAGE_ALT)}
     rep["{{VERSION}}"] = VERSION
     if os.path.isfile(OMAKASE):
         rep["{{OMAKASE}}"] = f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>Omakase</a></li>'
@@ -357,7 +363,8 @@ def index(ps, cats):
 <div class="catflow">
 {secs}</div><p class="empty" hidden>No projects match these filters. <button type="button" class="freset">Reset filters</button></p>'''
     return page("My Data, My Tools, My Rules", main, "", nav(cats, "", index=True),
-                "An open catalog of open-source and source-available software that keeps your data under your control.")
+                "An open catalog of open-source and source-available software that keeps your data under your control.",
+                path="index.html")
 
 def media_credit(path):
     m = MEDIA[path]
@@ -419,7 +426,7 @@ def project(p, cats):
 <a class="back" href="../index.html#{cid}">← Back to the catalog</a></article>
 <aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside></div>'''
     return page(f'{p["name"]} · My Data, My Tools, My Rules', main, "../", nav(cats, "../", active=cid),
-                p.get("note") or p["name"])
+                p.get("note") or p["name"], path=f'projects/{p["slug"]}.html')
 
 def about(cats):
     readme = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
@@ -450,7 +457,7 @@ def about(cats):
 <h2 id="suggest-a-project">Suggest a project</h2>
 {markdown(open(os.path.join(ROOT, "content", "suggest.md"), encoding="utf-8").read())}
 </article></div>'''
-    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.", about="about")
+    return page("About · My Data, My Tools, My Rules", main, "", nav(cats, ""), "About this site, how projects are selected and what the labels mean.", about="about", path="about.html")
 
 def funders_page(fs, ps, cats):
     """Render content/funders.md. Section ids for known funders are the dossier slugs
@@ -475,7 +482,7 @@ def funders_page(fs, ps, cats):
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
-    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.", about="funders")
+    return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.", about="funders", path="funders.html")
 
 
 def omakase_page(ps, cats):
@@ -524,7 +531,7 @@ def omakase_page(ps, cats):
     main = f'''<section class="phead omk-head"><div><p class="kick"><a href="index.html">Catalog</a> · Omakase</p>
 <h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
-    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase")
+    return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase", path="omakase.html")
 
 def build(out):
     global FS, OMK
