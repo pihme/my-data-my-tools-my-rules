@@ -14,7 +14,7 @@ setup_steps: 4
 setup_clarity: 3
 setup_tested: 2026-11-06
 note: Peer-to-peer continuous file synchronization across your devices.
-summary: Syncthing continuously synchronizes folders between your own devices over the local network or the internet, without a central cloud. Data is transferred encrypted, and devices are paired by exchanging device IDs. It runs on Windows, macOS, Linux and other systems and is managed through a local web interface.
+summary: Syncthing continuously synchronizes folders between your own devices over the local network or the internet. Files are stored only on your devices; public discovery servers help devices find each other, and relay servers can forward encrypted traffic when no direct connection is possible. Data is transferred encrypted, and devices are paired by exchanging device IDs. It runs on Windows, macOS, Linux and other systems and is managed through a local web interface.
 icon: assets/icons/syncthing.svg
 icon_credit: Syncthing logo, MPL-2.0 (same license as the source); used unmodified to identify the project
 icon_source: https://github.com/syncthing/syncthing/blob/main/assets/logo-only.svg
