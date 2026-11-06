@@ -13,7 +13,7 @@ import argparse, datetime, html, os, re, shutil, sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TH = os.path.join(ROOT, "theme")
 REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
-VERSION = "2.2.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.3.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
 E = html.escape
@@ -321,10 +321,23 @@ def setup_html(p, cls="setup-meta"):
     return (f'<p class="{cls}" title="Hands-on check of the official getting-started path '
             f'on {E(str(p["setup_tested"]))}">{p["setup_steps"]} steps · clarity {p["setup_clarity"]}/5</p>')
 
+OMAKASE = os.path.join(ROOT, "content", "omakase.md")
+OMK = set()
+
+def omakase_slugs():
+    """Slugs of catalog projects linked from content/omakase.md (empty if there is no Omakase page)."""
+    if not os.path.isfile(OMAKASE): return set()
+    return set(re.findall(r"\]\(projects/([a-z0-9-]+)\.html\)", open(OMAKASE, encoding="utf-8").read()))
+
+def omk_badge(root):
+    return (f'<a class="omk-badge" href="{root}omakase.html" title="On the Omakase list: tools the site author runs">'
+            f'<span lang="ja">お任せ</span> Omakase</a>')
+
 def card(p, col, cid):
+    omk = p["slug"] in OMK
     note = E(p.get("summary") or p.get("note") or "") or '<span class="nonote">No note.</span>'
     setup = setup_html(p, "setup-meta setup-card")
-    return f'''<article class="card" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div></div>
+    return f'''<article class="card{' omk' if omk else ''}" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div>{omk_badge("") if omk else ""}</div>
 <div class="tags">{license_tag(p)}{type_tags(p)}</div>
 <p>{note}</p>{setup}<div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
 
@@ -398,7 +411,7 @@ def project(p, cats):
         body = body.replace("<h2>Getting started</h2>", "<h2>Getting started</h2>\n" + setup, 1)
     summary = p.get("summary") or p.get("note", "")
     main = f'''<section class="phead proj" style="--c:{col}"><div><p class="kick"><a href="../index.html">Catalog</a> · <a href="../index.html#{cid}">{i+1:02d} {E(cat_name(p["category"]))}</a></p>
-<h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1></div>
+<h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p></section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
@@ -463,7 +476,6 @@ def funders_page(fs, ps, cats):
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
     return page("Funders · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Organizations that develop or fund projects in this catalog.", about="funders")
 
-OMAKASE = os.path.join(ROOT, "content", "omakase.md")
 
 def omakase_page(ps, cats):
     """content/omakase.md: front matter (title), a `# Heading`, an intro paragraph, then
@@ -514,7 +526,8 @@ def omakase_page(ps, cats):
     return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase")
 
 def build(out):
-    global FS
+    global FS, OMK
+    OMK = omakase_slugs()
     ps = load_projects(); cats = categories(ps); fs = FS = load_funders(ps)
     if os.path.isdir(out): shutil.rmtree(out)
     os.makedirs(os.path.join(out, "projects"))

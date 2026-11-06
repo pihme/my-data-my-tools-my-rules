@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.0 (unreleased)
+
+### Added
+- Omakase marker: catalog cards of projects on the Omakase page get a black frame and an “お任せ Omakase” badge; their dossiers show the same badge under the title. The badge links to the Omakase page. The set is derived from `content/omakase.md`.
+
 ## 2.2.1 (unreleased)
 
 ### Changed
