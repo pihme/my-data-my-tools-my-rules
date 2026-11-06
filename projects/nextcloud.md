@@ -1,7 +1,7 @@
 ---
 name: Nextcloud
 slug: nextcloud
-category: Cloud/Files
+category: Files
 license: AGPL-3.0-only
 open_source: true
 type: Server
