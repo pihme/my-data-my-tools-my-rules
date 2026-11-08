@@ -29,18 +29,16 @@ It is licensed under GPL version 3 or later and is free on the App Store. It pla
 Prerequisites (from the official docs):
 
 - An iPhone, iPad or Mac with iOS, iPadOS or macOS 26.0 or later (App Store listing)
-- A running Ampache or Subsonic-compatible server with your music and a user account
+- A running Ampache server or a server with the Subsonic API 1.8 or newer (Subsonic 4.8+), with your music and a user account (App Store listing)
 - The server address reachable from your device
 
 Steps:
 
 1. Install Amperfy Music from the App Store (iPhone, iPad or Mac).
-2. Open the app and enter your server URL, user name and password.
-3. Wait for the library to sync, then browse and play.
-4. Optionally download songs for offline playback.
+2. Open the app and log in to your server.
 
 Official download links: <https://github.com/BLeeEZ/amperfy#basics>
 
 ## Notes
 
-The app is a client only and needs a music server. The README names Ampache and Subsonic. It also works with [Navidrome](navidrome.html), which speaks the Subsonic API (tested in our own use, November 2026), although the README does not list Navidrome by name. The app has no official website; the GitHub repository is the project home. The App Store build is published by Dirk Hildebrand, while the source code is by Maximilian Bauer (BLeeEZ). Building from source requires Xcode and an Apple developer account for CarPlay and Siri features.
+The app is a client only and needs a music server. The README names Ampache and Subsonic. It also works with [Navidrome](navidrome.html), which speaks the Subsonic API (tested in our own use, November 2026), although the README does not list Navidrome by name. The app has no official website; the GitHub repository is the project home. The App Store build is published by Dirk Hildebrand, while the source code is by Maximilian Bauer (BLeeEZ). Building from source needs Xcode 26; testing CarPlay and Siri on a real device needs an Apple developer certificate.
