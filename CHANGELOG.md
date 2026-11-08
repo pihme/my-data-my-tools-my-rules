@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.0
+
+- Content v2.19: new dossier Amperfy under Media (GPL-3.0-or-later; iOS/iPadOS/macOS client for Ampache and Subsonic servers; free on the App Store; no setup test, the app needs OS 26); 31 dossiers. App icon added to `assets/ASSETS.md`.
+
 ## 2.7.0
 
 - SEO groundwork: canonical link, `sitemap.xml`, custom `404.html` (absolute URLs, noindex), JSON-LD (`WebSite`/`ItemList` on home; `BreadcrumbList`/`SoftwareApplication` on dossiers).

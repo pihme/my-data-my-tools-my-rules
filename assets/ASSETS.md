@@ -6,6 +6,7 @@ Every file in `assets/icons/`, `assets/screenshots/` and `assets/fireworks/`, wi
 
 | File | Project | Source URL | License / terms URL | Terms in short | Credit line | Verdict |
 |---|---|---|---|---|---|---|
+| icons/amperfy.png | Amperfy | https://github.com/BLeeEZ/amperfy/blob/master/AmperfyKit/Assets/Assets.xcassets/Icon-1024.imageset/Icon-1024.png | https://github.com/BLeeEZ/amperfy/blob/master/LICENSE | GPL-3.0-or-later (repository license; source headers say "version 3 … or any later version") | Amperfy app icon, GPL-3.0 | ok |
 | icons/beszel.svg | Beszel | https://github.com/henrygd/beszel/blob/main/internal/site/public/static/icon.svg | https://github.com/henrygd/beszel/blob/main/LICENSE | MIT (repository license covers the file) | Beszel icon, MIT | ok |
 | icons/cryptpad.svg | CryptPad | https://github.com/cryptpad/cryptpad/blob/main/customize.dist/CryptPad_logo.svg | https://github.com/cryptpad/cryptpad/blob/main/LICENSE | AGPL-3.0-or-later (repository license) | Logo © XWiki CryptPad Team and contributors, AGPL-3.0-or-later | ok |
 | icons/f-droid.svg | F-Droid | https://github.com/f-droid/fdroidclient/blob/master/logo-icon.svg | https://github.com/f-droid/fdroidclient/blob/master/logo-icon.svg (embedded metadata: "dual: GPLv3+ CC-BY-SA", CC BY-SA 3.0) | GPL-3.0-or-later or CC BY-SA 3.0 | F-Droid logo by William Theaker, Robert Martinez, Andrew Nayenko; CC BY-SA 3.0 or GPL-3.0-or-later | ok |
