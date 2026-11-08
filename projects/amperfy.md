@@ -43,4 +43,4 @@ Official download links: <https://github.com/BLeeEZ/amperfy#basics>
 
 ## Notes
 
-The app is a client only and needs a music server. The README names Ampache and Subsonic. Servers that implement the Subsonic API, such as [Navidrome](navidrome.html), should work, but the README does not list Navidrome by name (unverified). The app has no official website; the GitHub repository is the project home. The App Store build is published by Dirk Hildebrand, while the source code is by Maximilian Bauer (BLeeEZ). Building from source requires Xcode and an Apple developer account for CarPlay and Siri features.
+The app is a client only and needs a music server. The README names Ampache and Subsonic. It also works with [Navidrome](navidrome.html), which speaks the Subsonic API (tested in our own use, November 2026), although the README does not list Navidrome by name. The app has no official website; the GitHub repository is the project home. The App Store build is published by Dirk Hildebrand, while the source code is by Maximilian Bauer (BLeeEZ). Building from source requires Xcode and an Apple developer account for CarPlay and Siri features.
