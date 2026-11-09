@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.2
+
+- Omakase desktop course: FreeMind (bespoke FreeMind CE build) added as an external link after Syncthing.
+
 ## 2.8.1
 
 - Google Search Console verification meta tag in the home page `<head>`, emitted by `build.py`.
