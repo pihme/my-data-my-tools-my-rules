@@ -17,7 +17,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.8.2"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.8.3"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 GSC_META = '<meta name="google-site-verification" content="kjHdjMt_2TgNqzExmmSZ4jDHpWZFUX_3mW5EGm2OaaE" />'  # Google Search Console ownership check (home page only)
 SKIP = {"README.md", "TEMPLATE.md"}
 COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
@@ -605,7 +605,7 @@ def about(cats):
 <ul><li><strong>●○○ End user</strong>: {AUD_HELP["End user"]}.</li><li><strong>●●○ Enthusiast</strong>: {AUD_HELP["Enthusiast"]}.</li><li><strong>●●● Expert</strong>: {AUD_HELP["Expert"]}.</li></ul>
 <p>The audience level is an editorial estimate, not a rating of the project.</p>
 <h2 id="logos-and-screenshots">Logos and screenshots</h2>
-<p>Project logos and screenshots are shown only when their license or the project's brand guidelines allow this kind of use. They are shown unmodified, only to identify the project, and do not imply endorsement. Every logo and screenshot is credited on the project page with its author, license and source. Where the terms are unclear, the card shows a letter tile instead.</p>
+<p>Project logos and screenshots are shown only when their license or the project's brand guidelines allow this kind of use. They are shown unmodified, only to identify the project, and do not imply endorsement. Every logo and screenshot is credited on the project page with its author, license and source. Where the terms are unclear, the card shows a letter tile instead. FreeMind icon, GPL-2.0-or-later, © Joerg Mueller, Daniel Polansky, Christian Foltin, Dimitry Polivaev, Tolga Karatas (Denomas), and others. Shown unmodified on the Omakase page to identify the project.</p>
 <p>Category icons by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
@@ -676,7 +676,18 @@ def omakase_page(ps, cats):
             if "p" in r:
                 p = r["p"]; head = f'{icon_html(p, "", "omakase")}<a class="on-name" href="projects/{p["slug"]}.html">{E(p["name"])}</a>'
             else:
-                head = f'<span class="lt" aria-hidden="true">{E(r["name"][0].upper())}</span><a class="on-name" href="{E(r["url"])}">{E(r["name"])} ↗</a>'
+                slug = re.sub(r"[^a-z0-9]+", "-", r["name"].lower()).strip("-")
+                icon = None
+                for ext in (".svg", ".png"):
+                    cand = f"assets/icons/{slug}{ext}"
+                    if os.path.isfile(os.path.join(ROOT, cand)):
+                        icon = cand
+                        break
+                if icon:
+                    head = (f'{icon_html({"icon": icon, "url": r["url"], "name": r["name"]}, "", "omakase")}'
+                            f'<a class="on-name" href="{E(r["url"])}">{E(r["name"])} ↗</a>')
+                else:
+                    head = f'<span class="lt" aria-hidden="true">{E(r["name"][0].upper())}</span><a class="on-name" href="{E(r["url"])}">{E(r["name"])} ↗</a>'
             note = f'<span class="on-note">{inline(r["note"])}</span>' if r.get("note") else ""
             items += f'<li class="on-row"><div class="on-head">{head}</div><p class="on-why">{inline(r["why"])}{note}</p></li>'
         kick = f'<span class="cl">{E(lab.strip())}</span>' if lab else ""
