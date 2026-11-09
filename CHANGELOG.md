@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.3
+
+- FreeMind icon on the Omakase desktop course (external link; no catalog dossier).
+
 ## 2.8.2
 
 - Omakase desktop course: FreeMind (bespoke FreeMind CE build) added as an external link after Syncthing.
