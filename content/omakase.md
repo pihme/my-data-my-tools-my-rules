@@ -10,6 +10,7 @@ The tools I actually run myself, from the catalog and beyond. One line per pick;
 
 - **[ONLYOFFICE](projects/onlyoffice.html)**: opens and edits Word, Excel and PowerPoint files offline, with strong compatibility with Microsoft Office formats.
 - **[Syncthing](projects/syncthing.html)**: keeps folders in sync between my devices peer to peer. A public discovery server only helps the devices find each other; the files stay on my devices.
+- **[FreeMind](https://github.com/pihme/bespoke-freemind-ce)**: a tailored build of FreeMind CE, the classic mind-mapping software.
 
 ## Second course: Home server
 
