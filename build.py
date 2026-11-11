@@ -647,7 +647,7 @@ def about(cats):
 <p>The audience level is an editorial estimate, not a rating of the project.</p>
 <h2 id="logos-and-screenshots">Logos and screenshots</h2>
 <p>Project logos and screenshots are shown only when their license or the project's brand guidelines allow this kind of use. They are shown unmodified, only to identify the project, and do not imply endorsement. Every logo and screenshot is credited on the project page with its author, license and source. Where the terms are unclear, the card shows a letter tile instead. FreeMind icon, GPL-2.0-or-later, © Joerg Mueller, Daniel Polansky, Christian Foltin, Dimitry Polivaev, Tolga Karatas (Denomas), and others. Shown unmodified on the Omakase page to identify the project.</p>
-<p>Category and navigation icons by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
+<p>Category icons and the New Entries icon by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
 <h2 id="suggest-a-project">Suggest a project</h2>
