@@ -650,8 +650,8 @@ def project(p, cats):
         more = f'<section class="more-cat"><h2>More in {E(cname)}</h2><ul>{links}</ul></section>'
     side = f'<aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside>'
     works = works_html(p, cats)
-    # The .side wrapper only appears with a card, so dossiers without one keep their layout.
-    if works: side = f'<div class="side">{side}{works}</div>'
+    # Every dossier gets the .side wrapper (facts before the text below 1280px); the card only with entries.
+    side = f'<div class="side">{side}{works}</div>'
     main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../">Catalog</a> · <a href="../#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>

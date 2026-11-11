@@ -321,7 +321,7 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .more-cat li{margin:4px 0}
 .more-cat a:hover{text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
 
-/* Works with card (Designer spec v1): below the facts, both in .side (only on dossiers with works_with links) */
+/* Works with card (Designer spec v1): below the facts, both in .side (on every dossier; the card only with works_with links) */
 .side{display:grid;gap:16px;align-self:start;min-width:0}
 .side>.facts{align-self:auto}
 .works{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:16px 24px 8px}
