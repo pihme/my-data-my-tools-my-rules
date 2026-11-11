@@ -32,7 +32,7 @@
     document.querySelectorAll(".new-entries section.cat").forEach(function (s) {
       var n = s.querySelectorAll(".card:not([hidden])").length;
       s.hidden = n === 0;
-      s.style.setProperty("--n", Math.max(1, Math.min(n, 4)));
+      // Day sections are span-4: --n stays 4 (set in build.py), so a lone card keeps the standard width.
       var cnt = s.querySelector(".cnt");
       if (cnt) cnt.textContent = n + (n === 1 ? " entry" : " entries");
     });
@@ -99,6 +99,8 @@
       var n = s.querySelectorAll(".card:not([hidden])").length;
       s.hidden = n === 0;
       if (n > 0) visible++;
+      // Span packs small categories into a shared row; --n follows the span (track = 1/4 row),
+      // never the card count, so leftover cards sit left at standard width.
       var k = Math.max(1, Math.min(n, 4));
       s.className = s.className.replace(/\bspan-\d\b/, "span-" + k);
       s.style.setProperty("--n", k);
@@ -110,6 +112,7 @@
       cats.forEach(function (s) {
         if (s.hidden) return;
         s.className = s.className.replace(/\bspan-\d\b/, "span-4");
+        s.style.setProperty("--n", 4);
       });
     }
     groups.forEach(function (g) {

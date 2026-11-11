@@ -17,7 +17,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.9.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.9.1"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 GSC_META = '<meta name="google-site-verification" content="kjHdjMt_2TgNqzExmmSZ4jDHpWZFUX_3mW5EGm2OaaE" />'  # Google Search Console ownership check (home page only)
 SKIP = {"README.md", "TEMPLATE.md"}
 # Category colours, pinned by name (adding a category never shifts the others).
@@ -36,6 +36,7 @@ CAT_COLOR = {
 E = html.escape
 
 # Lucide category icons (ISC); SVG files in theme/cat-icons/, inlined at build time.
+# calendar-plus (New Entries in the Selections nav group) lives there too; see nav_ico().
 CAT_ICON = {
     "AI": "sparkles",
     "Files": "folder",
@@ -60,6 +61,15 @@ def _load_cat_svg(name):
             sys.exit(f"theme/cat-icons/{name}.svg: missing <svg>…</svg>")
         _CAT_SVG[name] = m.group(1)
     return _CAT_SVG[name]
+
+def nav_ico(icon, size=16, stroke_width=2):
+    """Inline Lucide icon for a Selections entry in the sidebar (monochrome, currentColor)."""
+    inner = _load_cat_svg(icon)
+    return (f'<span class="ico" aria-hidden="true">'
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" '
+            f'viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="{stroke_width}" stroke-linecap="round" stroke-linejoin="round">'
+            f'{inner}</svg></span>')
 
 def cat_ico(cat_name_s, size, stroke_width):
     """Inline Lucide icon for a category header (44/2.25) or sidebar (16/2)."""
@@ -398,7 +408,7 @@ def home_href(root):
     return "../" if root.startswith("..") else "./"
 
 def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html", json_ld=None, noindex=False):
-    """about: which About-list entry to mark class=on — "new", "omakase", "about", "funders", or None.
+    """about: which sidebar entry (Selections or About list) to mark class=on — "new", "omakase", "about", "funders", or None.
     path: site-relative page path used for the absolute og:url (e.g. index.html, projects/foo.html)."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
     on = ' class="on"'
@@ -421,14 +431,17 @@ def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index
     for fn in ("Inter-Variable.woff2", "BricolageGrotesque-Variable.woff2", "JetBrainsMono-Variable.woff2"):
         pre.append(f'<link rel="preload" href="{root}theme/fonts/{fn}" as="font" type="font/woff2" crossorigin>')
     rep["{{FONT_PRELOADS}}"] = "".join(pre) + "\n"
+    # Selections group in the sidebar: monochrome icons in the nav colour (no category colour, no --c).
+    sel = [f'<li><a href="{{{{ROOT}}}}new-entries.html"{on if about == "new" else ""}>{nav_ico("calendar-plus")}New Entries</a></li>']
     if os.path.isfile(OMAKASE):
-        rep["{{OMAKASE}}"] = f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>Omakase</a></li>'
+        sel.append(f'<li><a href="{{{{ROOT}}}}omakase.html"{on if about == "omakase" else ""}>'
+                   f'<span class="ico jp" lang="ja" aria-hidden="true">お任せ</span>Omakase</a></li>')
         rep["{{OMAKASE_FOOT}}"] = ' · <a href="{{ROOT}}omakase.html">Omakase</a>'
     else:
-        rep["{{OMAKASE}}"] = ""; rep["{{OMAKASE_FOOT}}"] = ""
+        rep["{{OMAKASE_FOOT}}"] = ""
+    rep["{{SELECTIONS}}"] = "".join(sel)
     rep["{{ABOUT_ON}}"] = on if about == "about" else ""
     rep["{{FUNDERS_ON}}"] = on if about == "funders" else ""
-    rep["{{NEW_ON}}"] = on if about == "new" else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
@@ -634,7 +647,7 @@ def about(cats):
 <p>The audience level is an editorial estimate, not a rating of the project.</p>
 <h2 id="logos-and-screenshots">Logos and screenshots</h2>
 <p>Project logos and screenshots are shown only when their license or the project's brand guidelines allow this kind of use. They are shown unmodified, only to identify the project, and do not imply endorsement. Every logo and screenshot is credited on the project page with its author, license and source. Where the terms are unclear, the card shows a letter tile instead. FreeMind icon, GPL-2.0-or-later, © Joerg Mueller, Daniel Polansky, Christian Foltin, Dimitry Polivaev, Tolga Karatas (Denomas), and others. Shown unmodified on the Omakase page to identify the project.</p>
-<p>Category icons by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
+<p>Category icons and the New Entries icon by <a href="https://lucide.dev">Lucide</a>, ISC.</p>
 <h2 id="funding">Funding</h2>
 <p>If a project is developed or funded by an organization such as FUTO or NLnet, its page says so and links to the source. The <a href="funders.html">Funders</a> page describes these organizations. Funding never decides inclusion, and it says nothing about a project's license.</p>
 <h2 id="suggest-a-project">Suggest a project</h2>
@@ -746,9 +759,9 @@ def new_entries_page(ps, cats):
     secs = ""
     for d in sorted({str(p["added"]) for p in new}, reverse=True):
         dps = [p for p in new if str(p["added"]) == d]
-        k = min(len(dps), 4)
         cards = "".join(card(p, col[cat_id(p["category"])], cat_id(p["category"]), added=True) for p in dps)
-        secs += (f'<section class="cat span-4" style="--n:{k}"><header class="sh">'
+        # Day sections span the full row, so the track is always a quarter (--n follows span, not count).
+        secs += (f'<section class="cat span-4" style="--n:4"><header class="sh">'
                  f'<h2><time datetime="{E(d)}">{nice_date(d)}</time></h2><span class="cnt">{len(dps)} {"entry" if len(dps) == 1 else "entries"}</span></header>\n'
                  f'<div class="grid">{cards}</div></section>\n')
     empty = '<p class="empty"{h}>No new entries in the last 7 days. <a href="./">Back to the catalog</a></p>'.format(h=" hidden" if new else "")

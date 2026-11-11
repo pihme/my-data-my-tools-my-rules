@@ -21,6 +21,9 @@ a{color:inherit;text-decoration:none}
 .nav li a .nc{margin-left:auto;font:12px "JetBrains Mono";color:#8d8a83}
 .nav li a.on{background:#ffffff14;box-shadow:inset 3px 0 0 var(--c,#f6f3ec)}
 .plain li a{padding:6px 10px;color:#cfccc4;font-weight:400}
+.nav .sel li a .ico{color:currentColor}
+.nav .sel li a .ico.jp{width:auto;min-width:22px;font:700 9.5px/1 "Noto Serif CJK JP",serif;letter-spacing:0;white-space:nowrap;align-items:center;margin-right:-7px}
+.nav .sel li a.on{box-shadow:inset 3px 0 0 var(--navink)}
 .mode{margin-top:auto;font:500 13px "Inter";background:transparent;color:var(--navink);border:1px solid #3a3a3a;border-radius:999px;padding:9px 14px;text-align:left;cursor:pointer}
 main{padding:0 56px 40px;min-width:0}
 /* hero */
@@ -105,8 +108,8 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
   .brand { margin: 0 0 14px 2px; }
   .brand img { width: 148px; }
   .nav > .lbl { margin: 0 0 8px; }
-  .nav .cats + .lbl { margin-top: 16px; }
-  .nav .cats {
+  .nav .cats + .lbl, .nav .sel + .lbl { margin-top: 16px; }
+  .nav .cats, .nav .sel {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -118,9 +121,9 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
     margin: 0 0 14px;
     padding: 2px 0 6px;
   }
-  .cats::-webkit-scrollbar { display: none; width: 0; height: 0; }
-  .cats li { flex: 0 0 auto; }
-  .cats li a {
+  .cats::-webkit-scrollbar, .sel::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .cats li, .sel li { flex: 0 0 auto; }
+  .cats li a, .sel li a {
     padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid #3a3a3a;
@@ -129,9 +132,11 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
     font-size: 13px;
   }
   .cats li a b { width: auto; font-size: 11px; }
-  .cats li a .ico { width: auto; }
+  .cats li a .ico, .sel li a .ico { width: auto; }
+  .nav .sel li a .ico.jp { margin-right: 0; }
   .cats li a .nc { margin-left: 0; }
   .cats li a.on { box-shadow: inset 0 0 0 1.5px var(--c, #f6f3ec); }
+  .nav .sel li a.on { box-shadow: inset 0 0 0 1.5px var(--navink); }
   .plain {
     display: flex;
     flex-wrap: wrap;
