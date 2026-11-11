@@ -11,6 +11,9 @@ repo: https://github.com/ollama/ollama
 source_url: https://github.com/ollama/ollama/blob/main/LICENSE
 checked: 2026-11-11
 added: 2026-11-11
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-11
 note: Runs open language models on your own computer; local API for other tools, optional cloud models.
 summary: Ollama runs open-weight language models on your own computer. It ships as a desktop app for macOS and Windows and as a command-line tool and background service for Linux, and serves a local API on port 11434 that tools such as Open WebUI or OpenCode can use. Ollama, Inc. also offers optional cloud models that need an account; they can be switched off.
 corporate_note: Developed by Ollama, Inc. (Toronto, Canada; owner of the Ollama trademark applications at the USPTO). LICENSE copyright line reads "Copyright (c) Ollama". Optional cloud models need an Ollama account and usage credits or a paid plan.
