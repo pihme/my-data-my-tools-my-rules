@@ -10,6 +10,7 @@ url: https://github.com/BLeeEZ/amperfy
 repo: https://github.com/BLeeEZ/amperfy
 source_url: https://github.com/BLeeEZ/amperfy/blob/master/LICENSE
 checked: 2026-11-08
+added: 2026-11-08
 note: Music player for iPhone, iPad and Mac that streams from your own Ampache or Subsonic server.
 summary: Amperfy is an iOS, iPadOS and macOS app that plays music, podcasts and radio from an Ampache or Subsonic-compatible server. It supports several accounts, an offline mode, CarPlay, gapless playback, an equalizer, replay gain and scrobbling. It is a client only, so you need a music server such as Ampache or another Subsonic-compatible server.
 icon: assets/icons/amperfy.png

@@ -16,6 +16,30 @@
     });
   }
 
+  // New Entries: the page is built with a 7-day window, but only rebuilt on push.
+  // Hide cards whose data-added is more than 7 days before the visitor's date.
+  var added = document.querySelectorAll(".card[data-added]");
+  if (added.length) {
+    var now = new Date();
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    var left = 0;
+    added.forEach(function (c) {
+      var d = (c.dataset.added || "").split("-");
+      var age = Math.round((today - Date.UTC(+d[0], +d[1] - 1, +d[2])) / 86400000);
+      c.hidden = age > 7;
+      if (!c.hidden) left++;
+    });
+    document.querySelectorAll(".new-entries section.cat").forEach(function (s) {
+      var n = s.querySelectorAll(".card:not([hidden])").length;
+      s.hidden = n === 0;
+      s.style.setProperty("--n", Math.max(1, Math.min(n, 4)));
+      var cnt = s.querySelector(".cnt");
+      if (cnt) cnt.textContent = n + (n === 1 ? " entry" : " entries");
+    });
+    var none = document.querySelector(".empty");
+    if (none) none.hidden = left > 0;
+  }
+
   // Catalog filters + search (index page only). Groups and search combine with AND.
   var cards = document.querySelectorAll(".card[data-cat]");
   var bar = document.querySelector(".filterbar");

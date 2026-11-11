@@ -15,6 +15,8 @@ demo: https://demo.example.org/
 demo_note: Optional; login, reset interval, who runs it.
 # demo fields are optional; only official demos linked from the project's site or README
 checked: 2026-11-05
+added: 2026-11-05
+# optional; day the dossier was admitted (merge day), YYYY-MM-DD; shown on the New Entries page for 7 days
 setup_steps: 4
 setup_clarity: 4
 setup_tested: 2026-11-06
