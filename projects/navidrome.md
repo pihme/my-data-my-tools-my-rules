@@ -23,6 +23,7 @@ icon_credit: Navidrome logo from the GPL-3.0 repository; used to identify the pr
 icon_source: https://github.com/navidrome/navidrome/blob/master/resources/logo-192x192.png
 fireworks_image: assets/fireworks/cf-navidrome-b1.webp
 fireworks_date: 2026-11
+role: Music server
 sources:
   - https://www.navidrome.org/
   - https://github.com/navidrome/navidrome/blob/master/LICENSE

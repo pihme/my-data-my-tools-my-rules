@@ -37,6 +37,10 @@ screenshot_source: https://github.com/example/project/blob/main/docs/screenshot.
 fireworks_image: assets/fireworks/cf-project-name-b1.webp
 fireworks_date: 2026-11
 # optional; both together; our own Code Fireworks render, listed in ASSETS.md
+role: Music server
+# optional; short English phrase, max 24 characters; shown in other dossiers' Works with card (falls back to the Type text)
+works_with: [navidrome]
+# optional; catalog slugs used together with this project; the reverse link is added by the build, so set it on one side only
 sources:
   - https://example.org/
   - https://github.com/example/project/blob/main/LICENSE
