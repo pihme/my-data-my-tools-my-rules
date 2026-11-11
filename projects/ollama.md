@@ -20,6 +20,11 @@ corporate_note: Developed by Ollama, Inc. (Toronto, Canada; owner of the Ollama 
 icon: assets/icons/ollama.svg
 icon_credit: Ollama logo from the docs folder of the MIT-licensed repository; used to identify the project
 icon_source: https://github.com/ollama/ollama/blob/main/docs/ollama-logo.svg
+screenshot: assets/screenshots/ollama.webp
+screenshot_credit: Screenshot from the Ollama documentation, MIT
+screenshot_source: https://github.com/ollama/ollama/blob/main/docs/images/ollama-settings.png
+fireworks_image: assets/fireworks/cf-ollama-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://ollama.com/
   - https://github.com/ollama/ollama/blob/main/LICENSE

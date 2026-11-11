@@ -21,6 +21,11 @@ summary: Audiobookshelf is a self-hosted server for audiobooks and podcasts. It 
 icon: assets/icons/audiobookshelf.svg
 icon_credit: Audiobookshelf icon from the GPL-3.0 repository; used to identify the project
 icon_source: https://github.com/advplyr/audiobookshelf/blob/master/client/static/icon.svg
+screenshot: assets/screenshots/audiobookshelf.webp
+screenshot_credit: Screenshot from the Audiobookshelf repository, GPL-3.0
+screenshot_source: https://github.com/advplyr/audiobookshelf/blob/master/images/DemoLibrary.png
+fireworks_image: assets/fireworks/cf-audiobookshelf-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://audiobookshelf.org/
   - https://github.com/advplyr/audiobookshelf/blob/master/LICENSE

@@ -17,6 +17,8 @@ setup_tested: 2026-11-11
 note: DNS server for your home network that blocks ads and trackers for every device using it.
 summary: Pi-hole is a DNS server for your home network that blocks ads and trackers for every device that uses it. It runs on a Raspberry Pi, any small Linux machine or in Docker, needs a fixed IP address, and includes a web interface for block lists and query logs. Devices use it once your router hands out its address as DNS server.
 corporate_note: Copyright holder in the LICENSE files is Pi-hole, LLC; "Pi-hole" and the Pi-hole logo are trademarks under its brand guidelines.
+fireworks_image: assets/fireworks/cf-pi-hole-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://pi-hole.net/
   - https://github.com/pi-hole/pi-hole/blob/master/LICENSE

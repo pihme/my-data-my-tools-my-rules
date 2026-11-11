@@ -56,4 +56,4 @@ All installation methods: <https://www.navidrome.org/docs/installation/>
 
 ## Notes
 
-None beyond funding context above.
+It works with Subsonic-API clients such as [Amperfy](amperfy.html) for iPhone, iPad and Mac (tested in our own use, November 2026).
