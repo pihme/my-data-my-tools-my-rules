@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.1
+
+- Card width: the card track stays one quarter of the full catalog width. `--n` follows the section's span, not the card count, so leftover cards sit on the left at standard width instead of stretching. On the catalog, small categories still share a row; when a filter or search leaves a single category, its section goes to `span-4` with `--n:4` (before, only the span was raised and a lone card stretched). New Entries day sections are `span-4` and always `--n:4`, also for a day with one entry (`build.py` no longer uses `min(count, 4)`, `site.js` no longer rewrites `--n`). Below 1280px the fixed 3/2/1 columns are unchanged.
+- Sidebar: new group Selections between Categories and About with New Entries and Omakase (moved out of the About list; footer links unchanged). Monochrome icons in the nav colour, no category colours: Lucide `calendar-plus` (ISC, unmodified, `currentColor`; listed in `assets/ASSETS.md`) for New Entries, the お任せ mark for Omakase. Entry style follows the category list; the active page is marked with `.on` in the nav colour (no `--c`). On mobile (max-width 640px) the group is a chip row like the categories, with matching spacing before the About label.
+
 ## 2.9.0
 
 - Content v2.20: new dossiers Ollama (AI, MIT), Open WebUI (AI, source-available `LicenseRef-OpenWebUI`), Pi-hole (Server, EUPL-1.2), Audiobookshelf (Media, GPL-3.0-only), Actual Budget (new category Finances, MIT); 36 dossiers in 10 categories. No setup tests yet (`setup_*` fields omitted until the install tests are done).
