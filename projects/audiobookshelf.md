@@ -13,6 +13,9 @@ demo: https://audiobooks.dev/
 demo_note: Linked from the official docs; hosted by community member Vito0912; login demo / demo (user account).
 checked: 2026-11-11
 added: 2026-11-11
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-11
 note: Self-hosted audiobook and podcast server with progress sync and companion mobile apps.
 summary: Audiobookshelf is a self-hosted server for audiobooks and podcasts. It streams your library to the browser and to companion apps for Android and iOS, keeps listening progress per user across devices, downloads podcast episodes and fetches metadata and cover art. It runs in Docker or from Linux packages.
 icon: assets/icons/audiobookshelf.svg

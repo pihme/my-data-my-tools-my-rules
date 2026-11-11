@@ -11,6 +11,9 @@ repo: https://github.com/open-webui/open-webui
 source_url: https://github.com/open-webui/open-webui/blob/main/LICENSE
 checked: 2026-11-11
 added: 2026-11-11
+setup_steps: 5
+setup_clarity: 5
+setup_tested: 2026-11-11
 note: Self-hosted chat interface for local or API language models; source-available (BSD-3 plus branding clause).
 summary: Open WebUI is a self-hosted chat interface for language models. It runs in Docker or via Python, keeps chats, users and settings in its own data volume, and connects to a local Ollama or to any OpenAI-compatible API; it has no models of its own. Its license is BSD-3-Clause with an added clause that forbids removing the Open WebUI branding, so it is labeled source-available.
 corporate_note: Developed by Open WebUI Inc. (copyright holder in the LICENSE; created by Timothy Jaeryang Baek). An enterprise license is sold for rebranding and enterprise-only features; contributions require a CLA.

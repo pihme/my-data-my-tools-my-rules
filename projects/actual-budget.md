@@ -13,6 +13,9 @@ demo: https://demo.actualbudget.org/
 demo_note: Official demo linked from the install docs; data stays in your browser.
 checked: 2026-11-11
 added: 2026-11-11
+setup_steps: 4
+setup_clarity: 4
+setup_tested: 2026-11-11
 note: Local-first envelope budgeting app; optional self-hosted sync server; bank sync optional with your own keys.
 summary: Actual Budget is a local-first app for envelope budgeting. It runs as a desktop app on Windows, macOS and Linux without any server, or as a self-hosted sync server that serves the web app and syncs budgets between devices, with optional end-to-end encryption. Bank sync is optional and needs your own API keys from a third-party provider.
 funding_note: Community project funded through Open Collective (fiscal host Open Source Collective) and GitHub Sponsors.
