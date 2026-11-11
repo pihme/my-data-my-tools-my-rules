@@ -36,15 +36,17 @@ Prerequisites (from the official docs):
 - A supported Linux system (Alpine, Armbian, Debian, CentOS Stream, Fedora, Raspberry Pi OS or Ubuntu), or Docker
 - At least 2 GB free disk space (4 GB recommended) and 512 MB RAM
 - A static IP address for the machine (a DHCP reservation is fine)
-- Port 53 free (no other DNS server running); web interface on 80/443
+- Port 53 free (no other DNS server running); web interface on 80/443. On many Linux desktops, systemd-resolved already binds port 53 and must be stopped or reconfigured first.
+
+The numbered steps follow the official Docker path. There is also a native installer (`curl -sSL https://install.pi-hole.net | bash`, or download/clone and run `basic-install.sh` to read it first); its password command is `pihole setpassword`, which does not apply under Docker.
 
 Steps:
 
-1. Run the installer: `curl -sSL https://install.pi-hole.net | bash` (or download/clone and run `basic-install.sh` to read it first).
-2. Follow the installer prompts.
-3. Set or note the web interface password (`pihole setpassword`).
+1. Copy the official `docker-compose.yml` from the Docker docs (or the equivalent `docker run`). Set `TZ` to your timezone and set `FTLCONF_webserver_api_password` to a password you choose (if you omit it, the container assigns a random one). For Docker's default bridge network, set `FTLCONF_dns_listeningMode` to `ALL`.
+2. Start it with `docker compose up -d` (on older systems, `docker-compose up -d`).
+3. Open the web interface and log in with that password.
 4. Configure your router so DHCP clients get the Pi-hole address as DNS server (or use Pi-hole's own DHCP server, or set DNS per device).
-5. Open the web interface and check that queries arrive and are blocked.
+5. Check that queries arrive and are blocked.
 
 Watch out: the host itself does not use Pi-hole after installation unless you configure it; if it does and Pi-hole fails, the host loses DNS. Firewall rules in the docs restrict access to the local network.
 

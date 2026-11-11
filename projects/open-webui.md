@@ -44,7 +44,7 @@ Prerequisites (from the official docs):
 Steps:
 
 1. Generate a secret key with `openssl rand -hex 32`.
-2. Start the container with the Quick Start `docker run` command (port 3000, volume `open-webui`, `WEBUI_SECRET_KEY` set, image `ghcr.io/open-webui/open-webui:main`).
+2. Start the container with the Quick Start `docker run` command (port 3000, volume `open-webui`, `WEBUI_SECRET_KEY` set, image `ghcr.io/open-webui/open-webui:main`; `:main` is 1.62 GB download / about 6.5 GB unpacked).
 3. Open http://localhost:3000 and create the admin account (the first account becomes administrator; sign-up then switches off).
 4. Under your avatar > Settings > Admin > Connections, check that Ollama is detected or add an OpenAI-compatible API.
 5. Start a new chat and pick a model.

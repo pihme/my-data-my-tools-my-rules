@@ -47,7 +47,7 @@ Steps:
 1. Create the Docker Compose file from the install docs (image `ghcr.io/advplyr/audiobookshelf:latest`, port `13378:80`, volumes for `/config`, `/metadata`, `/audiobooks`, `/podcasts`, `TZ` set).
 2. Start it with Docker Compose (or the `docker run` command shown on the same page).
 3. Open http://<server>:13378 and set the root username and password.
-4. Create a library pointing at your audiobook or podcast folder.
+4. Create a library pointing at your audiobook or podcast folder (books are recognized via the folder layout `Author/Title/file`).
 5. Optional: install the Android app (Google Play) or join the iOS TestFlight beta and log in to your server.
 
 Watch out: the volume folders must be separate and not nested in each other, and from version 2.3.x `/config` must be on the same machine as the server (no network share).

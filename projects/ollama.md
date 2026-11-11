@@ -38,13 +38,14 @@ Ollama is MIT-licensed and free. Local models run entirely on your own hardware,
 Prerequisites (from the official docs):
 
 - macOS Sonoma (14) or newer (Apple silicon with GPU support, Intel CPU only), Windows 10 22H2 or newer, or Linux
-- Disk space for models: the docs say they "can be tens to hundreds of GB"; the quickstart model `gemma4:e2b` is about 7.2 GB
+- On a minimal Debian or Ubuntu system, install `zstd` before the Linux script (`sudo apt install zstd`); `install.sh` exits with "requires zstd" without it
+- Disk space for models: the docs say they "can be tens to hundreds of GB"; the quickstart model `gemma4:e2b` is 4.6 GB
 - Memory: the quickstart recommends 8 GB of free VRAM or unified memory for that model; with less, Ollama falls back to system RAM and gets slower
 
 Steps:
 
 1. Download Ollama for macOS or Windows from ollama.com/download, or on Linux run the install script `curl -fsSL https://ollama.com/install.sh | sh`.
-2. Open the app (on Linux the script sets up a service; otherwise start it with `ollama serve`).
+2. Open the app. On Linux with systemd, the install script starts a service. Without systemd, run `ollama serve` yourself — the script may still print that the API is now available even when no server is running.
 3. Download and chat with a local model: `ollama run gemma4:e2b` (type `/bye` to leave).
 4. Optional: point other tools at the local API on `http://localhost:11434`.
 
