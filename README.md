@@ -9,7 +9,7 @@ being worked out.
 
 ## About this site
 
-Most of this site is written and maintained with the help of AI tools: project research, descriptions, license labels and the site code itself. A human does light editorial review, picks what goes in and has the final say, but does not check every detail by hand. If you spot a mistake, an outdated license or a project that doesn't belong here, please open an issue on GitHub.
+Most of this site is written and maintained with the help of AI tools: project research, descriptions, license labels and the site code itself. A human does light editorial review, picks what goes in and has the final say, but does not check every detail by hand. If you spot a mistake, an outdated license or a project that doesn't belong here, please [open an issue](https://github.com/pihme/my-data-my-tools-my-rules/issues/new?template=report-an-error.yml) on GitHub.
 
 The person behind this site uses it too, to discover new tools and try them out. It is a list we rely on ourselves, not just one we publish.
 
@@ -27,7 +27,8 @@ tools/deploy.sh               # build, check and publish to the gh-pages branch
 
 Other content lives in `content/` (selection criteria and "Suggest a
 project" for the About page, the Funders page, and the optional Omakase
-page). Project logos and screenshots are in `assets/icons/` and
+page). The New Entries page lists dossiers whose `added` date is
+within the last 7 days. Project logos and screenshots are in `assets/icons/` and
 `assets/screenshots/`; `assets/ASSETS.md` lists each file's source, terms
 and credit line, and the build only accepts files cleared there.
 

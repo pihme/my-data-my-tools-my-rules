@@ -27,6 +27,7 @@ Exact field names (YAML):
 | `demo` | no | string | URL of an official online demo or public instance run by the project, so readers can try it without installing; link from the project's own site or README |
 | `demo_note` | no | string | One short line about the demo: login, reset interval, who runs it |
 | `checked` | yes | date | Verification date (`YYYY-MM-DD`) |
+| `added` | no | date | Day the dossier was admitted to the catalog (`YYYY-MM-DD`, Europe/Berlin; the merge day of the PR that adds it). Lists the project on the New Entries page for 7 days; dossiers from the initial launch set have none |
 | `note` | no | string | One short sentence for the project card (~120 characters max) |
 | `summary` | no | string | Opening text on the dossier page (and on cards where space allows): 2-4 plain, factual sentences (~250-400 characters), no marketing superlatives. Shown instead of `note` where the layout has room |
 | `corporate_note` | no | string | Optional corporate / org binding (info only, never exclusion) |
@@ -59,4 +60,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-30 dossiers (22 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE, OpenCode, Pangolin and Jitsi Meet; checked 2026-11-05/06, Europe/Berlin). Categories: AI, Files, Media, Mobile, Office, Passwords, Server, Smart Home, Utilities.
+36 dossiers (22 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE, OpenCode, Pangolin and Jitsi Meet, checked 2026-11-05/06; Amperfy, checked 2026-11-08; Ollama, Open WebUI, Pi-hole, Audiobookshelf and Actual Budget, checked 2026-11-11; Europe/Berlin). Categories: AI, Files, Finances, Media, Mobile, Office, Passwords, Server, Smart Home, Utilities.

@@ -1,0 +1,41 @@
+name: Report an error
+description: Report a problem on the website or a mistake in the catalog information.
+title: "Error: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Use this form for problems on the website or mistakes in a project's information. To suggest a new catalog entry, use [Suggest a project](https://github.com/pihme/my-data-my-tools-my-rules/issues/new?template=suggest-a-project.yml) instead.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - Something on the website (layout, links, navigation, or a page that doesn't work)
+        - Something in the catalog information (license, description, category, or other facts)
+        - Both
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where?
+      description: Page URL or project name.
+      placeholder: e.g. https://pihme.github.io/my-data-my-tools-my-rules/projects/syncthing.html
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong?
+      description: What you saw, and what you expected if that helps.
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context
+      description: Browser, device, or a link to a screenshot, if useful.
+    validations:
+      required: false

@@ -17,16 +17,29 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.8.3"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.9.0"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 GSC_META = '<meta name="google-site-verification" content="kjHdjMt_2TgNqzExmmSZ4jDHpWZFUX_3mW5EGm2OaaE" />'  # Google Search Console ownership check (home page only)
 SKIP = {"README.md", "TEMPLATE.md"}
-COLORS = ["#ff5c39", "#ffc531", "#2ec4a6", "#6c7bff", "#e95fb3", "#7bd14b"]
+# Category colours, pinned by name (adding a category never shifts the others).
+CAT_COLOR = {
+    "AI": "#ff5c39",
+    "Files": "#ffc531",
+    "Finances": "#c45cff",
+    "Media": "#2ec4a6",
+    "Mobile": "#6c7bff",
+    "Office": "#e95fb3",
+    "Passwords": "#7bd14b",
+    "Server": "#ff5c39",
+    "Smart Home": "#ffc531",
+    "Utilities": "#2ec4a6",
+}
 E = html.escape
 
 # Lucide category icons (ISC); SVG files in theme/cat-icons/, inlined at build time.
 CAT_ICON = {
     "AI": "sparkles",
     "Files": "folder",
+    "Finances": "wallet",
     "Media": "clapperboard",
     "Mobile": "smartphone",
     "Office": "file-text",
@@ -307,6 +320,11 @@ def load_projects():
                 datetime.date.fromisoformat(str(p["setup_tested"]))
             except ValueError:
                 sys.exit(f"projects/{f}: setup_tested must be a date YYYY-MM-DD")
+        if p.get("added") not in (None, "", []):
+            try:
+                datetime.date.fromisoformat(str(p["added"]))
+            except ValueError:
+                sys.exit(f"projects/{f}: added must be a date YYYY-MM-DD")
         has_fw = any(k in p for k in ("fireworks_image", "fireworks_date"))
         if has_fw:
             for k in ("fireworks_image", "fireworks_date"):
@@ -340,9 +358,15 @@ def load_funders(ps):
     fs["known"] = known
     return fs
 
+def cat_color(n):
+    col = CAT_COLOR.get(n)
+    if not col:
+        sys.exit(f"no colour mapped for category {n!r} (add it to CAT_COLOR)")
+    return col
+
 def categories(ps):
     names = sorted({cat_name(p["category"]) for p in ps}, key=str.lower)
-    return [(cat_id(n), n, COLORS[i % len(COLORS)], [p for p in ps if cat_name(p["category"]) == n]) for i, n in enumerate(names)]
+    return [(cat_id(n), n, cat_color(n), [p for p in ps if cat_name(p["category"]) == n]) for n in names]
 
 def nav(cats, root, active=None, index=False):
     items = []
@@ -374,7 +398,7 @@ def home_href(root):
     return "../" if root.startswith("..") else "./"
 
 def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index.html", json_ld=None, noindex=False):
-    """about: which About-list entry to mark class=on — "omakase", "about", "funders", or None.
+    """about: which About-list entry to mark class=on — "new", "omakase", "about", "funders", or None.
     path: site-relative page path used for the absolute og:url (e.g. index.html, projects/foo.html)."""
     base = open(os.path.join(TH, "base.html"), encoding="utf-8").read()
     on = ' class="on"'
@@ -404,6 +428,7 @@ def page(title, main, root, navhtml, desc, bodyclass="", about=None, path="index
         rep["{{OMAKASE}}"] = ""; rep["{{OMAKASE_FOOT}}"] = ""
     rep["{{ABOUT_ON}}"] = on if about == "about" else ""
     rep["{{FUNDERS_ON}}"] = on if about == "funders" else ""
+    rep["{{NEW_ON}}"] = on if about == "new" else ""
     for k, v in rep.items(): base = base.replace(k, v)
     return base.replace("{{ROOT}}", root)
 
@@ -449,11 +474,13 @@ def omk_badge(root):
     return (f'<a class="omk-badge" href="{root}omakase.html" title="On the Omakase list: tools the site author runs">'
             f'<span lang="ja">お任せ</span> Omakase</a>')
 
-def card(p, col, cid):
+def card(p, col, cid, added=False):
+    """added=True (New Entries page): own --c from the category, plus data-added for site.js."""
     omk = p["slug"] in OMK
+    extra = f' style="--c:{col}" data-added="{E(str(p["added"]))}"' if added else ""
     note = E(p.get("summary") or p.get("note") or "") or '<span class="nonote">No note.</span>'
     setup = setup_html(p, "setup-meta setup-card")
-    return f'''<article class="card{' omk' if omk else ''}" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}" data-search="{E(search_blob(p))}"><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div>{omk_badge("") if omk else ""}</div>
+    return f'''<article class="card{' omk' if omk else ''}" data-cat="{cid}" data-kinds="{kinds(p)}" data-aud="{aud_id(p)}" data-search="{E(search_blob(p))}"{extra}><div class="ct">{icon_html(p, "")}<div><h3><a href="projects/{p["slug"]}.html">{E(p["name"])}</a></h3><span class="spdx" title="SPDX license id">{E(p["license"])}</span></div>{omk_badge("") if omk else ""}</div>
 <div class="tags">{license_tag(p)}{type_tags(p)}</div>
 <p>{note}</p>{setup}<div class="lnk"><a class="web" href="{E(p["url"])}" title="Website">{E(host(p["url"]))}</a>{aud_html(p)}<a class="repo" href="{E(p["repo"])}" title="Source code">repo</a><a class="more" href="projects/{p["slug"]}.html" aria-label="Details on {E(p["name"])}">→</a></div></article>'''
 
@@ -542,6 +569,7 @@ def project(p, cats):
     if p.get("funding_note") or p.get("funders"):
         rows.append(("Funding", funding_html(p, FS) + '<div class="sub">Funding says nothing about the license.</div>'))
     if p.get("icon"): rows.append(("Logo", media_credit(p["icon"]) + '<div class="sub">Shown unmodified to identify the project. No endorsement implied.</div>'))
+    if p.get("added"): rows.append(("Added", f'<time datetime="{E(str(p["added"]))}">{nice_date(p["added"])}</time>'))
     rows.append(("Checked", f'<time datetime="{E(str(p["checked"]))}">{nice_date(p["checked"])}</time>'))
     facts = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows)
     srcs = "".join(f'<li><a href="{E(s)}">{E(host(s))}</a></li>' for s in p["sources"])
@@ -699,9 +727,39 @@ def omakase_page(ps, cats):
 <div class="omakase">{secs}</div>'''
     return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase", path="omakase.html")
 
+NEW_DAYS = 7
+
+def new_entries(ps, today):
+    """Dossiers whose `added` date lies within the last NEW_DAYS days of the build date, newest first."""
+    out = []
+    for p in ps:
+        if not p.get("added"): continue
+        age = (today - datetime.date.fromisoformat(str(p["added"]))).days
+        if 0 <= age <= NEW_DAYS: out.append(p)
+    return sorted(sorted(out, key=lambda p: p["name"].lower()), key=lambda p: str(p["added"]), reverse=True)
+
+def new_entries_page(ps, cats):
+    """Projects added in the last NEW_DAYS days, grouped by added date. The build-time window is the
+    no-JS fallback; site.js hides cards whose data-added is older than NEW_DAYS for the visitor."""
+    col = {cid: c for cid, _, c, _ in cats}
+    new = new_entries(ps, datetime.date.today())
+    secs = ""
+    for d in sorted({str(p["added"]) for p in new}, reverse=True):
+        dps = [p for p in new if str(p["added"]) == d]
+        k = min(len(dps), 4)
+        cards = "".join(card(p, col[cat_id(p["category"])], cat_id(p["category"]), added=True) for p in dps)
+        secs += (f'<section class="cat span-4" style="--n:{k}"><header class="sh">'
+                 f'<h2><time datetime="{E(d)}">{nice_date(d)}</time></h2><span class="cnt">{len(dps)} {"entry" if len(dps) == 1 else "entries"}</span></header>\n'
+                 f'<div class="grid">{cards}</div></section>\n')
+    empty = '<p class="empty"{h}>No new entries in the last 7 days. <a href="./">Back to the catalog</a></p>'.format(h=" hidden" if new else "")
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · New Entries</p><h1>New Entries</h1></div><p class="intro">Projects added to the catalog in the last 7 days, newest first.</p></section>
+<div class="catflow new-entries">
+{secs}</div>{empty}'''
+    return page("New Entries · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Projects added to the catalog in the last 7 days.", about="new", path="new-entries.html")
+
 def sitemap_xml(ps, built):
     """Absolute <loc> URLs; <lastmod> from project dates or build day."""
-    urls = [("index.html", built), ("about.html", built), ("funders.html", built)]
+    urls = [("index.html", built), ("new-entries.html", built), ("about.html", built), ("funders.html", built)]
     if os.path.isfile(OMAKASE):
         urls.append(("omakase.html", built))
     for p in ps:
@@ -740,7 +798,7 @@ def build(out):
     if os.path.isdir(out): shutil.rmtree(out)
     os.makedirs(os.path.join(out, "projects"))
     w = lambda rel, s: open(os.path.join(out, rel), "w", encoding="utf-8").write(s)
-    w("index.html", index(ps, cats)); w("about.html", about(cats)); w("funders.html", funders_page(fs, ps, cats))
+    w("index.html", index(ps, cats)); w("new-entries.html", new_entries_page(ps, cats)); w("about.html", about(cats)); w("funders.html", funders_page(fs, ps, cats))
     if os.path.isfile(OMAKASE): w("omakase.html", omakase_page(ps, cats))
     for p in ps: w(f"projects/{p['slug']}.html", project(p, cats))
     w("404.html", not_found_page(cats))
