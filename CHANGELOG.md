@@ -6,6 +6,7 @@
 - New page New Entries (`new-entries.html`): dossiers added in the last 7 days, newest first, grouped by date; linked first in the About list of the sidebar and in the footer, and listed in `sitemap.xml`. New optional front-matter field `added` (`YYYY-MM-DD`), shown as "Added" in the dossier facts; set on Amperfy (2026-11-08) and the five new dossiers, not on the launch set. The build-time window is the no-JS fallback; `site.js` hides cards whose `data-added` is more than 7 days before the visitor's date, so the page does not go stale between builds.
 - Lucide icon `wallet` for Finances. Category colours pinned by name (`CAT_COLOR` in `build.py`; the build stops when a category has no colour) instead of by alphabetical position, so existing categories keep their tones; Finances uses `#c45cff`.
 - Icons for Ollama, Open WebUI, Audiobookshelf and Actual Budget added to `assets/ASSETS.md` (official files, unmodified). Pi-hole keeps the letter tile: its brand guidelines do not allow the logo for this use.
+- Issue form "Report an error" for problems on the website or mistakes in catalog information; Suggest a project and Report it on GitHub now open the matching forms.
 
 ## 2.8.3
 
