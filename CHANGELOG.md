@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.3
+
+- Content v2.22: "Works with" card on dossier pages (Designer spec v1). New optional front-matter fields `works_with` (list of catalog slugs) and `role` (short English phrase, max 24 characters). The build adds the reverse link, sorts entries by name and renders the card only when there is at least one entry; unknown slugs, self-links and longer roles stop the build. Without `role`, the row shows the target's Type text. The card sits below the facts, both in a new `.side` wrapper (only on dossiers with a card); framed like the facts with a top border in the page's category colour; each row links to the other dossier with its logo as a 40px tile (letter tile in the target's category colour), name and role. Below 1280px the facts and card move above the text; below 600px the card uses smaller sizes. Amperfy lists Navidrome (`role: iOS client`); Navidrome gets the reverse link (`role: Music server`). Both fields documented in `projects/README.md` and `TEMPLATE.md`.
+- `assets/ASSETS.md`: the Amperfy screenshot row notes the crop (transparent shadow border removed); `cf-open-webui` now sorts before `cf-openhab`.
+
 ## 2.9.2
 
 - Content v2.21: Code Fireworks tiles (variant B1) for Amperfy, Ollama, Open WebUI, Audiobookshelf, Pi-hole and Actual Budget (all 36 dossiers). Official screenshots added for Amperfy, Ollama, Audiobookshelf and Actual Budget (cleared in `assets/ASSETS.md`).

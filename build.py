@@ -17,7 +17,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.9.2"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.9.3"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 GSC_META = '<meta name="google-site-verification" content="kjHdjMt_2TgNqzExmmSZ4jDHpWZFUX_3mW5EGm2OaaE" />'  # Google Search Console ownership check (home page only)
 SKIP = {"README.md", "TEMPLATE.md"}
 # Category colours, pinned by name (adding a category never shifts the others).
@@ -347,9 +347,34 @@ def load_projects():
                 sys.exit(f"projects/{f}: file not found: {fw}")
             if fireworks_as_of(p["fireworks_date"]) is None:
                 sys.exit(f"projects/{f}: fireworks_date must be YYYY-MM")
+        if p.get("role") not in (None, "", []):
+            if not isinstance(p["role"], str): sys.exit(f"projects/{f}: role must be a short text")
+            if len(p["role"]) > ROLE_MAX: sys.exit(f"projects/{f}: role is longer than {ROLE_MAX} characters")
+        ww = p.get("works_with")
+        if ww not in (None, "", []):
+            if isinstance(ww, str): ww = [ww]
+            if not all(isinstance(x, str) and x for x in ww):
+                sys.exit(f"projects/{f}: works_with must be a list of project slugs like [navidrome]")
+            p["works_with"] = ww
         check_media(f, p)
         ps.append(p)
+    link_works_with(ps)
     return sorted(ps, key=lambda p: p["name"].lower())
+
+ROLE_MAX = 24
+
+def link_works_with(ps):
+    """`works_with: [slug, ...]` links two dossiers. The reverse direction is added here,
+    so one side is enough. Unknown slugs and self-links stop the build."""
+    by = {p["slug"]: p for p in ps}
+    pairs = {p["slug"]: set() for p in ps}
+    for p in ps:
+        for x in p.get("works_with") or []:
+            if x not in by: sys.exit(f"projects/{p['slug']}.md: works_with lists unknown slug '{x}'")
+            if x == p["slug"]: sys.exit(f"projects/{p['slug']}.md: works_with lists the project itself")
+            pairs[p["slug"]].add(x); pairs[x].add(p["slug"])
+    for p in ps:
+        p["_works"] = sorted((by[x] for x in pairs[p["slug"]]), key=lambda q: q["name"].lower())
 
 FUNDERS = os.path.join(ROOT, "content", "funders.md")
 FUNDER_IDS = {"futo": "FUTO", "nlnet": "NLnet", "ngi": "Next Generation Internet"}
@@ -459,6 +484,27 @@ def icon_html(p, root, kind="card", cls="lt"):
                 f'width="{px}" height="{px}"{st} loading="lazy" decoding="async"></a>')
     return f'<span class="{cls}" aria-hidden="true">{E(p["name"][0].upper())}</span>'
 
+def type_label(p): return " and ".join(["Self-host (server)" if t == "Server" else "App" for t in types(p)])
+
+def works_html(p, cats):
+    """"Works with" card under the facts (spec v1): one link row per linked dossier,
+    40px logo tile, name, and the target's `role` (or its Type text). Empty string if none."""
+    if not p.get("_works"): return ""
+    rows = []
+    for q in p["_works"]:
+        tc = next(c[2] for c in cats if c[0] == cat_id(q["category"]))
+        if q.get("icon"):
+            sc = q.get("icon_scale")
+            st = f' style="--s:{float(sc):g}"' if sc else ""
+            tile = (f'<span class="lt ic" style="--c:{tc}" aria-hidden="true"><img src="../{E(q["icon"])}" alt="" '
+                    f'width="28" height="28"{st} loading="lazy" decoding="async"></span>')
+        else:
+            tile = f'<span class="lt" style="--c:{tc}" aria-hidden="true">{E(q["name"][0].upper())}</span>'
+        role = q.get("role") or type_label(q)
+        rows.append(f'<li><a href="{E(q["slug"])}.html" style="--tc:{tc}">{tile}'
+                    f'<span><span class="nm">{E(q["name"])}</span><span class="rl">{E(role)}</span></span></a></li>')
+    return f'<section class="works" aria-labelledby="ww"><h2 id="ww">Works with</h2><ul>{"".join(rows)}</ul></section>'
+
 def aud_html(p, cls="aud"):
     a = p.get("audience")
     if not a: return ""
@@ -564,7 +610,7 @@ def fireworks_html(p):
 
 def project(p, cats):
     cid = cat_id(p["category"]); col = next(c[2] for c in cats if c[0] == cid)
-    tlabel = " and ".join(["Self-host (server)" if t == "Server" else "App" for t in types(p)])
+    tlabel = type_label(p)
     rows = [("License", f'<a href="{E(p["source_url"])}"><code>{E(p["license"])}</code></a><div class="tags">{license_tag(p)}</div>'),
             ("Type", f'{tlabel}<div class="tags">{type_tags(p)}</div>')]
     if p.get("audience"): rows.append(("Audience", f'{aud_html(p, "aud aud-l")}<div class="sub">{E(AUD_HELP[p["audience"]])}</div>'))
@@ -602,13 +648,17 @@ def project(p, cats):
     if siblings:
         links = "".join(f'<li><a href="{E(x["slug"])}.html">{E(x["name"])}</a></li>' for x in siblings)
         more = f'<section class="more-cat"><h2>More in {E(cname)}</h2><ul>{links}</ul></section>'
+    side = f'<aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside>'
+    works = works_html(p, cats)
+    # The .side wrapper only appears with a card, so dossiers without one keep their layout.
+    if works: side = f'<div class="side">{side}{works}</div>'
     main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../">Catalog</a> · <a href="../#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
 <section class="sources"><h2>Sources</h2><ol>{srcs}</ol></section>
 {more}<a class="back" href="../#{cid}">← Back to the catalog</a></article>
-<aside class="facts" aria-label="Facts"><dl>{facts}</dl></aside></div>'''
+{side}</div>'''
     ld = [
         {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Catalog", "item": SITE + "/"},

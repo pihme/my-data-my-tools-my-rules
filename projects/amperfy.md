@@ -21,6 +21,8 @@ screenshot_credit: Screenshot from the Amperfy repository, GPL-3.0-or-later
 screenshot_source: https://github.com/BLeeEZ/amperfy/blob/master/.github/Screenshots/macOS-Playlist.png
 fireworks_image: assets/fireworks/cf-amperfy-b1.webp
 fireworks_date: 2026-11
+role: iOS client
+works_with: [navidrome]
 sources:
   - https://github.com/BLeeEZ/amperfy
   - https://github.com/BLeeEZ/amperfy/blob/master/LICENSE

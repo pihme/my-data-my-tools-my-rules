@@ -320,3 +320,19 @@ section.cat{padding:34px 0 10px;scroll-margin-top:12px;min-width:0;display:flex;
 .more-cat ul{margin:0;padding-left:18px}
 .more-cat li{margin:4px 0}
 .more-cat a:hover{text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
+
+/* Works with card (Designer spec v1): below the facts, both in .side (only on dossiers with works_with links) */
+.side{display:grid;gap:16px;align-self:start;min-width:0}
+.side>.facts{align-self:auto}
+.works{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px 4px 12px 12px;padding:16px 24px 8px}
+.works h2{margin:0 0 4px;font:600 11.5px/1.6 "JetBrains Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+.works ul{list-style:none;margin:0;padding:0}
+.works li+li{border-top:1px solid var(--line)}
+.works a{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:14px;align-items:center;padding:12px 0;text-decoration:none;color:inherit}
+.works .lt{width:40px;height:40px;border-radius:10px;font-size:20px}
+.works .lt.ic img{width:28px;height:28px}
+.works .nm{font:600 16px/1.25 "Inter";text-decoration:underline;text-decoration-color:var(--tc,var(--c));text-underline-offset:3px;text-decoration-thickness:1.5px}
+.works .rl{display:block;margin-top:2px;font-size:12.5px;color:var(--mut)}
+.works a:hover .nm{text-decoration-thickness:2.5px}
+@media (max-width:1280px){.side{order:-1}}
+@media (max-width:600px){.works{padding:14px 18px 6px}.works a{grid-template-columns:34px minmax(0,1fr);column-gap:12px}.works .lt{width:34px;height:34px;border-radius:9px;font-size:17px}.works .lt.ic img{width:24px;height:24px}}

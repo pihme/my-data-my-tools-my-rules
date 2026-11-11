@@ -41,6 +41,8 @@ Exact field names (YAML):
 | `screenshot_source` | no | string | URL the screenshot was taken from |
 | `fireworks_image` | no | string | Path to the project's Code Fireworks render, `assets/fireworks/cf-<slug>-b1.png` (560×560 PNG, our own Gource render of the public repository); set together with `fireworks_date`; listed in ASSETS.md |
 | `fireworks_date` | no | string | Snapshot month of the render (`YYYY-MM`); shown as "As of Nov 2026"; a fixed date, so the image never needs re-rendering |
+| `role` | no | string | What the project is in one short English phrase (max 24 characters, e.g. `iOS client`, `Music server`); shown under its name in other dossiers' "Works with" card. Without it the card shows the Type text. Longer values stop the build |
+| `works_with` | no | list | Slugs of catalog projects this one is used together with, e.g. `[navidrome]`. Renders a "Works with" card below the facts on both pages: the build adds the reverse link, so set it on one side only. Entries are sorted by name; unknown slugs stop the build |
 | `sources` | yes | list | URLs used for verification |
 | `setup_steps` | no | integer | Count of human actions in the official getting-started path that was checked |
 | `setup_clarity` | no | integer 1–5 | How clear that path was (1 = unusable, 5 = copy-paste works and is well explained) |
