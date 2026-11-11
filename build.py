@@ -17,7 +17,7 @@ REPO = "https://github.com/pihme/my-data-my-tools-my-rules"
 SITE = "https://pihme.github.io/my-data-my-tools-my-rules"
 OG_IMAGE = SITE + "/assets/social-preview.png"
 OG_IMAGE_ALT = "My Data, My Tools, My Rules — a directory of open-source projects for digital self-determination"
-VERSION = "2.9.3"  # bump per release; busts browser caches for theme/style.css and theme/site.js
+VERSION = "2.9.4"  # bump per release; busts browser caches for theme/style.css and theme/site.js
 GSC_META = '<meta name="google-site-verification" content="kjHdjMt_2TgNqzExmmSZ4jDHpWZFUX_3mW5EGm2OaaE" />'  # Google Search Console ownership check (home page only)
 SKIP = {"README.md", "TEMPLATE.md"}
 # Category colours, pinned by name (adding a category never shifts the others).
@@ -652,7 +652,7 @@ def project(p, cats):
     works = works_html(p, cats)
     # Every dossier gets the .side wrapper (facts before the text below 1280px); the card only with entries.
     side = f'<div class="side">{side}{works}</div>'
-    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../">Catalog</a> · <a href="../#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a><a class="psearch" href="../#search" title="Search the catalog" aria-label="Search the catalog"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 L14.5 14.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a></p>
+    main = f'''<section class="{phead_cls}" style="--c:{col}"><div><p class="kick"><a href="../">Catalog</a><span aria-hidden="true">·</span><a href="../#{cid}" class="kcat">{cat_ico(cname, 14, 2)}{E(cname)}</a></p>
 <h1>{icon_html(p, "../", "dossier")}{E(p["name"])}</h1>{omk_badge("../") if p["slug"] in OMK else ""}</div>
 <p class="intro">{E(summary)}</p>{fw}</section>
 <div class="body-wrap" style="--c:{col}"><article class="prose">{body}
@@ -680,7 +680,7 @@ def about(cats):
     crit = open(os.path.join(ROOT, "content", "selection-criteria.md"), encoding="utf-8").read()
     crit = re.sub(r"^## How projects are selected", '## How projects are selected {#selection-criteria}', crit, flags=re.M)
     crit_html = markdown(crit).replace("<h2>How projects are selected {#selection-criteria}</h2>", '<h2 id="selection-criteria">How projects are selected</h2>')
-    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · About</p><h1>About this site</h1></div>
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a><span aria-hidden="true">·</span>About</p><h1>About this site</h1></div>
 <p class="intro">What goes in, how projects are selected and what the labels mean.</p></section>
 <div class="body-wrap"><article class="prose">
 <h2 id="what-belongs-here">What belongs here</h2>
@@ -724,7 +724,7 @@ def funders_page(fs, ps, cats):
             slug = fid(text)
         return f'<h2 id="{E(slug)}">{m.group(1)}</h2>'
     html_rest = re.sub(r"<h2>(.*?)</h2>", h2id, html_rest)
-    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a><span aria-hidden="true">·</span>Funders</p><h1>{E(fs.get("title") or "Funders")}</h1></div>
 <div class="intro">{markdown(intro.strip())}</div></section>
 <div class="body-wrap"><article class="prose funders">{html_rest}
 <p>Spotted a missing grant or a mistake? <a href="{REPO}/issues">Open an issue on GitHub</a>.</p></article></div>'''
@@ -785,7 +785,7 @@ def omakase_page(ps, cats):
         secs += f'<section class="course"><h2><span class="cn">{n:02d}</span>{kick}{E(nm.strip())}</h2><ul class="menu">{items}</ul></section>'
     intro = f'<p class="intro">{inline(" ".join(intro))}</p>' if intro else ""
     title = h1 or o.get("title") or "Omakase"
-    main = f'''<section class="phead omk-head"><div><p class="kick"><a href="./">Catalog</a> · Omakase</p>
+    main = f'''<section class="phead omk-head"><div><p class="kick"><a href="./">Catalog</a><span aria-hidden="true">·</span>Omakase</p>
 <h1>{E(title)} <span class="jp" lang="ja">お任せ</span></h1></div>{intro}</section>
 <div class="omakase">{secs}</div>'''
     return page("Omakase · My Data, My Tools, My Rules", main, "", nav(cats, ""), "A short, personal selection from the catalog.", "omk", about="omakase", path="omakase.html")
@@ -815,7 +815,7 @@ def new_entries_page(ps, cats):
                  f'<h2><time datetime="{E(d)}">{nice_date(d)}</time></h2><span class="cnt">{len(dps)} {"entry" if len(dps) == 1 else "entries"}</span></header>\n'
                  f'<div class="grid">{cards}</div></section>\n')
     empty = '<p class="empty"{h}>No new entries in the last 7 days. <a href="./">Back to the catalog</a></p>'.format(h=" hidden" if new else "")
-    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a> · New Entries</p><h1>New Entries</h1></div><p class="intro">Projects added to the catalog in the last 7 days, newest first.</p></section>
+    main = f'''<section class="phead"><div><p class="kick"><a href="./">Catalog</a><span aria-hidden="true">·</span>New Entries</p><h1>New Entries</h1></div><p class="intro">Projects added to the catalog in the last 7 days, newest first.</p></section>
 <div class="catflow new-entries">
 {secs}</div>{empty}'''
     return page("New Entries · My Data, My Tools, My Rules", main, "", nav(cats, ""), "Projects added to the catalog in the last 7 days.", about="new", path="new-entries.html")
@@ -846,7 +846,7 @@ def not_found_page(cats):
     root = SITE + "/"
     sep = "\u00b7"  # middle dot
     main = (
-        f'<section class="phead"><div><p class="kick"><a href="{E(root)}">Catalog</a> {sep} Not found</p>'
+        f'<section class="phead"><div><p class="kick"><a href="{E(root)}">Catalog</a><span aria-hidden="true">{sep}</span>Not found</p>'
         f'<h1>Page not found</h1></div>'
         f'<p class="intro">That URL is not in this catalog. Go back to the <a href="{E(root)}">catalog</a>'
         f' or <a href="{E(root)}#search">search</a>.</p></section>'

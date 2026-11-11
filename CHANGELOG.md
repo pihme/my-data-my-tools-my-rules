@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.4
+
+- Dossier kicker: the search magnifier next to the category is removed. The catalog search field itself is unchanged, as is the `#search` focus hook (still used by the 404 page and direct links).
+- The kicker line (`Catalog · Category`, and the same pattern on About, Funders, Omakase, New Entries and 404) uses `display: flex` and `align-items: center`, so the category icon and name sit on the same axis as the Catalog text. The middot is a span with `gap: 0.7em` (one monospaced space, including letter-spacing) so the separator spacing stays the same now that flex would otherwise collapse the spaces.
+
 ## 2.9.3
 
 - Content v2.22: "Works with" card on dossier pages (Designer spec v1). New optional front-matter fields `works_with` (list of catalog slugs) and `role` (short English phrase, max 24 characters). The build adds the reverse link, sorts entries by name and renders the card only when there is at least one entry; unknown slugs, self-links and longer roles stop the build. Without `role`, the row shows the target's Type text. The card sits below the facts, both in a new `.side` wrapper (on every dossier, so below 1280px the facts come before the text on all dossiers, with or without a card); framed like the facts with a top border in the page's category colour; each row links to the other dossier with its logo as a 40px tile (letter tile in the target's category colour), name and role. Below 1280px the facts and card move above the text; below 600px the card uses smaller sizes. Amperfy lists Navidrome (`role: iOS client`); Navidrome gets the reverse link (`role: Music server`). Both fields documented in `projects/README.md` and `TEMPLATE.md`.
