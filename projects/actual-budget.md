@@ -22,6 +22,11 @@ funding_note: Community project funded through Open Collective (fiscal host Open
 icon: assets/icons/actual-budget.png
 icon_credit: Actual Budget app icon from the MIT-licensed repository; used to identify the project
 icon_source: https://github.com/actualbudget/actual/blob/master/packages/desktop-client/public/apple-touch-icon.png
+screenshot: assets/screenshots/actual-budget.webp
+screenshot_credit: Screenshot from the Actual Budget repository, MIT
+screenshot_source: https://github.com/actualbudget/actual/blob/master/packages/desktop-client/public/screenshot_wide.png
+fireworks_image: assets/fireworks/cf-actual-budget-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://actualbudget.org/
   - https://github.com/actualbudget/actual/blob/master/LICENSE.txt

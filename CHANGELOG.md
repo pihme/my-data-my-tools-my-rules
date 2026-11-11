@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.2
+
+- Content v2.21: Code Fireworks tiles (variant B1) for Amperfy, Ollama, Open WebUI, Audiobookshelf, Pi-hole and Actual Budget (all 36 dossiers). Official screenshots added for Amperfy, Ollama, Audiobookshelf and Actual Budget (cleared in `assets/ASSETS.md`).
+- Amperfy moves from Media to Mobile.
+- Navidrome notes: cross-link to Amperfy as a Subsonic-API client (tested in our own use, November 2026).
+
 ## 2.9.1
 
 - Card width: the card track stays one quarter of the full catalog width. `--n` follows the section's span, not the card count, so leftover cards sit on the left at standard width instead of stretching. On the catalog, small categories still share a row; when a filter or search leaves a single category, its section goes to `span-4` with `--n:4` (before, only the span was raised and a lone card stretched). New Entries day sections are `span-4` and always `--n:4`, also for a day with one entry (`build.py` no longer uses `min(count, 4)`, `site.js` no longer rewrites `--n`). Below 1280px the fixed 3/2/1 columns are unchanged.

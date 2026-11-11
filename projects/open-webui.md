@@ -20,6 +20,8 @@ corporate_note: Developed by Open WebUI Inc. (copyright holder in the LICENSE; c
 icon: assets/icons/open-webui.png
 icon_credit: Open WebUI icon from the official brand page (docs.openwebui.com/brand), used unmodified to identify the project; no endorsement implied
 icon_source: https://docs.openwebui.com/images/open-webui-icon.png
+fireworks_image: assets/fireworks/cf-open-webui-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://openwebui.com/
   - https://github.com/open-webui/open-webui/blob/main/LICENSE

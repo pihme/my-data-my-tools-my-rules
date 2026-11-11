@@ -1,7 +1,7 @@
 ---
 name: Amperfy
 slug: amperfy
-category: Media
+category: Mobile
 license: GPL-3.0-or-later
 open_source: true
 type: App
@@ -16,6 +16,11 @@ summary: Amperfy is an iOS, iPadOS and macOS app that plays music, podcasts and 
 icon: assets/icons/amperfy.png
 icon_credit: Amperfy app icon from the GPL-3.0 repository; used to identify the project
 icon_source: https://github.com/BLeeEZ/amperfy/blob/master/AmperfyKit/Assets/Assets.xcassets/Icon-1024.imageset/Icon-1024.png
+screenshot: assets/screenshots/amperfy.webp
+screenshot_credit: Screenshot from the Amperfy repository, GPL-3.0-or-later
+screenshot_source: https://github.com/BLeeEZ/amperfy/blob/master/.github/Screenshots/macOS-Playlist.png
+fireworks_image: assets/fireworks/cf-amperfy-b1.webp
+fireworks_date: 2026-11
 sources:
   - https://github.com/BLeeEZ/amperfy
   - https://github.com/BLeeEZ/amperfy/blob/master/LICENSE
