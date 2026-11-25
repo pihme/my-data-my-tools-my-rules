@@ -1,0 +1,6 @@
+/* Self-hosted fonts, SIL Open Font License 1.1 (see fonts/OFL.txt).
+   Variable TTFs kept in-repo as sources; only WOFF2 subsets are served. */
+@font-face{font-family:"Bricolage Grotesque";src:url("fonts/BricolageGrotesque-Variable.woff2") format("woff2");font-weight:200 800;font-stretch:75% 100%;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url("fonts/InterTight-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/JetBrainsMono-Variable.woff2") format("woff2");font-weight:100 800;font-display:swap}
