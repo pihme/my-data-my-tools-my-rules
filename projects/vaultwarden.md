@@ -37,13 +37,13 @@ Prerequisites (from the official docs):
 
 - A server with Docker and Docker Compose
 - A data volume for the vault
-- A domain and HTTPS via a reverse proxy if clients connect over the internet
+- HTTPS, even for a local test: a domain with a reverse proxy, or a self-signed certificate (ROCKET_TLS)
 - Official Bitwarden apps or browser extensions as clients
 
 Steps:
 
 1. Create a data directory and start vaultwarden/server with DOMAIN set (docker run or Compose), as in the README Usage section.
-2. Open the web vault in a browser (HTTPS is required except on localhost).
+2. Open the web vault over HTTPS. Over plain HTTP, even on localhost, signup silently does nothing; the browser console shows "Insecure URL not allowed. All URLs must use HTTPS." (QA install test, 25 Nov 2026, Vaultwarden 1.37.5 with web vault 2026.10.1).
 3. Create your account, then point the Bitwarden clients at your server URL.
 
 Official wiki: Using Docker Compose: <https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose>
