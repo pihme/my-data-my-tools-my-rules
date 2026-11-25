@@ -18,6 +18,7 @@ summary: restic is a command-line backup program for Linux, macOS, Windows and B
 funding_note: The project README states that AppsCode sponsors the backend integration tests for Google Cloud Storage and Azure Blob Storage.
 fireworks_image: assets/fireworks/cf-restic-b1.webp
 fireworks_date: 2026-11
+role: Backup program
 sources:
   - https://restic.net/
   - https://github.com/restic/restic/blob/master/LICENSE

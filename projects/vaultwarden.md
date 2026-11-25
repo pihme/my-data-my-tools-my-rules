@@ -21,6 +21,7 @@ icon_credit: Vaultwarden icon by Mathijs van Veluw (based on the Rust logo), fro
 icon_source: https://github.com/dani-garcia/vaultwarden/blob/main/resources/vaultwarden-icon.svg
 fireworks_image: assets/fireworks/cf-vaultwarden-b1.webp
 fireworks_date: 2026-11
+role: Vault server
 sources:
   - https://github.com/dani-garcia/vaultwarden
   - https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt

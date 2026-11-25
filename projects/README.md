@@ -62,4 +62,4 @@ Anything an individual can install for private use free of charge qualifies. Sou
 
 ## Status
 
-36 dossiers (22 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE, OpenCode, Pangolin and Jitsi Meet, checked 2026-11-05/06; Amperfy, checked 2026-11-08; Ollama, Open WebUI, Pi-hole, Audiobookshelf and Actual Budget, checked 2026-11-11; Europe/Berlin). Categories: AI, Files, Finances, Media, Mobile, Office, Passwords, Server, Smart Home, Utilities.
+43 dossiers (22 from the initial research, plus restic, Paperless-ngx, Beszel, Uptime Kuma, ONLYOFFICE, OpenCode, Pangolin and Jitsi Meet, checked 2026-11-05/06; Amperfy, checked 2026-11-08; Ollama, Open WebUI, Pi-hole, Audiobookshelf and Actual Budget, checked 2026-11-11; Kopia, Backrest, Vikunja, OpenCloud, PhotoPrism, Bitwarden clients and Frigate, checked and install-tested 2026-11-25; Europe/Berlin). Categories: AI, Files, Finances, Media, Mobile, Office, Passwords, Server, Smart Home, Utilities.
