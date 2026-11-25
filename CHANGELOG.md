@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.10.0
+
+- Content v2.23: seven new dossiers, all install-tested on 2026-11-25 along the official install path (`setup_*` fields set from that test): Kopia (Server, Apache-2.0), Backrest (Server, GPL-3.0-only), Vikunja (Office, AGPL-3.0-or-later), OpenCloud (Files, Apache-2.0), PhotoPrism (Media, AGPL-3.0-only with trademark terms under section 7), Bitwarden clients (Passwords, GPL-3.0-only; commercial modules under the source-available Bitwarden License are noted) and Frigate (Smart Home, MIT); 43 dossiers in 10 categories.
+- Works with: Backrest lists restic (`role: Web UI for restic`) and Bitwarden clients list Vaultwarden (`role: Client apps`); the build adds the reverse links. restic gets `role: Backup program`, Vaultwarden `role: Vault server`.
+- Icons for Kopia, Backrest, Vikunja, OpenCloud and PhotoPrism (official files, byte-identical; cleared in `assets/ASSETS.md`). Bitwarden clients and Frigate keep the letter tile: their trademark terms do not allow the logo for this use.
+- Code Fireworks tiles (variant B1, snapshot 2026-11-25, caption "As of Nov 2026") for all seven.
+
 ## 2.9.4
 
 - Dossier kicker: the search magnifier next to the category is removed. The catalog search field itself is unchanged, as is the `#search` focus hook (still used by the 404 page and direct links).
